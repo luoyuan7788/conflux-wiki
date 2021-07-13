@@ -1,832 +1,832 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-         <loc>https://ctf-wiki.org/</loc>
+         <loc>https://conflux-wiki.github.io/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/discussion/</loc>
+         <loc>https://conflux-wiki.github.io/discussion/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/usage/</loc>
+         <loc>https://conflux-wiki.github.io/usage/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/blockchain/introduction/</loc>
+         <loc>https://conflux-wiki.github.io/blockchain/introduction/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/blockchain/ethereum/basics/</loc>
+         <loc>https://conflux-wiki.github.io/blockchain/ethereum/basics/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/blockchain/ethereum/challenges/</loc>
+         <loc>https://conflux-wiki.github.io/blockchain/ethereum/challenges/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/blockchain/ethereum/introduction/</loc>
+         <loc>https://conflux-wiki.github.io/blockchain/ethereum/introduction/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/blockchain/ethereum/opcodes/</loc>
+         <loc>https://conflux-wiki.github.io/blockchain/ethereum/opcodes/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/blockchain/ethereum/resources/</loc>
+         <loc>https://conflux-wiki.github.io/blockchain/ethereum/resources/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/blockchain/ethereum/reverse/</loc>
+         <loc>https://conflux-wiki.github.io/blockchain/ethereum/reverse/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/blockchain/ethereum/selector-encoding/</loc>
+         <loc>https://conflux-wiki.github.io/blockchain/ethereum/selector-encoding/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/blockchain/ethereum/storage/</loc>
+         <loc>https://conflux-wiki.github.io/blockchain/ethereum/storage/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/blockchain/ethereum/attacks/airdrop-hunting/</loc>
+         <loc>https://conflux-wiki.github.io/blockchain/ethereum/attacks/airdrop-hunting/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/blockchain/ethereum/attacks/arbitrarywrite/</loc>
+         <loc>https://conflux-wiki.github.io/blockchain/ethereum/attacks/arbitrarywrite/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/blockchain/ethereum/attacks/create2/</loc>
+         <loc>https://conflux-wiki.github.io/blockchain/ethereum/attacks/create2/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/blockchain/ethereum/attacks/delegatecall/</loc>
+         <loc>https://conflux-wiki.github.io/blockchain/ethereum/attacks/delegatecall/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/blockchain/ethereum/attacks/introduction/</loc>
+         <loc>https://conflux-wiki.github.io/blockchain/ethereum/attacks/introduction/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/blockchain/ethereum/attacks/jump-oriented-programming/</loc>
+         <loc>https://conflux-wiki.github.io/blockchain/ethereum/attacks/jump-oriented-programming/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/blockchain/ethereum/attacks/overflow-underflow/</loc>
+         <loc>https://conflux-wiki.github.io/blockchain/ethereum/attacks/overflow-underflow/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/blockchain/ethereum/attacks/randomness/</loc>
+         <loc>https://conflux-wiki.github.io/blockchain/ethereum/attacks/randomness/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/blockchain/ethereum/attacks/re-entrancy/</loc>
+         <loc>https://conflux-wiki.github.io/blockchain/ethereum/attacks/re-entrancy/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/blockchain/ethereum/attacks/shortaddress/</loc>
+         <loc>https://conflux-wiki.github.io/blockchain/ethereum/attacks/shortaddress/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/blockchain/ethereum/attacks/uninitialized-storage-pointer/</loc>
+         <loc>https://conflux-wiki.github.io/blockchain/ethereum/attacks/uninitialized-storage-pointer/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/blockchain/publicblockchain/introduction/</loc>
+         <loc>https://conflux-wiki.github.io/blockchain/publicblockchain/introduction/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/contribute/basic-contribute-approach/</loc>
+         <loc>https://conflux-wiki.github.io/contribute/basic-contribute-approach/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/contribute/before-contributing/</loc>
+         <loc>https://conflux-wiki.github.io/contribute/before-contributing/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/contribute/documentation-requirement/</loc>
+         <loc>https://conflux-wiki.github.io/contribute/documentation-requirement/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/contribute/translation/</loc>
+         <loc>https://conflux-wiki.github.io/contribute/translation/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/crypto/introduction/</loc>
+         <loc>https://conflux-wiki.github.io/crypto/introduction/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/crypto/asymmetric/introduction/</loc>
+         <loc>https://conflux-wiki.github.io/crypto/asymmetric/introduction/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/crypto/asymmetric/discrete-log/discrete-log/</loc>
+         <loc>https://conflux-wiki.github.io/crypto/asymmetric/discrete-log/discrete-log/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/crypto/asymmetric/discrete-log/ecc/</loc>
+         <loc>https://conflux-wiki.github.io/crypto/asymmetric/discrete-log/ecc/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/crypto/asymmetric/discrete-log/elgamal/</loc>
+         <loc>https://conflux-wiki.github.io/crypto/asymmetric/discrete-log/elgamal/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/crypto/asymmetric/knapsack/knapsack/</loc>
+         <loc>https://conflux-wiki.github.io/crypto/asymmetric/knapsack/knapsack/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/crypto/asymmetric/lattice/cvp/</loc>
+         <loc>https://conflux-wiki.github.io/crypto/asymmetric/lattice/cvp/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/crypto/asymmetric/lattice/introduction/</loc>
+         <loc>https://conflux-wiki.github.io/crypto/asymmetric/lattice/introduction/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/crypto/asymmetric/lattice/lattice-reduction/</loc>
+         <loc>https://conflux-wiki.github.io/crypto/asymmetric/lattice/lattice-reduction/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/crypto/asymmetric/lattice/overview/</loc>
+         <loc>https://conflux-wiki.github.io/crypto/asymmetric/lattice/overview/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/crypto/asymmetric/rsa/rsa_chosen_plain_cipher/</loc>
+         <loc>https://conflux-wiki.github.io/crypto/asymmetric/rsa/rsa_chosen_plain_cipher/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/crypto/asymmetric/rsa/rsa_complex/</loc>
+         <loc>https://conflux-wiki.github.io/crypto/asymmetric/rsa/rsa_complex/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/crypto/asymmetric/rsa/rsa_coppersmith_attack/</loc>
+         <loc>https://conflux-wiki.github.io/crypto/asymmetric/rsa/rsa_coppersmith_attack/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/crypto/asymmetric/rsa/rsa_d_attack/</loc>
+         <loc>https://conflux-wiki.github.io/crypto/asymmetric/rsa/rsa_d_attack/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/crypto/asymmetric/rsa/rsa_e_attack/</loc>
+         <loc>https://conflux-wiki.github.io/crypto/asymmetric/rsa/rsa_e_attack/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/crypto/asymmetric/rsa/rsa_module_attack/</loc>
+         <loc>https://conflux-wiki.github.io/crypto/asymmetric/rsa/rsa_module_attack/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/crypto/asymmetric/rsa/rsa_pkcs_attack/</loc>
+         <loc>https://conflux-wiki.github.io/crypto/asymmetric/rsa/rsa_pkcs_attack/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/crypto/asymmetric/rsa/rsa_side_channel/</loc>
+         <loc>https://conflux-wiki.github.io/crypto/asymmetric/rsa/rsa_side_channel/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/crypto/asymmetric/rsa/rsa_theory/</loc>
+         <loc>https://conflux-wiki.github.io/crypto/asymmetric/rsa/rsa_theory/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/crypto/attack-summary/attack-mode/</loc>
+         <loc>https://conflux-wiki.github.io/crypto/attack-summary/attack-mode/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/crypto/attack-summary/bit-attack/</loc>
+         <loc>https://conflux-wiki.github.io/crypto/attack-summary/bit-attack/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/crypto/attack-summary/meet-in-the-middle/</loc>
+         <loc>https://conflux-wiki.github.io/crypto/attack-summary/meet-in-the-middle/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/crypto/basic/introduction/</loc>
+         <loc>https://conflux-wiki.github.io/crypto/basic/introduction/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/crypto/blockcipher/aes/</loc>
+         <loc>https://conflux-wiki.github.io/crypto/blockcipher/aes/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/crypto/blockcipher/arx-operations/</loc>
+         <loc>https://conflux-wiki.github.io/crypto/blockcipher/arx-operations/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/crypto/blockcipher/des/</loc>
+         <loc>https://conflux-wiki.github.io/crypto/blockcipher/des/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/crypto/blockcipher/idea/</loc>
+         <loc>https://conflux-wiki.github.io/crypto/blockcipher/idea/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/crypto/blockcipher/introduction/</loc>
+         <loc>https://conflux-wiki.github.io/crypto/blockcipher/introduction/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/crypto/blockcipher/simon-speck/</loc>
+         <loc>https://conflux-wiki.github.io/crypto/blockcipher/simon-speck/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/crypto/blockcipher/mode/cbc/</loc>
+         <loc>https://conflux-wiki.github.io/crypto/blockcipher/mode/cbc/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/crypto/blockcipher/mode/cfb/</loc>
+         <loc>https://conflux-wiki.github.io/crypto/blockcipher/mode/cfb/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/crypto/blockcipher/mode/ctr/</loc>
+         <loc>https://conflux-wiki.github.io/crypto/blockcipher/mode/ctr/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/crypto/blockcipher/mode/ecb/</loc>
+         <loc>https://conflux-wiki.github.io/crypto/blockcipher/mode/ecb/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/crypto/blockcipher/mode/introduction/</loc>
+         <loc>https://conflux-wiki.github.io/crypto/blockcipher/mode/introduction/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/crypto/blockcipher/mode/ofb/</loc>
+         <loc>https://conflux-wiki.github.io/crypto/blockcipher/mode/ofb/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/crypto/blockcipher/mode/padding-oracle-attack/</loc>
+         <loc>https://conflux-wiki.github.io/crypto/blockcipher/mode/padding-oracle-attack/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/crypto/blockcipher/mode/padding/</loc>
+         <loc>https://conflux-wiki.github.io/crypto/blockcipher/mode/padding/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/crypto/blockcipher/mode/pcbc/</loc>
+         <loc>https://conflux-wiki.github.io/crypto/blockcipher/mode/pcbc/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/crypto/certificate/introduction/</loc>
+         <loc>https://conflux-wiki.github.io/crypto/certificate/introduction/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/crypto/classical/introduction/</loc>
+         <loc>https://conflux-wiki.github.io/crypto/classical/introduction/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/crypto/classical/monoalphabetic/</loc>
+         <loc>https://conflux-wiki.github.io/crypto/classical/monoalphabetic/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/crypto/classical/others/</loc>
+         <loc>https://conflux-wiki.github.io/crypto/classical/others/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/crypto/classical/polyalphabetic/</loc>
+         <loc>https://conflux-wiki.github.io/crypto/classical/polyalphabetic/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/crypto/classical/summary/</loc>
+         <loc>https://conflux-wiki.github.io/crypto/classical/summary/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/crypto/hash/attack/</loc>
+         <loc>https://conflux-wiki.github.io/crypto/hash/attack/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/crypto/hash/complex/</loc>
+         <loc>https://conflux-wiki.github.io/crypto/hash/complex/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/crypto/hash/fnv/</loc>
+         <loc>https://conflux-wiki.github.io/crypto/hash/fnv/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/crypto/hash/introduction/</loc>
+         <loc>https://conflux-wiki.github.io/crypto/hash/introduction/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/crypto/hash/md5/</loc>
+         <loc>https://conflux-wiki.github.io/crypto/hash/md5/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/crypto/hash/sha1/</loc>
+         <loc>https://conflux-wiki.github.io/crypto/hash/sha1/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/crypto/signature/dsa/</loc>
+         <loc>https://conflux-wiki.github.io/crypto/signature/dsa/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/crypto/signature/elgamal/</loc>
+         <loc>https://conflux-wiki.github.io/crypto/signature/elgamal/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/crypto/signature/introduction/</loc>
+         <loc>https://conflux-wiki.github.io/crypto/signature/introduction/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/crypto/signature/rsa/</loc>
+         <loc>https://conflux-wiki.github.io/crypto/signature/rsa/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/crypto/streamcipher/intro/</loc>
+         <loc>https://conflux-wiki.github.io/crypto/streamcipher/intro/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/crypto/streamcipher/fsr/intro/</loc>
+         <loc>https://conflux-wiki.github.io/crypto/streamcipher/fsr/intro/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/crypto/streamcipher/fsr/lfsr/</loc>
+         <loc>https://conflux-wiki.github.io/crypto/streamcipher/fsr/lfsr/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/crypto/streamcipher/fsr/nfsr/</loc>
+         <loc>https://conflux-wiki.github.io/crypto/streamcipher/fsr/nfsr/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/crypto/streamcipher/lcg/challenge/</loc>
+         <loc>https://conflux-wiki.github.io/crypto/streamcipher/lcg/challenge/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/crypto/streamcipher/lcg/intro/</loc>
+         <loc>https://conflux-wiki.github.io/crypto/streamcipher/lcg/intro/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/crypto/streamcipher/prng/csprng/</loc>
+         <loc>https://conflux-wiki.github.io/crypto/streamcipher/prng/csprng/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/crypto/streamcipher/prng/intro/</loc>
+         <loc>https://conflux-wiki.github.io/crypto/streamcipher/prng/intro/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/crypto/streamcipher/prng/problem/</loc>
+         <loc>https://conflux-wiki.github.io/crypto/streamcipher/prng/problem/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/crypto/streamcipher/special/rc4/</loc>
+         <loc>https://conflux-wiki.github.io/crypto/streamcipher/special/rc4/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/ics/ctfs/</loc>
+         <loc>https://conflux-wiki.github.io/ics/ctfs/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/ics/discover/</loc>
+         <loc>https://conflux-wiki.github.io/ics/discover/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/ics/exploit/</loc>
+         <loc>https://conflux-wiki.github.io/ics/exploit/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/ics/learn/</loc>
+         <loc>https://conflux-wiki.github.io/ics/learn/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/introduction/cgc/</loc>
+         <loc>https://conflux-wiki.github.io/introduction/cgc/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/introduction/content/</loc>
+         <loc>https://conflux-wiki.github.io/introduction/content/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/introduction/experience/</loc>
+         <loc>https://conflux-wiki.github.io/introduction/experience/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/introduction/history/</loc>
+         <loc>https://conflux-wiki.github.io/introduction/history/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/introduction/mode/</loc>
+         <loc>https://conflux-wiki.github.io/introduction/mode/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/introduction/resources/</loc>
+         <loc>https://conflux-wiki.github.io/introduction/resources/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/misc/introduction/</loc>
+         <loc>https://conflux-wiki.github.io/misc/introduction/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/misc/others/</loc>
+         <loc>https://conflux-wiki.github.io/misc/others/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/misc/prefix/</loc>
+         <loc>https://conflux-wiki.github.io/misc/prefix/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/misc/recon/</loc>
+         <loc>https://conflux-wiki.github.io/misc/recon/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/misc/archive/rar/</loc>
+         <loc>https://conflux-wiki.github.io/misc/archive/rar/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/misc/archive/zip/</loc>
+         <loc>https://conflux-wiki.github.io/misc/archive/zip/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/misc/audio/introduction/</loc>
+         <loc>https://conflux-wiki.github.io/misc/audio/introduction/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/misc/disk-memory/introduction/</loc>
+         <loc>https://conflux-wiki.github.io/misc/disk-memory/introduction/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/misc/disk-memory/problem/</loc>
+         <loc>https://conflux-wiki.github.io/misc/disk-memory/problem/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/misc/encode/communication/</loc>
+         <loc>https://conflux-wiki.github.io/misc/encode/communication/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/misc/encode/computer/</loc>
+         <loc>https://conflux-wiki.github.io/misc/encode/computer/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/misc/encode/modern/</loc>
+         <loc>https://conflux-wiki.github.io/misc/encode/modern/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/misc/other/pyc/</loc>
+         <loc>https://conflux-wiki.github.io/misc/other/pyc/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/misc/picture/gif/</loc>
+         <loc>https://conflux-wiki.github.io/misc/picture/gif/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/misc/picture/introduction/</loc>
+         <loc>https://conflux-wiki.github.io/misc/picture/introduction/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/misc/picture/jpg/</loc>
+         <loc>https://conflux-wiki.github.io/misc/picture/jpg/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/misc/picture/png/</loc>
+         <loc>https://conflux-wiki.github.io/misc/picture/png/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/misc/traffic/data/</loc>
+         <loc>https://conflux-wiki.github.io/misc/traffic/data/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/misc/traffic/fix/</loc>
+         <loc>https://conflux-wiki.github.io/misc/traffic/fix/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/misc/traffic/introduction/</loc>
+         <loc>https://conflux-wiki.github.io/misc/traffic/introduction/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/misc/traffic/protocols/dns/</loc>
+         <loc>https://conflux-wiki.github.io/misc/traffic/protocols/dns/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/misc/traffic/protocols/ftp/</loc>
+         <loc>https://conflux-wiki.github.io/misc/traffic/protocols/ftp/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/misc/traffic/protocols/http/</loc>
+         <loc>https://conflux-wiki.github.io/misc/traffic/protocols/http/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/misc/traffic/protocols/https/</loc>
+         <loc>https://conflux-wiki.github.io/misc/traffic/protocols/https/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/misc/traffic/protocols/readme/</loc>
+         <loc>https://conflux-wiki.github.io/misc/traffic/protocols/readme/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/misc/traffic/protocols/usb/</loc>
+         <loc>https://conflux-wiki.github.io/misc/traffic/protocols/usb/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/misc/traffic/protocols/wifi/</loc>
+         <loc>https://conflux-wiki.github.io/misc/traffic/protocols/wifi/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/misc/traffic/protocols/wireshark/</loc>
+         <loc>https://conflux-wiki.github.io/misc/traffic/protocols/wireshark/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/reverse/introduction/</loc>
+         <loc>https://conflux-wiki.github.io/reverse/introduction/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/reverse/identify-encode-encryption/introduction/</loc>
+         <loc>https://conflux-wiki.github.io/reverse/identify-encode-encryption/introduction/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/reverse/linux/detect-bp/</loc>
+         <loc>https://conflux-wiki.github.io/reverse/linux/detect-bp/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/reverse/linux/detect-dbg/</loc>
+         <loc>https://conflux-wiki.github.io/reverse/linux/detect-dbg/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/reverse/linux/false-disasm/</loc>
+         <loc>https://conflux-wiki.github.io/reverse/linux/false-disasm/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/reverse/linux/ld_preload/</loc>
+         <loc>https://conflux-wiki.github.io/reverse/linux/ld_preload/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/reverse/maze/maze/</loc>
+         <loc>https://conflux-wiki.github.io/reverse/maze/maze/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/reverse/unicorn/introduction/</loc>
+         <loc>https://conflux-wiki.github.io/reverse/unicorn/introduction/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/reverse/vm/vm/</loc>
+         <loc>https://conflux-wiki.github.io/reverse/vm/vm/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/reverse/windows/anti-debug/checkremotedebuggerpresent/</loc>
+         <loc>https://conflux-wiki.github.io/reverse/windows/anti-debug/checkremotedebuggerpresent/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/reverse/windows/anti-debug/example/</loc>
+         <loc>https://conflux-wiki.github.io/reverse/windows/anti-debug/example/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/reverse/windows/anti-debug/heap-flags/</loc>
+         <loc>https://conflux-wiki.github.io/reverse/windows/anti-debug/heap-flags/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/reverse/windows/anti-debug/int-3/</loc>
+         <loc>https://conflux-wiki.github.io/reverse/windows/anti-debug/int-3/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/reverse/windows/anti-debug/isdebuggerpresent/</loc>
+         <loc>https://conflux-wiki.github.io/reverse/windows/anti-debug/isdebuggerpresent/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/reverse/windows/anti-debug/junk-code/</loc>
+         <loc>https://conflux-wiki.github.io/reverse/windows/anti-debug/junk-code/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/reverse/windows/anti-debug/ntglobalflag/</loc>
+         <loc>https://conflux-wiki.github.io/reverse/windows/anti-debug/ntglobalflag/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/reverse/windows/anti-debug/ntqueryinformationprocess/</loc>
+         <loc>https://conflux-wiki.github.io/reverse/windows/anti-debug/ntqueryinformationprocess/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/reverse/windows/anti-debug/the-heap/</loc>
+         <loc>https://conflux-wiki.github.io/reverse/windows/anti-debug/the-heap/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/reverse/windows/anti-debug/thread_local_storage/</loc>
+         <loc>https://conflux-wiki.github.io/reverse/windows/anti-debug/thread_local_storage/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/reverse/windows/anti-debug/zwsetinformationthread/</loc>
+         <loc>https://conflux-wiki.github.io/reverse/windows/anti-debug/zwsetinformationthread/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/reverse/windows/unpack/direct-oep/</loc>
+         <loc>https://conflux-wiki.github.io/reverse/windows/unpack/direct-oep/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/reverse/windows/unpack/esp/</loc>
+         <loc>https://conflux-wiki.github.io/reverse/windows/unpack/esp/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/reverse/windows/unpack/fix-iat/</loc>
+         <loc>https://conflux-wiki.github.io/reverse/windows/unpack/fix-iat/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/reverse/windows/unpack/last-exception/</loc>
+         <loc>https://conflux-wiki.github.io/reverse/windows/unpack/last-exception/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/reverse/windows/unpack/manually-fix-iat/</loc>
+         <loc>https://conflux-wiki.github.io/reverse/windows/unpack/manually-fix-iat/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/reverse/windows/unpack/memory/</loc>
+         <loc>https://conflux-wiki.github.io/reverse/windows/unpack/memory/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/reverse/windows/unpack/packer-introduction/</loc>
+         <loc>https://conflux-wiki.github.io/reverse/windows/unpack/packer-introduction/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/reverse/windows/unpack/sfx/</loc>
+         <loc>https://conflux-wiki.github.io/reverse/windows/unpack/sfx/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/reverse/windows/unpack/trace/</loc>
+         <loc>https://conflux-wiki.github.io/reverse/windows/unpack/trace/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/reverse/windows/unpack/unpack-dll/</loc>
+         <loc>https://conflux-wiki.github.io/reverse/windows/unpack/unpack-dll/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/web/csrf/</loc>
+         <loc>https://conflux-wiki.github.io/web/csrf/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/web/introduction/</loc>
+         <loc>https://conflux-wiki.github.io/web/introduction/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/web/sqli/</loc>
+         <loc>https://conflux-wiki.github.io/web/sqli/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/web/ssrf/</loc>
+         <loc>https://conflux-wiki.github.io/web/ssrf/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/web/xss/</loc>
+         <loc>https://conflux-wiki.github.io/web/xss/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://ctf-wiki.org/web/php/php/</loc>
+         <loc>https://conflux-wiki.github.io/web/php/php/</loc>
          <lastmod>2021-07-13</lastmod>
          <changefreq>daily</changefreq>
     </url>
