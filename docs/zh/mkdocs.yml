@@ -33,6 +33,7 @@ nav:
 - Start:
   - index.md
   - usage.md
+  - link.md
   - 贡献指南:
     - contribute/before-contributing.md
     - contribute/basic-contribute-approach.md
@@ -46,6 +47,7 @@ nav:
   - introduction/experience.md
   - introduction/cgc.md
   - introduction/resources.md
+  - introduction/portal.md
 - Crypto:
   - crypto/introduction.md
   - 基础数学知识:
