@@ -1,51 +1,55 @@
-# CTF Wiki
+# Conflux Wiki
 
-[![Build Status](https://travis-ci.org/ctf-wiki/ctf-wiki.svg?branch=master)](https://travis-ci.org/ctf-wiki/ctf-wiki)
-[![Requirements Status](https://requires.io/github/ctf-wiki/ctf-wiki/requirements.svg?branch=master)](https://requires.io/github/ctf-wiki/ctf-wiki/requirements/?branch=master)
-[![Slack](https://img.shields.io/badge/slack-join%20chat-brightgreen.svg)](https://join.slack.com/t/ctf-wiki/shared_invite/enQtNTkwNDg5NDUzNzAzLTQ3YTliNzI5OGNhM2NmNzI3NTU0YWRlNWFkY2EzYTExN2Y3ZjRkNzYzYmRhNDNlYmY5YTVmNjNhYjliZDgyNTY)
 
 [中文](./README-zh_CN.md)  [English](./README.md)
 
-Welcome to **CTF Wiki**！
+欢迎来到 **Conflux Wiki**。
 
-**CTF** (Capture The Flag) started from **DEFCON CTF**, a competitive game among computer security enthusiasts, originally hosted in 1996.
+**Conflux**（树图）缘起清华大学，经大量学术研究提出了区块链“不可能三角”的最优解：树图（Tree-Graph）共识机制，有效平衡了安全性、延展性和去中心化程度。
 
-**CTF** covers a wide range of fields. Along with the evolving security technology, the difficulty of **CTF** challenges is getting harder and harder. As a result, the learning curve for beginners is getting steeper. Most online information is scattered and trivial. Beginners often don't know how to systematically learn **CTF**, which requires a lot of work and effort.
+2018 年，**Conflux** 基金会成立并完成融资。2019 年第二季度，Conflux 测试网上线。
 
-In order to let those people who are interested in **CTF**s start easily, in October 2016, **CTF Wiki** was established on Github. Along with gradually improved content over time, **CTF Wiki** has received lots of appreciation from security enthusiasts, many of those are guys that we think we would never meet.
+作为中国区块链基础设施的先行者，**Conflux** 网络始终坚持推动区块链开发及教育等相关工作。2019 年 9 月 25 日，**Conflux** 杭州运营中心正式揭牌。2020 年 1 月 9 日，上海树图区块链研究院正式揭牌。2020 年 8 月 19 日，湖南湘江树图区块链创新中心暨区块链底层技术及应用湖南省重点实验室揭牌。
 
-As a freedom site, primarily focusing on recent CTFs, **CTF Wiki** introduces the knowledge and techniques in all aspects of **CTF** to make it easier for beginners to learn **CTF**.
+**Conflux** 网络团队由来自四个大洲的超过 50 名成员构成，不同化的文化让 **Conflux** 始终保持多元化，其办公室设立在加拿大多伦多、尼日利亚拉各斯等地。
 
-Now, **CTF Wiki** mainly contains the basic skills for **CTF**, but we are working hard to improve the following contents.
+在**Conflux** 上进行智能合约开发，体验生态涉及众多领域，内容繁杂。与此同时，区块链技术的发展速度越来越快，**Conflux** 初学者面对的门槛越来越高。而网上资料大都零散琐碎，初学者往往并不知道该如何系统性地学习 与**Conflux** 相关领域知识，常需要花费大量时间，苦不堪言。
 
-- Advanced skills used in CTF
-- Special topics appearing in CTF
+受到 [ctf-wiki](https://github.com/ctf-wiki/ctf-wiki) 项目成功的鼓舞，为了使得热爱 **Conflux** 的小伙伴们更好地入门 **Conflux**，2021 年 7 月份，**Conflux Wiki** 在 Github 有了第一次 commit。
 
-For the above-mentioned parts to be improved, please refer to [Projects](https://github.com/ctf-wiki/ctf-wiki/projects) which details what are planned.
+作为一个自由的站点，围绕 **Conflux** 这一基础网络设施近几年的发展，**Conflux Wiki** 对 **Conflux** 中的各个方向的知识和技术进行介绍，以便于初学者更好地学习 **Conflux** 网络相关的知识。
 
-Although now **CTF Wiki** mainly focus **CTF**, it is not strictly limited to **CTF** topics. In the future, **CTF Wiki** will include
+目前，**Conflux Wiki** 主要包含构建 **Conflux** 区块链各大范畴的基础知识，生态体验教程，并正在着力完善以下内容
 
-- Tools used in security research
-- Increased discussion of security in the world
+- 区块链智能合约安全知识
+- Conflux 底层机制解析
+- 智能合约开发
 
-In addition, given the following two points
+关于上述部分待完善内容，请参见 Conflux Wiki 的 [Projects](https://github.com/Conflux-wiki/Conflux-wiki/projects)，详细列出了正在做的事项以及待做事项。
 
-- Information about technology should be openly shared.
-- As new techniques are always being developed, old techniques will start to fade over time and they should be replaced with new techniques.
+当然，**Conflux Wiki** 基于 **Conflux**，却不会局限于 **Conflux**。在未来，**Conflux Wiki** 将会
 
-Therefore, **CTF Wiki** will never publish books.
+- 介绍更多基于Conflux开发的生态
+- 并更多地与区块链开发实战结合
 
-Finally, originating from the community, as an independent organization, **CTF Wiki** advocates **freedom of knowledge**, will **never be commercialized**, and will always maintain the character of **independence and freedom**.
+此外，鉴于以下两点
+
+- 技术应该以开放的方式共享。
+- 技术总是在不断演进，旧的技术在面对新的技术时可能失效。
+
+因此，**Conflux Wiki** 永远不会出版书籍。
+
+最后，**Conflux Wiki** 源于社区，作为**独立的组织**，提倡**知识自由**，在未来也绝不会商业化，将始终保持**独立自由**的性质。
 
 ## How to build？
 
-CTF Wiki uses [mkdocs](https://github.com/mkdocs/mkdocs) to show its contents. And it is deployed at [https://ctf-wiki.org](https://ctf-wiki.org).
+本文档目前采用 [mkdocs](https://github.com/mkdocs/mkdocs) 部署在 [https://conflux-wiki.github.io/conflux-wiki/](https://conflux-wiki.github.io/conflux-wiki/)。
 
-It can also be deployed locally, with the following steps:
+本项目可以直接部署在本地，具体方式如下：
 
 ```shell
 # 1. clone
-git clone https://github.com/ctf-wiki/ctf-wiki.git
+git clone https://github.com/conflux-wiki/conflux-wiki.git
 # 2. requirements
 pip install -r requirements.txt
 # generate static file in site/
@@ -54,50 +58,49 @@ python3 scripts/docs.py build-all
 python3 scripts/docs.py serve
 ```
 
-** A local instance of mkdocs is dynamically updated, for instance when a markdown file is modified, the corresponding page will be modified too.**
+**mkdocs 本地部署的网站是动态更新的，即当你修改并保存 md 文件后，刷新页面就能随之动态更新。也就是说您可以自己在本地环境把玩Conflux Wiki**
 
-If you just want to view it statically, try Docker!
+> 注意：在使用 mkdocs-material 的 insiders 版本后，暂时不支持 docker 构建。
 
-> Note: after using mkdocs-material-insiders, we haven't support building website with docker.
-
-```
-docker run -d --name=ctf-wiki -p 4100:80 ctfwiki/ctf-wiki
-```
-And then access [http://localhost:4100/](http://localhost:4100/) .
 
 ## How to practice？
 
-Firstly, learn some basic security knowledge through online reading.
+首先，通过在线阅读来学习一些基本的知识。
 
-Secondly, CTF Wiki has two sister projects.
+其次，Conflux Wiki 后续也可能会添加其他姊妹项目
 
-- All of the challenges that are mentioned are in the [ctf-challenges](https://github.com/ctf-wiki/ctf-challenges) repository, you can locate them with their corresponding category.
-- The tools mentioned in the CTF Wiki are constantly added to the [ctf-tools](https://github.com/ctf-wiki/ctf-tools) repository.
+- temporary unavailable
+。
+## How to make Conflux Wiki Better？
 
-## How to make CTF Wiki Better？
+我们非常欢迎你为 Wiki 编写内容，将自己的所学所得与大家分享。我们期待着你的加入！
 
-We welcome to write content for the wiki and share what you have learned. 
+**在你决定要贡献内容之前，请你务必看完 [CONTRIBUTING](https://conflux-wiki.github.io/conflux-wiki/contribute/before-contributing/)**。其中包含了详细的贡献方式。 
 
-**Before you decide to contribute content, please read [CONTRIBUTING](https://ctf-wiki.org/en/contribute/before-contributing/)**.
+非常感谢一起完善 ConfluxF Wiki 的小伙伴们
 
-Thank you to all the people who have already contributed to CTF Wiki.
-
-<a href="https://github.com/ctf-wiki/ctf-wiki/graphs/contributors"><img src="https://opencollective.com/ctf-wiki/contributors.svg?width=890&button=false" /></a>
+<a href="https://github.com/conflux-wiki/conflux-wiki/graphs/contributors"></a>
 
 ## What can you get?
 
-- Ability to learn new things quickly
-- Different ways of thinking
-- A love for solving problems
-- Interesting security techniques
-- Memorable and enriching experience
+- 快速学习新事物的能力
+- 不一样的思考方式
+- 乐于解决问题的心
+- 有趣的区块链技术
+- 充实奋斗的时光
 
-Before reading the Wiki, we hope to give you some advice:
+在阅读 Wiki 之前，我们希望能给予你几点建议：
 
-- Learn to ask [smart-questions](http://www.catb.org/~esr/faqs/smart-questions.html) .
-- Learn to use Google Search for self-improvement.
-- Be good at least one programming language, such as Python.
-- Practice is the most important learning tool.
-- Maintain the passions and desire to learn about new techniques.
+- 学习 [提问的智慧](https://github.com/ryanhanwu/How-To-Ask-Questions-The-Smart-Way)
+- 善用 Google 搜索能帮助你更好地提升自己
+- 至少掌握一门编程语言，比如 Python
+- 动手实践比什么都要管用
+- 保持对技术的好奇与渴望并坚持下去
 
-The security circle is small and the areas of exploration is vast. Let's get started with **CTF Wiki**!
+> 世界很大，互联网让世界变小，真的hacker应该去思考并创造，无论当下是在破坏还是在创造，记住，未来，那条主线是创造的就对了。 ——by 余弦
+
+链圈很小，链圈的海洋很深。链上的探险，不如就从 **Conflux Wiki** 开始！
+
+## Copyleft
+<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a><br />本作品采用<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>进行许可。
+
