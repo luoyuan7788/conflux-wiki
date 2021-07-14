@@ -37,5 +37,5 @@ https://guides.github.com/activities/forking/
 
 - 每次 Pull Request 应只解决一个主要的事情，这样方便于进行修改。
 - 在每次 Pull Request 时，请确保自己在本地生成时，可以正确显示，并在 Pull Request 页面的评论中查看预览的站点是否为自己期望的样子。
-- 如果你想要开启一个新的章节，即编写目前 CTF Wiki 中没有的内容，请务必加入 电报 中交流，并在交流完毕后**将自己想要开启的新的章节以简明扼要的方式发起一个新的 issue**，以便于管理人员把这个放到对应 Project 的 In Process 栏中。
+- 如果你想要开启一个新的章节，即编写目前 Conflux Wiki 中没有的内容，请务必加入 电报 中交流，并在交流完毕后**将自己想要开启的新的章节以简明扼要的方式发起一个新的 issue**，以便于管理人员把这个放到对应 Project 的 In Process 栏中。
 - 在你成为团队成员后，你可以自由地编写 Project 中的内容。
