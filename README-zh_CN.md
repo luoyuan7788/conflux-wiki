@@ -1,41 +1,45 @@
-# CTF Wiki
+# Conflux Wiki
 
-[![Build Status](https://travis-ci.org/ctf-wiki/ctf-wiki.svg?branch=master)](https://travis-ci.org/ctf-wiki/ctf-wiki)
-[![Requirements Status](https://requires.io/github/ctf-wiki/ctf-wiki/requirements.svg?branch=master)](https://requires.io/github/ctf-wiki/ctf-wiki/requirements/?branch=master)
-[![Slack](https://img.shields.io/badge/slack-join%20chat-brightgreen.svg)](https://join.slack.com/t/ctf-wiki/shared_invite/enQtNTkwNDg5NDUzNzAzLTQ3YTliNzI5OGNhM2NmNzI3NTU0YWRlNWFkY2EzYTExN2Y3ZjRkNzYzYmRhNDNlYmY5YTVmNjNhYjliZDgyNTY)
 
 [中文](./README-zh_CN.md)  [English](./README.md)
 
-欢迎来到 **CTF Wiki**。
+欢迎来到 **Conflux Wiki**。
 
-**CTF**（Capture The Flag，夺旗赛）起源于 1996 年 **DEFCON** 全球黑客大会，是网络安全爱好者之间的竞技游戏。
+**Conflux**（树图）缘起清华大学，经大量学术研究提出了区块链“不可能三角”的最优解：树图（Tree-Graph）共识机制，有效平衡了安全性、延展性和去中心化程度。
 
-**CTF** 竞赛涉及众多领域，内容繁杂。与此同时，安全技术的发展速度越来越快，**CTF** 题目的难度越来越高，初学者面对的门槛越来越高。而网上资料大都零散琐碎，初学者往往并不知道该如何系统性地学习 **CTF** 相关领域的知识，常需要花费大量时间，苦不堪言。
+2018 年，**Conflux** 基金会成立并完成融资。2019 年第二季度，Conflux 测试网上线。
 
-为了使得热爱 **CTF** 的小伙伴们更好地入门 **CTF**，2016 年 10 月份，**CTF Wiki** 在 Github 有了第一次 commit。随着内容不断完善，**CTF Wiki** 受到了越来越多安全爱好者的喜爱，也渐渐有素未谋面的小伙伴们参与其中。 
+作为中国区块链基础设施的先行者，**Conflux** 网络始终坚持推动区块链开发及教育等相关工作。2019 年 9 月 25 日，**Conflux** 杭州运营中心正式揭牌。2020 年 1 月 9 日，上海树图区块链研究院正式揭牌。2020 年 8 月 19 日，湖南湘江树图区块链创新中心暨区块链底层技术及应用湖南省重点实验室揭牌。
 
-作为一个自由的站点，围绕 **CTF** 近几年赛题，**CTF Wiki** 对 **CTF** 中的各个方向的知识进行介绍，以便于初学者更好地学习 **CTF** 相关的知识。
+**Conflux** 网络团队由来自四个大洲的超过 50 名成员构成，不同化的文化让 **Conflux** 始终保持多元化，其办公室设立在加拿大多伦多、尼日利亚拉各斯等地。
 
-目前，**CTF Wiki** 主要包含 **CTF** 各大方向的基础知识，正在着力完善以下内容
+在**Conflux** 上进行智能合约开发，体验生态涉及众多领域，内容繁杂。与此同时，区块链技术的发展速度越来越快，**Conflux** 初学者面对的门槛越来越高。而网上资料大都零散琐碎，初学者往往并不知道该如何系统性地学习 与**Conflux** 相关领域知识，常需要花费大量时间，苦不堪言。
 
-- CTF 竞赛中的进阶知识
-- CTF 竞赛中的优质题目
+受到 [ctf-wiki](https://github.com/ctf-wiki/ctf-wiki) 项目成功的鼓舞，为了使得热爱 **Conflux** 的小伙伴们更好地入门 **Conflux**，2021 年 7 月份，**Conflux Wiki** 在 Github 有了第一次 commit。
 
-关于上述部分待完善内容，请参见 CTF Wiki 的 [Projects](https://github.com/ctf-wiki/ctf-wiki/projects)，详细列举了正在做的事情以及待做事项。
+作为一个自由的站点，围绕 **Conflux** 这一基础网络设施近几年的发展，**Conflux Wiki** 对 **Conflux** 中的各个方向的知识和技术进行介绍，以便于初学者更好地学习 **Conflux** 网络相关的知识。
 
-虽然 **CTF Wiki** 基于 **CTF**，却不会局限于 **CTF**。在未来，**CTF Wiki** 将会
+目前，**Conflux Wiki** 主要包含构建 **Conflux** 区块链各大范畴的基础知识，生态体验教程，并正在着力完善以下内容
 
-- 介绍安全研究中的工具
-- 更多地与安全实战结合
+- 区块链智能合约安全知识
+- Conflux 底层机制解析
+- 智能合约开发
+
+关于上述部分待完善内容，请参见 Conflux Wiki 的 [Projects](https://github.com/Conflux-wiki/Conflux-wiki/projects)，详细列出了正在做的事项以及待做事项。
+
+当然，**Conflux Wiki** 基于 **Conflux**，却不会局限于 **Conflux**。在未来，**Conflux Wiki** 将会
+
+- 介绍更多基于Conflux开发的生态
+- 并更多地与区块链开发实战结合
 
 此外，鉴于以下两点
 
-- 技术应该以开放的方式分享
-- 安全攻防技术在快速迭代更新，在面对新的防御技术时，旧的攻击技术随时可能失效
+- 技术应该以开放的方式共享。
+- 技术总是在不断演进，旧的技术在面对新的技术时可能失效。
 
-因此，**CTF Wiki** 永远不会出版书籍。
+因此，**Conflux Wiki** 永远不会出版书籍。
 
-最后，**CTF Wiki** 源于社区，作为**独立的组织**，提倡**知识自由**，在未来也绝不会商业化，将始终保持**独立自由**的性质。
+最后，**Conflux Wiki** 源于社区，作为**独立的组织**，提倡**知识自由**，在未来也绝不会商业化，将始终保持**独立自由**的性质。
 
 ## How to build？
 
