@@ -466,6 +466,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://conflux-wiki.github.io/development/introduction/</loc>
+         <lastmod>2021-07-14</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://conflux-wiki.github.io/ics/ctfs/</loc>
          <lastmod>2021-07-14</lastmod>
          <changefreq>daily</changefreq>
