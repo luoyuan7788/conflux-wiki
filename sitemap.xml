@@ -501,26 +501,6 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://conflux-wiki.github.io/ics/ctfs/</loc>
-         <lastmod>2021-07-19</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://conflux-wiki.github.io/ics/discover/</loc>
-         <lastmod>2021-07-19</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://conflux-wiki.github.io/ics/exploit/</loc>
-         <lastmod>2021-07-19</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://conflux-wiki.github.io/ics/learn/</loc>
-         <lastmod>2021-07-19</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
          <loc>https://conflux-wiki.github.io/introduction/cgc/</loc>
          <lastmod>2021-07-19</lastmod>
          <changefreq>daily</changefreq>
