@@ -486,6 +486,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://conflux-wiki.github.io/development/resources/</loc>
+         <lastmod>2021-07-19</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://conflux-wiki.github.io/development/tools/</loc>
          <lastmod>2021-07-19</lastmod>
          <changefreq>daily</changefreq>
@@ -527,11 +532,6 @@
     </url>
     <url>
          <loc>https://conflux-wiki.github.io/introduction/mode/</loc>
-         <lastmod>2021-07-19</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
-         <loc>https://conflux-wiki.github.io/introduction/resources/</loc>
          <lastmod>2021-07-19</lastmod>
          <changefreq>daily</changefreq>
     </url>
