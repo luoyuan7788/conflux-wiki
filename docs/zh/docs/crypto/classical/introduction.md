@@ -6,7 +6,6 @@
 
 -   拓展阅读
 
-    -   [CTF 中那些脑洞大开的编码和加密](http://www.tuicool.com/articles/2E3INnm)
     -   [古典密码学发展史](http://www.oscca.gov.cn/sca/zxfw/2017-04/24/content_1011709.shtml)
     -   [古典密码——维基百科](https://zh.wikipedia.org/wiki/%E5%8F%A4%E5%85%B8%E5%AF%86%E7%A2%BC)
 

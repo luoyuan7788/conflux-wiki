@@ -66,9 +66,8 @@
 ## 开发工具指南
 
 -   [Conflux与以太坊合约开发工具区别](https://juejin.im/post/6876310280733720583)
--   [Conflux 开发教程 | 使用 IDE 开发 DApp 的实战操作指南：]https://forum.conflux.fun/t/topic/1680/)
+-   [Conflux 开发教程 | 使用 IDE 开发 DApp 的实战操作指南](https://forum.conflux.fun/t/topic/1680/)
 -   [Conflux Studio 开发 DApp 教程](https://juejin.cn/post/6862234416941858830)
--   [Conflux-truffle](https://github.com/Conflux-Chain/conflux-truffle)
 -   [Conflux Truffle 使用完全指南](https://juejin.cn/post/6862239117934067726)
 -   [Conflux-remix（Conflux社区自行开发）](http://remix.conflux.work/)
 -   [使用Remix玩转Conflux上的智能合约](https://github.com/conflux-dao-toc/conflux-remix-plugin/blob/main/conflux-guide.md)

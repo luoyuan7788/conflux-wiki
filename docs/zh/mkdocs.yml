@@ -33,7 +33,6 @@ nav:
 - Start:
   - index.md
   - usage.md
-  - link.md
   - 贡献指南:
     - contribute/before-contributing.md
     - contribute/basic-contribute-approach.md
@@ -42,12 +41,8 @@ nav:
   - discussion.md
 - Introduction:
   - introduction/history.md
-  - introduction/mode.md
-  - introduction/content.md
-  - introduction/experience.md
-  - introduction/cgc.md
-  - introduction/resources.md
-  - introduction/portal.md
+  - introduction/link.md
+  - introduction/highlight-time.md
 - Crypto:
   - crypto/introduction.md
   - 基础数学知识:
@@ -145,6 +140,28 @@ nav:
       - crypto/attack-summary/bit-attack.md
   - 证书格式:
     - crypto/certificate/introduction.md
+- Development:
+  - development/introduction.md
+  - 生态开发激励:
+    - development/incentive-guide.md
+  - 开发工具及相关资源介绍:
+    - development/tools.md
+    - development/resources.md
+  - ConfluxScan教程:
+    - development/apply-contract-fee.md
+    - development/address-NFT.md
+    - development/register-contract-and-token-display.md
+  - Portal钱包教程:
+    - development/portal.md
+    - development/portal-setting.md
+    - development/add-token-to-portal.md
+    - development/portal-faucet.md
+- Ecosystem:
+  - ecosystem/introduction.md
+  - Conflux基础生态教程:
+    - ecosystem/wcfx-cfx-exchange.md
+  - 常见生态介绍及教程:
+    - ecosystem/tspace.md
 - Web:
   - web/introduction.md
   - SQL 注入:
@@ -157,11 +174,6 @@ nav:
     - web/ssrf.md
   - PHP 代码审计:
     - web/php/php.md
-- ICS:
-  - ics/ctfs.md
-  - ics/discover.md
-  - ics/exploit.md
-  - ics/learn.md
 - BlockChain:
   - blockchain/introduction.md
   - Ethereum Security:
@@ -187,6 +199,8 @@ nav:
     - blockchain/ethereum/resources.md
   - Public Blockchain Security:
     - blockchain/publicblockchain/introduction.md
+- NFT:
+  - nft/introduction.md
 markdown_extensions:
 - admonition
 - md_in_html
