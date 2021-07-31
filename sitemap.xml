@@ -521,6 +521,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://conflux-wiki.github.io/ecosystem/moonswap/</loc>
+         <lastmod>2021-07-31</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://conflux-wiki.github.io/ecosystem/phantom/</loc>
          <lastmod>2021-07-31</lastmod>
          <changefreq>daily</changefreq>
