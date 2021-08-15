@@ -531,6 +531,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://conflux-wiki.github.io/ecosystem/nft-box/</loc>
+         <lastmod>2021-08-15</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://conflux-wiki.github.io/ecosystem/phantom/</loc>
          <lastmod>2021-08-15</lastmod>
          <changefreq>daily</changefreq>
