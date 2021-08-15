@@ -163,9 +163,11 @@ nav:
     - ecosystem/wcfx-cfx-exchange.md
   - 常见生态介绍及教程:
     - ecosystem/tspace.md
+    - ecosystem/nft-box.md
     - ecosystem/shuttleflow.md
     - ecosystem/moonswap.md
     - ecosystem/phantom.md
+    - ecosystem/dan.md
 - Web:
   - web/introduction.md
   - SQL 注入:

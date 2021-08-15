@@ -4,13 +4,16 @@
 
 ## 生态介绍
 
-Phantom是一个跨链DeFi协议，用于创建合成资产并挖矿，甚至支持发行NFT。 Phantom users can use cryptocurrencies, NFT, and other digital assets as collateral to create synthetic assets. Phantom breaks down barriers between digital currency assets and traditional assets and lowering the threshold for ordinary people to participate in diversified investment categories.
+Phantom是一个跨链DeFi协议，用于创建合成资产并挖矿，甚至支持发行NFT。Phantom用户可以使用加密货币、NFT和其他数字资产作为抵押品来创建合成资产。通过这一方法，Phantom打破了数字货币资产和传统交易资产之间的障碍，有效降低了普通人参与多元化投资类别的门槛。
 
 
 
 ## 生态链接
 
-[Phantom](https://cfx.phm.finance/)
+- [Phantom Home page](https://cfx.phm.finance/)
+
+- [Phantom英文版介绍文档](https://docs.phm.finance/)
+
 生态页面如下所示：主要包含了生态TVL，合成资产pAssets的市值，流动性统计
 ![home page](./figure/微信截图_20210815105446.png)
 
