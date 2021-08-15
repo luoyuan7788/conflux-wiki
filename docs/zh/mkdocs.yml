@@ -151,6 +151,7 @@ nav:
     - development/apply-contract-fee.md
     - development/address-NFT.md
     - development/register-contract-and-token-display.md
+    - development/get-lp-token-address.md
   - Portal钱包教程:
     - development/portal.md
     - development/portal-setting.md
@@ -162,6 +163,9 @@ nav:
     - ecosystem/wcfx-cfx-exchange.md
   - 常见生态介绍及教程:
     - ecosystem/tspace.md
+    - ecosystem/shuttleflow.md
+    - ecosystem/moonswap.md
+    - ecosystem/phantom.md
 - Web:
   - web/introduction.md
   - SQL 注入:
