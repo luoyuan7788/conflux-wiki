@@ -152,6 +152,7 @@ nav:
     - development/address-NFT.md
     - development/register-contract-and-token-display.md
     - development/get-lp-token-address.md
+    - development/internal-transaction.md
   - Portal钱包教程:
     - development/portal.md
     - development/portal-setting.md
@@ -161,6 +162,7 @@ nav:
   - ecosystem/introduction.md
   - Conflux基础生态教程:
     - ecosystem/wcfx-cfx-exchange.md
+    - ecosystem/governance.md
   - 常见生态介绍及教程:
     - ecosystem/tspace.md
     - ecosystem/nft-box.md

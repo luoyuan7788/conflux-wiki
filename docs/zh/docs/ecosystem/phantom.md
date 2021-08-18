@@ -14,6 +14,8 @@ Phantom是一个跨链DeFi协议，用于创建合成资产并挖矿，甚至支
 
 - [Phantom英文版介绍文档](https://docs.phm.finance/)
 
+- [Phantom代码审计报告](https://www.certik.org/projects/phantom)
+
 生态页面如下所示：主要包含了生态TVL，合成资产pAssets的市值，流动性统计
 ![home page](./figure/微信截图_20210815105446.png)
 
@@ -43,4 +45,10 @@ Phantom是一个跨链DeFi协议，用于创建合成资产并挖矿，甚至支
 ![portal](./figure/微信截图_20210816071540.png)
 
 !!! note
-	现在还不能抢，所以显示合约执行错误，抢购时间为北京时间8月16日中午12点整，详情可见[PHM NFT主页中的倒计时模块](https://nft.phm.finance/)。
+	抢购活动时间在北京时间8月17日中午12点14分已结束，详情可见[PHM NFT主页中的倒计时模块](https://nft.phm.finance/)。已抢到的用户记得按照如下步骤开启NFT盲盒
+
+- 访问创世NFT[购买网站](https://nft.phm.finance/detail?symbol=Genius%20NFT)，点击 My Packs按钮后点击要打开的盲盒，此时会呼出Conflux Portal以进行合约交互，点击确认即可。
+
+- 交易结束后点击My NFTs按钮可查看开出的NFT
+
+![result_nft](./figure/微信截图_20210818140949.png)
