@@ -52,3 +52,45 @@ Phantom是一个跨链DeFi协议，用于创建合成资产并挖矿，甚至支
 - 交易结束后点击My NFTs按钮可查看开出的NFT
 
 ![result_nft](./figure/微信截图_20210818140949.png)
+
+## 我不想挖矿了，把钱还我！
+
+1、幻影那边解除质押，就是在Farm那栏里面，Unstake。这个时候LPtoken就释放出来了。
+2、去Moonswap把LPtoken从池子里面解除掉。就释放出来cfx跟pcfx。
+3、检查LP释放出来的Pcfx数量，是不是跟你phm里面合成的数量一样。多于合成数量就可以，数量不够的，去moonswap里面换。Pcfx去幻影里面build里面Close。
+4、如果剩下了pcfx，就去moonswap卖了，没有剩下，就第3步完了以后就结束了。
+
+- 访问[farm](https://cfx.phm.finance/farm)页面，选取需要移除的挖矿LP对（以moon为例）
+![farm](./figure/微信截图_20210831173117.png)
+
+- 点击moon-pmoon进入页面，切换至Unstake选项卡，输入需要移除的LP对数量，此处为233.611
+![unstake](./figure/微信截图_20210901221232.png)
+
+- 点击unstake按钮，确认交易
+![unstake_confirm](./figure/微信截图_20210901221306.png)
+
+- 交易确认后，页面提示成功
+![confirmed](./figure/微信截图_20210901221335.png)
+
+- 访问[moonswap资金池](https://moonswap.fi/exchange/pool)解除moon-pmoon流动性
+![remove_lp](./figure/微信截图_20210901221513.png)
+
+- 选择100%，点击授权，授权moonswap操作MLP
+![onehundred](./figure/微信截图_20210901221638.png)
+
+- 移除MLP，获得cmoon和pmoon代币
+![removed](./figure/微信截图_20210901221747.png)
+
+- 访问phantom的[my页面](https://cfx.phm.finance/my)，发现当前我们的pmoon个数能够close部分合成过的资产，进而获得cmoon
+![closed](./figure/微信截图_20210901221933.png)
+
+- 以close id为131的合成资产为例，关闭他，需要消耗75个pmoon
+![try_close](./figure/微信截图_20210901222146.png)
+
+- 点击close按钮，确认交易
+![closedend](./figure/微信截图_20210901222215.png)
+
+- 通过scan可以发现这笔交易，phantom收取了1%的手续费，销毁了75个pmoon，并返回给用户148.5个cmoon
+![scan](./figure/微信截图_20210901222339.png)
+
+
