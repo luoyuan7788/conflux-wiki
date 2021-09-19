@@ -6,6 +6,7 @@
 
 Phantom是一个跨链DeFi协议，用于创建合成资产并挖矿，甚至支持发行NFT。Phantom用户可以使用加密货币、NFT和其他数字资产作为抵押品来创建合成资产。通过这一方法，Phantom打破了数字货币资产和传统交易资产之间的障碍，有效降低了普通人参与多元化投资类别的门槛。
 
+![intro_figure](./figure/微信图片_20210914114119.png)
 
 
 ## 生态链接
@@ -23,7 +24,11 @@ Phantom是一个跨链DeFi协议，用于创建合成资产并挖矿，甚至支
 
 **PHMP积分可以参与[Phantom创世NFT](https://nft.phm.finance/detail?symbol=Genius%20NFT)的购买**
 
-您可以参考 [添加 CRC20 代币到 Portal 的方法与步骤-法 2：合约地址自定义添加代币](https://conflux-wiki.github.io/conflux-wiki/development/add-token-to-portal/#2)添加PHMP代币至Portal，PHMP代币的合约地址为：cfx:ach4t6n6s0zm45049b7jr19c48pws7a5x2gxafb10w。
+您可以参考 [添加 CRC20 代币到 Portal 的方法与步骤-法 2：合约地址自定义添加代币](https://conflux-wiki.github.io/conflux-wiki/development/add-token-to-portal/#2)添加PHMP代币至Portal，PHMP代币的合约地址为：
+
+cfx:ach4t6n6s0zm45049b7
+
+jr19c48pws7a5x2gxafb10w。
 
 - 添加PHMP到Portal后的显示效果如下：
 ![phm points](./figure/微信图片_20210815101619.png)
@@ -92,5 +97,30 @@ Phantom是一个跨链DeFi协议，用于创建合成资产并挖矿，甚至支
 
 - 通过scan可以发现这笔交易，phantom收取了1%的手续费，销毁了75个pmoon，并返回给用户148.5个cmoon
 ![scan](./figure/微信截图_20210901222339.png)
+
+## 提取PHM代币
+- 访问[Phantom My info 页面](https://cfx.phm.finance/my)，下拉至Farm模块，可以查看尚未提取的PHM代币
+![info](./figure/微信截图_20210911150130.png)
+
+- 点击黄色三点按钮，并点击Claim
+![claim_ready](./figure/微信截图_20210911150323.png)
+
+- 点击Claim后，将跳转至新页面
+![claim_button](./figure/微信截图_20210911150413.png)
+
+- 点击“CLAIM”按钮，并确认这笔合约交易即可
+![confirm](./figure/微信截图_20210911150550.png)
+
+## 在Conflux Portal中添加PHM代币
+合约地址：cfx:acdyvs4fzn1rfnh6mcyt
+
+2rxpawany5cng6gdpx3psa
+
+- 参考[添加 CRC20 代币到 Portal 的方法与步骤](https://conflux-wiki.github.io/conflux-wiki/development/add-token-to-portal/#2)：可添加cPHM代币到Portal，
+![added](./figure/微信截图_20210911151048.png)
+
+## 社区成员对Phantom的讨论
+
+[Phantom玩法讨论，共同学习](https://forum.moonswap.fi/t/phantom/2172)
 
 

@@ -11,7 +11,6 @@
 这里主要是指 [中文排版指南](https://github.com/ctf-wiki/ctf-wiki/wiki/%E4%B8%AD%E6%96%87%E6%8E%92%E7%89%88%E6%8C%87%E5%8D%97) 与 [MkDocs 使用说明](https://github.com/ctf-wiki/ctf-wiki/wiki/Mkdocs-%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E)。额外的基本要求如下
 
 - 之后可能会考虑为段落标题自动生成序号，所以我们不推荐在段落标题处增加序号。
-- 由于所涉及的题目我们都**合理**地放在了 `ctf-challenge` 仓库，所以我们无需在文档中注明题目的链接。而且，题目可能会随时移动，修复链接是一个非常费时间的事情。
 
 ## 文档的合理性
 

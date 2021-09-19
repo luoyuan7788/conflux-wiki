@@ -90,6 +90,22 @@ NFTBox将秉承着用户体验为最优先级，支持手机端、PC端等多种
 - 头像变为Punk
 ![updated](./figure/微信截图_20210829093811.png)
 
+## 更换NFTBox称谓
+在持有词NFT的情况下，可以将个性化称谓变更为您持有词NFT所对应的内容
+
+- 访问[NFTBox收藏页面](https://boxnft.io/#/collection)，连接钱包后点击头像下方钱包地址右侧的铅笔图标
+![release](./figure/微信截图_20210904221900.png)
+
+- 在新出现的页面可查看你持有的词NFT样式
+![cilist](./figure/微信图片_20210904222138.png)
+
+- 选中NFT，并点击确认
+![selectedci](./figure/微信图片_20210904222341.png)
+
+- 通过Portal签名交易即可更换称谓为“单薄”
+![sign](./figure/微信图片_20210904222433.png)
+
+
 
 
 

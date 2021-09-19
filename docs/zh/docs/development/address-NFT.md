@@ -38,10 +38,14 @@ ConfluxScan区块浏览器新增了NFT查看的功能，可以通过搜索地址
 
 ![image.png](./figure/bc2c917710184f31bf326754a248c1ad~tplv-k3u1fbpfcp-watermark.image)
 
-- 目前已支持显示conDragon, Confi（烤仔城市），Ancient Chinese God NFT（古国序列），Conflux Guardian（守护者），Epik协议NFT
+- 目前已收录conDragon, Confi（烤仔城市），Ancient Chinese God NFT（古国序列），Conflux Guardian（守护者），ConHero等超过85个CRC1155。
 
-![image.png](./figure/11d1dbc43167495cb7fa57ab01d5109b~tplv-k3u1fbpfcp-watermark.image)
+![image.png](./figure/微信截图_20210914123430.png)
 
+- 随便点一个代币，比如Ancient Chinese God NFT，进入后再点击NFT按钮会有惊喜发现
+![data_guguo](./figure/微信截图_20210914123605.png)
+
+**当NFT项目方已接入Conflux后，利用Scan能够直接查看到合约内NFT对应的图片**
 
 
 ## 如何让你的NFT被ConfluxScan收录
