@@ -88,6 +88,16 @@
 
 ![NFT](./figure/微信截图_20210919225240.png)
 
+## 收取代币yao
+
+质押NFT挖出的yao，可以通过点击[古国序列NFT矿池](https://guguo.io/defi)中的“一键提取”按钮完成收矿
+
+![harvest](./figure/微信截图_20210920092952.png)
+
+YAO代币合约地址：cfx:acaucwuza1nm7wfj1bwkjttz7b0eh4ak7ur7fue1dy
+
+你可以通过参考[添加CRC20代币到Portal的方法步骤](https://conflux-wiki.github.io/conflux-wiki/development/add-token-to-portal/)将代币yao添加至Portal的代币列表中。
+
 
 
 
