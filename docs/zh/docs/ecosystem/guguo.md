@@ -94,7 +94,9 @@
 
 ![harvest](./figure/微信截图_20210920092952.png)
 
-YAO代币合约地址：cfx:acaucwuza1nm7wfj1bwkjttz7b0eh4ak7ur7fue1dy
+YAO代币合约地址：cfx:acaucwuza1nm7wfj1bwk
+
+jttz7b0eh4ak7ur7fue1dy
 
 你可以通过参考[添加CRC20代币到Portal的方法步骤](https://conflux-wiki.github.io/conflux-wiki/development/add-token-to-portal/)将代币yao添加至Portal的代币列表中。
 
