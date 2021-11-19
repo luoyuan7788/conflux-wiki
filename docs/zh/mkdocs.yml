@@ -154,6 +154,7 @@ nav:
     - development/register-contract-and-token-display.md
     - development/get-lp-token-address.md
     - development/internal-transaction.md
+    - development/address-convertor.md
   - Portal钱包教程:
     - development/portal.md
     - development/portal-setting.md
@@ -172,6 +173,7 @@ nav:
     - ecosystem/phantom.md
     - ecosystem/dan.md
     - ecosystem/guguo.md
+    - ecosystem/bountyv2.md
 - Web:
   - web/introduction.md
   - SQL 注入:
