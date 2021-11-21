@@ -160,6 +160,7 @@ nav:
     - development/portal-setting.md
     - development/add-token-to-portal.md
     - development/portal-faucet.md
+    - development/portal-drip.md
 - Ecosystem:
   - ecosystem/introduction.md
   - Conflux基础生态教程:
