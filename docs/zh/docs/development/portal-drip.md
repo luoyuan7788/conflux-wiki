@@ -29,3 +29,5 @@
 - 交易会较快的被执行，查看Confluxscan可看到花费的Gas情况
 ![dripinfo](./figure/微信截图_20211121112456.png)
 
+## Confluxdapp已支持自定义drip
+[Confluxdapp](https://confluxdapp.cn/)
