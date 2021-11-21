@@ -33,5 +33,5 @@ Portal安装教程可[参考链接](https://conflux-wiki.github.io/conflux-wiki/
 
 - [Bounty V2绑定PandaID领取CFX教程](https://forum.conflux.fun/t/bounty-v2-pandaid-cfx/12171)：绑定PandaID教程
 - [Bounty v2.0 使用指南](https://forum.conflux.fun/t/bounty-v2-0/12033)：接取任务、发布任务、提交任务。
-- [Bounty v2.0 常见问题解答](https://forum.conflux.fun/t/bounty-v2-0/12040)
+- [Bounty v2.0 常见问题解答](https://forum.conflux.fun/t/bounty-v2-0/12040)：常见问题答疑
 
