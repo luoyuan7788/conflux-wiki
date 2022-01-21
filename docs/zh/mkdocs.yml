@@ -161,6 +161,7 @@ nav:
     - development/add-token-to-portal.md
     - development/portal-faucet.md
     - development/portal-drip.md
+    - development/mobile-portal.md
 - Ecosystem:
   - ecosystem/introduction.md
   - Conflux基础生态教程:
@@ -175,6 +176,8 @@ nav:
     - ecosystem/dan.md
     - ecosystem/guguo.md
     - ecosystem/bountyv2.md
+    - ecosystem/triangledao.md
+    - ecosystem/stampers.md
 - Web:
   - web/introduction.md
   - SQL 注入:
@@ -212,8 +215,11 @@ nav:
     - blockchain/ethereum/resources.md
   - Public Blockchain Security:
     - blockchain/publicblockchain/introduction.md
+    - blockchain/publicblockchain/approve.md
 - NFT:
   - nft/introduction.md
+- DAO:
+  - dao/introduction.md
 markdown_extensions:
 - admonition
 - md_in_html

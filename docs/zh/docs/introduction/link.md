@@ -11,8 +11,10 @@
 -   [UI开源库](https://github.com/Conflux-Chain/design-resource-lab)
 
 ## 开发基础
--   [开发基础手册](https://juejin.cn/post/6940147768535023646)
+-   [开发环境配置及案例](https://juejin.cn/post/6940147768535023646)
 -   [英文版Conflux协议规范（黄皮书）](https://confluxnetwork.org/files/Conflux_Protocol_Specification_20201020.pdf)
+-   [英文版开发指南](https://developer.confluxnetwork.org/)
+-   [常见技术问题指南Github仓库](https://github.com/conflux-fans/crypto-knowledge)
 
 ## 论文成果
 -   [A Decentralized Blockchain with High Throughput and Fast Confirmation](https://www.usenix.org/conference/atc20/presentation/li-chenxing)

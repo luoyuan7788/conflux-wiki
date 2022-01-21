@@ -18,16 +18,22 @@
 ## 使用Portal，提高drip方法使交易更快被执行
 
 - 发起一笔合约交互
+
 ![interact](./figure/微信截图_20211121111728.png)
 
 - 点击高级，调整交互花费的drip，从1drip调整为100000drip
+
 ![advance](./figure/微信截图_20211121112231.png)
 
 - 点击保存，确认交易
+
+
 ![confirm](./figure/微信截图_20211121112017.png)
 
 - 交易会较快的被执行，查看Confluxscan可看到花费的Gas情况
+
+
 ![dripinfo](./figure/微信截图_20211121112456.png)
 
 ## Confluxdapp已支持自定义drip
-[Confluxdapp](https://confluxdapp.cn/)
+[Confluxdapp官网](https://confluxdapp.cn/)：目前已支持安卓，IOS正在内测中

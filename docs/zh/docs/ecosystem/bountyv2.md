@@ -9,8 +9,10 @@ Bounty v2.0上线啦，超多项目联动：
 
 ## 生态链接
 
-[Bounty v2公测版主页](https://bountyv2.confluxnetwork.org/#/)
-[Bounty赏金任务论坛板块](https://forum.conflux.fun/c/Chinese/bounty)
+- [Bounty v2公测版主页](https://bountyv2.confluxnetwork.org/#/)
+
+
+- [Bounty赏金任务论坛板块](https://forum.conflux.fun/c/Chinese/bounty)
 
 ## 生态功能介绍
 Bounty V2主要包括：
@@ -28,7 +30,7 @@ Portal安装教程可[参考链接](https://conflux-wiki.github.io/conflux-wiki/
 - 项目：已接入Bounty V2的生态项目，点击进入某一个项目，可以查看该项目方发布的生态任务
 ![project](./figure/微信截图_20211119211133.png)
 
-# Bounty V2使用教程
+## Bounty V2使用教程
 官方已提供完善的Bounty V2教程，列表如下：
 
 - [Bounty V2绑定PandaID领取CFX教程](https://forum.conflux.fun/t/bounty-v2-pandaid-cfx/12171)：绑定PandaID教程
