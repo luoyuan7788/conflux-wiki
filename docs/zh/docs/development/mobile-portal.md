@@ -1,7 +1,7 @@
-# 手机安装Portal钱包
+# 手机安装fluent钱包
 
 ## 背景
-部分同志因手头没电脑，但部分生态项目（如三角DAO，governance质押）尚不支持手机版本，因此我们需要将手机改造一下，让他支持运行电脑版的Portal钱包，使之能够与这些尚未适配手机版本的生态。手机安装KIWI浏览器（之前也用过yandex浏览器，不过需要手工导入Portal免安装版），在KIWI安装Conflux Portal钱包。以后体验起来方便多了。
+部分同志因手头没电脑，但部分生态项目（如三角DAO，governance质押）尚不支持手机版本，因此我们需要将手机改造一下，让他支持运行电脑版的fluent钱包，使之能够与这些尚未适配手机版本的生态。手机安装KIWI浏览器，在KIWI安装Conflux fluent钱包。以后体验起来方便多了。
 
 ## 配置步骤
 
@@ -14,7 +14,7 @@
 - 在弹出的扩展界面中选择“from store”
 ![browser](./figure/IMG_20211130_100826.jpg)
 
-- 弹出Google应用商店，搜ConfluxPortal，添加至Chrome。
+- 弹出Google应用商店，搜fluent，添加至Chrome。
 ![search](./figure/IMG_20211130_100954.jpg)
 
 ![addto](./figure/IMG_20211130_101022.jpg)
